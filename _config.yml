@@ -1,0 +1,128 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Max的Blog
+subtitle:
+description:
+author: Max Fang
+#language: zh-CN
+language: en
+#language: zh-Hans
+timezone:
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://maxfang.me
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace:
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 5
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+# theme: landscape
+# theme: maupassant
+theme: next
+
+# Social links
+social:
+  GitHub: https://github.com/FX-Max
+  #Twitter: https://twitter.com/your-user-name
+  微博: http://weibo.com/CSUMax
+  #豆瓣: http://douban.com/people/your-user-name
+  #知乎: http://www.zhihu.com/people/your-user-name
+
+# Social Icons
+social_icons:
+  enable: true
+  # Icon Mappings
+  GitHub: github
+  #Twitter: twitter
+  微博: weibo
+
+#RSS
+plugin:
+- hexo-generator-feed
+- hexo-qiniu-sync
+#Feed Atom
+feed:
+type: atom
+path: atom
+#Qiniu
+qiniu:
+  offline: false
+  sync: true
+  bucket: maxfang-hexo-qiniu
+  access_key: E7L6nnxULAeukSw4AIogKPgBNNBciwE9j9ZFDXZF
+  secret_key: ic4_F7ztqpj90XRe7r7a8eFoM6tmcQ83BvBocK7J
+  dirPrefix:
+  urlPrefix: http://orjp0q80r.bkt.clouddn.com
+  local_dir: cdn
+  update_exist: true
+  image:
+    folder: images
+    extend:
+  js:
+    folder: js
+  css:
+    folder: css
+
+baidu_analytics: 67809b4ebdab46caa23b4831eaa0da9a
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  #repo: git@github.com:FX-Max/fx-max.github.io.git
+  #branch: master
+  repo:
+    #github: git@github.com:FX-Max/fx-max.github.io.git,master
+    github: https://github.com/FX-Max/fx-max.github.io.git,master
+    #coding: git@git.coding.net:maxfang007/maxfang007.git,coding-pages
+    coding: https://git.coding.net/maxfang007/maxfang007.git,coding-pages
