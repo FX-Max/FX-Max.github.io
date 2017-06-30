@@ -39,7 +39,7 @@ server {
 
 - 重启nginx，测试访问
 
-sudo /etc/init.d/nginx retart 
+sudo /etc/init.d/nginx restart 
 
 > curl http://127.0.0.1/ngx_status
 
