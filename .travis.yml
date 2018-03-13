@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+- '4'
+branches:
+  only:
+  - develop
+cache:
+  directories:
+  - node_modules
+before_install:
+- openssl aes-256-cbc -K $encrypted_16726c7007e7_key -iv $encrypted_16726c7007e7_iv
+  -in .travis/github.enc -out ~/.ssh/github -d
+- chmod 600 ~/.ssh/github
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/github
+- cp .travis/ssh_config ~/.ssh/config
+- git config --global user.name "FX-Max"
+- git config --global user.email "812234333@qq.com"
+install:
+- npm install hexo-cli -g
+- npm install hexo-deployer-git --save
+- npm install
+script:
+- hexo clean
+- hexo g
+
+after_success:
+- hexo deploy
