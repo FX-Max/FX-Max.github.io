@@ -17,9 +17,9 @@ before_install:
 - git config --global user.name "FX-Max"
 - git config --global user.email "812234333@qq.com"
 install:
-- npm install hexo-cli -g
-- npm install hexo-deployer-git --save
-- npm install hexo --save
+- npm install -g hexo
+- npm install -g hexo-cli
+- npm install
 script:
 - hexo clean
 - hexo g
