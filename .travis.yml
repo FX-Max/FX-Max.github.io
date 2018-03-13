@@ -20,6 +20,7 @@ install:
 - npm install -g hexo
 - npm install -g hexo-cli
 - npm install hexo --save
+- npm install hexo-deployer-git --save
 - npm install
 script:
 - hexo clean
