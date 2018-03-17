@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Max的Blog
+title: Max's Blog
 subtitle:
 description:
 author: Max Fang
@@ -122,7 +122,7 @@ deploy:
   #repo: git@github.com:FX-Max/fx-max.github.io.git
   #branch: master
   repo:
-    github: git@github.com:FX-Max/fx-max.github.io.git,master
-    #github: https://github.com/FX-Max/fx-max.github.io.git,master
+    #github: git@github.com:FX-Max/fx-max.github.io.git,master
+    github: https://github.com/FX-Max/fx-max.github.io.git,master
     #coding: git@git.coding.net:maxfang007/maxfang007.git,coding-pages
-    #coding: https://git.coding.net/maxfang007/maxfang007.git,coding-pages
+    coding: https://git.coding.net/maxfang007/maxfang007.git,coding-pages
