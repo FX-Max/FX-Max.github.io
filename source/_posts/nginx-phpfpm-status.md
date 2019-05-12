@@ -43,7 +43,7 @@ sudo /etc/init.d/nginx restart
 
 > curl http://127.0.0.1/ngx_status
 
-{% qnimg nginx-phpfpm-status/nginx_status.png %}
+![1](nginx-phpfpm-status/nginx_status.png)
 
 - nginx status 参数说明
 
@@ -93,7 +93,7 @@ server {
 
 > curl http://127.0.0.1/fpm_status
 
-{% qnimg nginx-phpfpm-status/php_fpm_status.png %}
+![2](nginx-phpfpm-status/php_fpm_status.png)
 
 - php-fpm 参数说明
 
