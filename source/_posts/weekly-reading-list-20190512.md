@@ -5,26 +5,25 @@ categories: 阅读
 tags: [reading list]
 ---
 
-- 详解 DNS 与 CoreDNS 的实现原理
+## 技术
 
-    [详解 DNS 与 CoreDNS 的实现原理](https://draveness.me/dns-coredns)
+- [详解 DNS 与 CoreDNS 的实现原理](https://draveness.me/dns-coredns)
 
-- 分布式事务的实现原理
+- [分布式事务的实现原理](https://draveness.me/distributed-transaction-principle)
 
-    [分布式事务的实现原理](https://draveness.me/distributed-transaction-principle)
+- [GraphQL 在微服务架构中的实践](https://draveness.me/graphql-microservice)
 
-- GraphQL 在微服务架构中的实践
+- [浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx)
 
-    [GraphQL 在微服务架构中的实践](https://draveness.me/graphql-microservice)
+- [Git的奇技淫巧](https://github.com/521xueweihan/git-tips)
 
-- 浅谈 MVC、MVP 和 MVVM 架构模式
+<!-- more -->
 
-    [浅谈 MVC、MVP 和 MVVM 架构模式](https://draveness.me/mvx)
+- [分库分表技术演进&最佳实践](https://yq.aliyun.com/articles/666034)
 
-- Git的奇技淫巧
+- [从原则、方案、策略及难点阐述分库分表](https://yq.aliyun.com/articles/653109)
 
-    [Git的奇技淫巧](https://github.com/521xueweihan/git-tips)
-
+## 生活
 
 ---
 

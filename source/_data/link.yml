@@ -1,0 +1,7 @@
+- class_name: 友情链接
+  class_desc: 优秀来源于分享
+  link_list:
+    - name: JerryC
+      link: https://jerryc.me/
+      avatar: https://jerryc.me/image/avatar.png
+      descr: 博客主题作者

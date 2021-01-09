@@ -8,11 +8,11 @@ tags: [Linux , nginx , php-fpm]
 
 > 本文基于ubuntu16.04 php7.0
 
-最近服务器的php-fpm进程偶尔会异常飙升，于是想在zabbix上配置监控服务器的nginx和php-fpm的状态。前提是需要开启nginx和php-fpm的status功能。
+最近服务器的 php-fpm 进程偶尔会异常飙升，于是想在 zabbix 上配置监控服务器的 nginx 和 php-fpm 的状态。前提是需要开启 nginx 和 php-fpm 的 status 功能。
 
-# 启用nginx status配置
+# 启用 nginx status 配置
 
-- 配置server，一般我们在默认的主机下配置:
+- 配置 server ，一般我们在默认的主机下配置:
 
 ```
 server {
@@ -37,7 +37,7 @@ server {
 ```
 <!-- more -->
 
-- 重启nginx，测试访问
+- 重启 nginx，测试访问
 
 sudo /etc/init.d/nginx restart 
 
@@ -58,7 +58,7 @@ sudo /etc/init.d/nginx restart
 
 # 启用 php-fpm status 配置
 
-- 修改php-fpm配置，将 status 打开
+- 修改 php-fpm 配置，将 status 打开
 
 vim /etc/php/7.0/fpm/pool.d/www.conf
 
@@ -106,10 +106,10 @@ server {
 > max listen queue #请求等待队列最高的数量
 > listen queue len #socket等待队列长度
 > idle processes #空闲进程数量
-> active processes #活跃进程数量 <br>
-> total processes #总进程数量 <br>
-> max active processes #最大的活跃进程数量（FPM启动开始计算） <br>
-> max children reached <br> #程最大数量限制的次数，如果这个数量不为0，那说明你的最大进程数量过小,可以适当调整。
+> active processes #活跃进程数量 
+> total processes #总进程数量 
+> max active processes #最大的活跃进程数量（FPM启动开始计算）
+> max children reached #程最大数量限制的次数，如果这个数量不为0，那说明你的最大进程数量过小,可以适当调整。
 
 
 Happy Coding.

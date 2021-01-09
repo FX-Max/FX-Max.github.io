@@ -6,7 +6,7 @@ categories: mysql
 tags: [mysql , 运维]
 ---
 
- 最近开始摸索MySQL主从复制，在测试环境进行了相关测试，也遇到了不少的坑。如在从库设置同步的时候，报如下错误：
+ 最近开始摸索 MySQL 主从复制，在测试环境进行了相关测试，也遇到了不少的坑。如在从库设置同步的时候，报如下错误：
 
 > ERROR 1201 (HY000): Could not initialize master info structure .
 
