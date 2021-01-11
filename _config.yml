@@ -7,14 +7,15 @@ title: Max's Blog
 subtitle:
 description:
 author: Max Fang
-#language: zh-CN
-language: en
+language: zh-CN
+#language: en
 #language: zh-Hans
 timezone:
+email: maxfang007@gmail.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://maxfang.me
+url: http://immaxfang.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
