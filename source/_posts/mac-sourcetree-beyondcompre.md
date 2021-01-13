@@ -1,6 +1,7 @@
 ---
 title: Mac下SourceTree安装BeyondCompare
 date: 2017-03-14 00:03:14
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0314.jpg'
 categories: 
 tags: [mac , git , sourcetree , beyondcompre ]
 ---

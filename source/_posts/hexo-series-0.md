@@ -1,6 +1,7 @@
 ---
 title: hexo使用札记-常用命令
 date: 2016-06-19 01:15:11
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0619.jpg'
 categories:
 tags:
 ---

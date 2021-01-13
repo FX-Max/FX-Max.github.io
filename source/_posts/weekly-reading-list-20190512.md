@@ -1,6 +1,7 @@
 ---
 title: 每周阅读清单-20190512
 date: 2019-05-12 00:56:47
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0512.jpg'
 categories: 阅读
 tags: [reading list]
 ---

@@ -2,6 +2,7 @@
 title: MySQL主从复制-Could not initialize master info structure
 
 date: 2016-06-18 14:18:07
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0221.jpg'
 categories: mysql
 tags: [mysql , 运维]
 ---

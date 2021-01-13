@@ -1,6 +1,7 @@
 ---
 title: 电影：花水木
 date: 2016-03-16 21:49:56
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/hua_shui_mu.jpg'
 categories: movie
 tags: movie
 ---

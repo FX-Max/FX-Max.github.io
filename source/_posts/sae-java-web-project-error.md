@@ -1,6 +1,7 @@
 ---
 title: SAE 部署 JavaWeb 项目报404错误
 date: 2016-03-26 23:03:56
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/sae_404.jpg'
 categories: JAVA
 tags: [SAE , JAVA]
 ---

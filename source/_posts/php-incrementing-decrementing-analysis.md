@@ -1,6 +1,7 @@
 ---
 title: 从源码角度看php自增和自减
 date: 2016-05-06 20:18:14
+cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/analysis.jpg'
 categories: php
 tags: [php , source , 源码]
 ---
