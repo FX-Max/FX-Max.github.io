@@ -242,7 +242,7 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
   use:
-  # - Valine
+    - Valine
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -289,19 +289,30 @@ gitalk:
 # valine
 # https://valine.js.org
 valine:
-  appId: # leancloud application app id
-  appKey: # leancloud application app key
+  appId: 7pLYvVijvdCe0C0aYFUyIWKa-MdYXbMMI # leancloud application app id
+  appKey: y4tue7XIr3HaL0SDp9zpfsqU # leancloud application app key
   pageSize: 10 # comment list page size
+  master: 
+    - 8ce0d0211103ef983be11b6d4f0517ed
+    - 9c22ab23f1fdedcbe1ec978af9a2a5e2
+    - 5dcd1e147f801b62d5fe858f241dae64
+    - 26c2b68b8e455c976f15de93f8c5ec28
+  friends:
+    - 661fcd9c4ab1201f1e8e8975c49d7af6
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: en # i18n: zh-CN/zh-TW/en/ja
-  placeholder: Please leave your footprints # valine comment input placeholder (like: Please leave your footprints)
+  lang: zh_CN # i18n: zh-CN/zh-TW/en/ja
+  placeholder: 写下你的留言把！ # valine comment input placeholder (like: Please leave your footprints)
   guest_info: nick,mail,link # valine comment header info (nick/mail/link)
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: # valine background
-  emojiCDN: # emoji CDN
-  enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
+  emojiCDN: https://cdn.jsdelivr.net/gh/FX-Max/cdn@master/blog/expression/ # emoji CDN
+  enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
+  metaPlaceholder:
+    nick: 昵称/QQ号(必填)
+    mail: 邮箱(必填)
+    link: 网址(https://)
   option:
 
 # utterances
