@@ -16,7 +16,7 @@ menu:
   #   - Music || /music/ || fas fa-music
   #   - Movie || /movies/ || fas fa-video
   Link: /link/ || fas fa-link
-  About: /about/ || fas fa-heart
+  About: /about/ || fas fa-about
 
 # Hide the child menu items in mobile sidebar
 hide_sidebar_menu_child: false
@@ -401,7 +401,7 @@ baidu_analytics:
 
 # Google Analytics
 # https://analytics.google.com/analytics/web/
-google_analytics:
+google_analytics: GTM-NMPJ73S
 
 # Tencent Analytics ID
 # https://mta.qq.com
