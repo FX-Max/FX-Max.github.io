@@ -289,8 +289,8 @@ gitalk:
 # valine
 # https://valine.js.org
 valine:
-  appId: 7pLYvVijvdCe0C0aYFUyIWKa-MdYXbMMI # leancloud application app id
-  appKey: y4tue7XIr3HaL0SDp9zpfsqU # leancloud application app key
+  appId: RoaKz6A3wbmwNFIRl6bNdOqC-gzGzoHsz # leancloud application app id
+  appKey: zRlIClO248YJDPefLLQe0F0B # leancloud application app key
   pageSize: 10 # comment list page size
   master: 
     - 8ce0d0211103ef983be11b6d4f0517ed
@@ -658,7 +658,7 @@ aside:
 # 訪問人數
 busuanzi:
   site_uv: false
-  site_pv: false
+  site_pv: true
   page_pv: false
 
 # Time difference between publish date and now (網頁運行時間)

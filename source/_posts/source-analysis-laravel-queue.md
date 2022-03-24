@@ -212,3 +212,170 @@ class DemoJob implements ShouldQueue
 ```
 
 至此，我们已经大致明白了队列任务类是如何创建的了。下面我们来分析下其是如何生效运行的。
+
+# 队列任务的分发
+
+任务类创建后，我们就可以在需要的地方进行任务的分发，常见的方法如下：
+
+```
+DemoJob::dispatch(); // 任务分发
+DemoJob::dispatchNow(); // 同步调度，队列任务不会排队，并立即在当前进程中进行
+```
+
+下面先以 dispatch() 为例分析下分发过程。
+
+```
+trait Dispatchable
+{
+    public static function dispatch()
+    {
+        return new PendingDispatch(new static(...func_get_args()));
+    }
+}
+```
+
+```
+class PendingDispatch
+{
+    protected $job;
+
+    public function __construct($job)
+    {   echo '[Max] ' . 'PendingDispatch ' . '__construct' . PHP_EOL;
+        $this->job = $job;
+    }
+
+    public function __destruct()
+    {   echo '[Max] ' . 'PendingDispatch ' . '__destruct' . PHP_EOL;
+        app(Dispatcher::class)->dispatch($this->job);
+    }
+}
+```
+
+重点是 app(Dispatcher::class)->dispatch($this->job) 这部分。
+
+我们先来分析下前部分 app(Dispatcher::class)，它是在 laravel 框架中自带的 BusServiceProvider 中向 $app 中注入的。
+
+```
+class BusServiceProvider extends ServiceProvider implements DeferrableProvider
+{
+    public function register()
+    {
+        $this->app->singleton(Dispatcher::class, function ($app) {
+            return new Dispatcher($app, function ($connection = null) use ($app) {
+                return $app[QueueFactoryContract::class]->connection($connection);
+            });
+        });
+    }
+}
+```
+
+看一下 Dispatcher 的构造方法，至此，我们已经知道前半部分 app(Dispatcher::class) 是如何来的了。
+
+```
+class Dispatcher implements QueueingDispatcher
+{
+    protected $container;
+    protected $pipeline;
+    protected $queueResolver;
+
+    public function __construct(Container $container, Closure $queueResolver = null)
+    {
+        $this->container = $container;
+        /**
+         * Illuminate/Bus/BusServiceProvider.php->register()中
+         * $queueResolver 传入的是一个闭包
+         * function ($connection = null) use ($app) {
+         *   return $app[QueueFactoryContract::class]->connection($connection);
+         * }
+         */
+        $this->queueResolver = $queueResolver;
+        $this->pipeline = new Pipeline($container);
+    }
+
+    public function dispatch($command)
+    {
+        if ($this->queueResolver && $this->commandShouldBeQueued($command)) {
+        		// 将 $command 存入队列
+            return $this->dispatchToQueue($command);
+        }
+        return $this->dispatchNow($command);
+    }
+}
+```
+
+BusServiceProvider 中注册了 Dispatcher::class ，然后 app(Dispatcher::class)->dispatch($this->job) 调用的即是 Dispatcher->dispatch()。
+
+```
+public function dispatchToQueue($command)
+{
+    // 获取任务所属的 connection
+    $connection = $command->connection ?? null;
+    /*
+     * 获取队列实例，根据config/queue.php中的配置
+     * 此处我们配置 QUEUE_CONNECTION=redis 为例，则获取的是RedisQueue
+     * 至于如何通过 QUEUE_CONNECTION 的配置获取 queue ，此处先跳过，本文后面会具体分析。
+     */
+    $queue = call_user_func($this->queueResolver, $connection);
+
+    if (! $queue instanceof Queue) {
+        throw new RuntimeException('Queue resolver did not return a Queue implementation.');
+    }
+    // 我们创建的DemoJob无queue方法，则不会调用
+    if (method_exists($command, 'queue')) {
+        return $command->queue($queue, $command);
+    }
+    // 将 job 放入队列
+    return $this->pushCommandToQueue($queue, $command);
+}
+
+protected function pushCommandToQueue($queue, $command)
+{
+    // 在指定了 queue 或者 delay 时会调用不同的方法，基本大同小异
+    if (isset($command->queue, $command->delay)) {
+        return $queue->laterOn($command->queue, $command->delay, $command);
+    }
+
+    if (isset($command->queue)) {
+        return $queue->pushOn($command->queue, $command);
+    }
+
+    if (isset($command->delay)) {
+        return $queue->later($command->delay, $command);
+    }
+    // 此处我们先看最简单的无参数时的情况，调用push()
+    return $queue->push($command);
+}
+```
+
+> 笔者的配置是 QUEUE_CONNECTION=redis ，估以此来分析，其他类型的原理基本类似。
+
+配置的是 redis 时， $queue 是 RedisQueue 实例，下面我们看下 RedisQueue->push() 的内容。
+
+Illuminate/Queue/RedisQueue.php
+
+```
+public function push($job, $data = '', $queue = null)
+{
+    /**
+     * 获取队列名称
+     * var_dump($this->getQueue($queue));
+     * 创建统一的 payload，转成 json
+     * var_dump($this->createPayload($job, $this->getQueue($queue), $data));
+     */
+    // 将任务和数据存入队列
+    return $this->pushRaw($this->createPayload($job, $this->getQueue($queue), $data), $queue);
+}
+
+public function pushRaw($payload, $queue = null, array $options = [])
+{
+    // 写入redis中
+    $this->getConnection()->eval(
+        LuaScripts::push(), 2, $this->getQueue($queue),
+        $this->getQueue($queue).':notify', $payload
+    );
+    // 返回id
+    return json_decode($payload, true)['id'] ?? null;
+}
+```
+
+至此，我们已经分析完了任务是如何被加入到队列中的。
