@@ -8,6 +8,7 @@
   "dependencies": {
     "hexo": "^5.4.0",
     "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
+    "hexo-bilibili-bangumi": "^1.7.4",
     "hexo-deployer-git": "^0.1.0",
     "hexo-filter-auto-spacing": "^0.2.1",
     "hexo-generator-archive": "^0.1.5",
