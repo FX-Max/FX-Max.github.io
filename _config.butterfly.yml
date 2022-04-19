@@ -7,17 +7,17 @@
 #   name || link || icon
 
 menu:
-  Home: / || fas fa-home
-  Archives: /archives/ || fas fa-archive
-  Tags: /tags/ || fas fa-tags
-  Categories: /categories/ || fas fa-folder-open
-  Talking: /talking/ || fas fa-music
+  主页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  说说: /talking/ || fas fa-music
   # List||fas fa-list:
   #   - Music || /music/ || fas fa-music
   #   - Movie || /movies/ || fas fa-video
-  Video: /cinemas/ || fas fa-video
-  Link: /link/ || fas fa-link
-  About: /about/ || fas fa-about
+  追番: /cinemas/ || fas fa-video
+  友链: /link/ || fas fa-link
+  关于: /about/ || fas fa-users
 
 # Hide the child menu items in mobile sidebar
 hide_sidebar_menu_child: false
@@ -658,9 +658,9 @@ aside:
 # busuanzi count for PV / UV in site
 # 訪問人數
 busuanzi:
-  site_uv: false
+  site_uv: true
   site_pv: true
-  page_pv: false
+  page_pv: true
 
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
