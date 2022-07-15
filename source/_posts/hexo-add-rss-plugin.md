@@ -1,6 +1,6 @@
 ---
 title: 三步开启hexo博客RSS
-date: 2017-02-28 01:13:20
+date: 2020-02-28 01:13:20
 cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0228.jpg'
 categories:
 tags: [hexo , rss]

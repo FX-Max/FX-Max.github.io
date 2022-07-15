@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: 2016-03-02 01:15:11
+date: 2020-01-01 01:15:11
 cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/hello_world.jpg'
 categories:
 tags:
