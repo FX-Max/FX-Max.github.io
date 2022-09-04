@@ -1,5 +1,5 @@
 ---
-title: Prometheus+Grafana监控-基于docker-compose搭建
+title: 【Prometheus+Grafana系列】基于docker-compose搭建
 date: 2022-08-23 22:40:33
 cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/bg-prometheus-grafana-docker-compose-build.png'
 categories: 运维
