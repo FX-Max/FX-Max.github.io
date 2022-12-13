@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Max's Blog</title><meta name="author" content="Max Fang,maxfang007@gmail.com"><meta name="copyright" content="Max Fang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="website">
+<meta property="og:title" content="Max&#39;s Blog">
+<meta property="og:url" content="http://www.immaxfang.com/index.html">
+<meta property="og:site_name" content="Max&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.immaxfang.com/img/avatar.png">
+<meta property="article:author" content="Max Fang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.immaxfang.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.immaxfang.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GTM-NMPJ73S');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-12-13 22:14:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/talking/"><i class="fa-fw fas fa-music"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/cinemas/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-users"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://cdn.immaxfang.com/images/theme/background.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Max's Blog</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/talking/"><i class="fa-fw fas fa-music"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/cinemas/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-users"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">Max's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/FX-Max" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maxfang007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/12/13/redis-client-output-buffer-limit/" title="认识 Redis client-output-buffer-limit 参数与源码分析">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="认识 Redis client-output-buffer-limit 参数与源码分析"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/13/redis-client-output-buffer-limit/" title="认识 Redis client-output-buffer-limit 参数与源码分析">认识 Redis client-output-buffer-limit 参数与源码分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-13T13:51:08.000Z" title="发表于 2022-12-13 21:51:08">2022-12-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/redis/">redis</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/redis/">redis</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E6%BA%90%E7%A0%81/">源码</a></span></div><div class="content">概述 Redis 的 client-output-buffer-limit 可以用来强制断开无法足够快从 redis 服务器端读取数据的客户端。 保护机制规则如下：
+
+[hard limit] 大小限制，当某一客户端缓冲区超过设定值后，直接关闭连接。
+[soft limit] 持续时间限制，当某一客户端缓冲区持续一段时间占用过大空间时关闭连接。
+
+该参数一般用在以下几类客户端中：
+
+普通 client，包括 monitor
+主从同步时的 slave client
+Pub/Sub 模式中的 client
+
+配置介绍与分析  该参数的配置语法：1client-output-buffer-limit &lt;class&gt; &lt;hard limit&gt; &lt;soft limit&gt; &lt;soft seconds&gt;配置实例：123456# 普通 client buffer 限制 client-output-buffer-limit normal 0 0 0# slave client buffer 限制client-output-buffer-limit slav ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/09/05/authorization-header/" title="API 的 Authorization 头里为啥有个 Bearer">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="API 的 Authorization 头里为啥有个 Bearer"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/09/05/authorization-header/" title="API 的 Authorization 头里为啥有个 Bearer">API 的 Authorization 头里为啥有个 Bearer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-04T16:33:48.000Z" title="发表于 2022-09-05 00:33:48">2022-09-05</time></span></div><div class="content"> 在我们设计和使用 API 授权的时候，经常会接触到如下内容：
+1Authorization : Bearer Tokenxxxxxx
+ 为什么前面会有个 Bearer，直接弄成这样不是更简单么。
+1Authorization : Tokenxxxxxx
+ 这是因为 W3C 的 HTTP 1.0 规范，具体见 10.2 和 11 。Authorization 的格式是：
+1Authorization: &lt;type&gt; &lt;authorization-parameters&gt;
+Bearer 是授权的类型，常见的授权类型有：
+
+Basic 用于 http-basic 认证；
+Bearer 常见于 OAuth 和 JWT 授权；
+Digest MD5 哈希的 http-basic 认证 (已弃用)
+AWS4-HMAC-SHA256 AWS 授权 
+…
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/08/24/prometheus-grafana-mysql/" title="【Prometheus+Grafana 系列】监控 MySQL 服务">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-mysql.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Prometheus+Grafana 系列】监控 MySQL 服务"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/08/24/prometheus-grafana-mysql/" title="【Prometheus+Grafana 系列】监控 MySQL 服务">【Prometheus+Grafana 系列】监控 MySQL 服务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-24T04:26:08.000Z" title="发表于 2022-08-24 12:26:08">2022-08-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Linux/">Linux</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/devops/">devops</a></span></div><div class="content">前言  前面的一篇文章已经介绍了 docker-compose 搭建 Prometheus + Grafana 服务。当时实现了监控服务器指标数据，是通过 node_exporter。Prometheus 还可用来监控很多服务，比如常见的  MySQL。本文就介绍如何通过 mysqld_exporter 来监控 MySQL 指标。
+下载安装包12345cd /optwget https://github.com/prometheus/mysqld_exporter/releases/download/v0.14.0/mysqld_exporter-0.14.0.linux-amd64.tar.gztar xvf mysqld_exporter-0.14.0.linux-amd64.tar.gzmv mysqld_exporter-0.14.0.linux-amd64 mysqld_exportermv /opt/mysqld_exporter /usr/local/
+创建监控账号并授权  在需要监控的 mysql 上创建账号并授权。1234# 创建用户CREATE USER &#x27 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/08/23/prometheus-grafana-docker-compose-build/" title="【Prometheus+Grafana 系列】基于 docker-compose 搭建">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-docker-compose-build.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Prometheus+Grafana 系列】基于 docker-compose 搭建"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/08/23/prometheus-grafana-docker-compose-build/" title="【Prometheus+Grafana 系列】基于 docker-compose 搭建">【Prometheus+Grafana 系列】基于 docker-compose 搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-23T14:40:33.000Z" title="发表于 2022-08-23 22:40:33">2022-08-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Linux/">Linux</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/devops/">devops</a></span></div><div class="content">前言 PrometheusPrometheus 是有 SoundCloud 开发的开源监控系统和时序数据库，基于 Go 语言开发。通过基于 HTTP 的 pull 方式采集时序数据，通过服务发现或静态配置去获取要采集的目标服务器，支持多节点工作，支持多种可视化图表及仪表盘。 贴一下官方提供的架构图：
+Pormetheus 几个主要模块有，Server，Exporters，Pushgateway，PromQL，Alertmanager，WebUI 等，主要逻辑如下：
+
+Prometheus server 定期从静态配置的 targets 或者服务发现的 targets 拉取数据。
+当新拉取的数据大于配置内存缓存区时，Prometheus 会将数据持久化到磁盘（如果使用 remote storage 将持久化到云端）。
+Prometheus 配置 rules，然后定时查询数据，当条件触发时，会将 alert 推送到配置的 Alertmanager。
+Alertmanager 收到警告时，会根据配置，聚合、去重、降噪等操作，最后发送警告。
+可以使用 API，Prometheus Consol ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/07/25/talking-log-specification/" title="日志规范实践">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/bg-talking-log-specification.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志规范实践"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/25/talking-log-specification/" title="日志规范实践">日志规范实践</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-25T10:28:30.000Z" title="发表于 2022-07-25 18:28:30">2022-07-25</time></span></div><div class="content">日志与我们日常的项目开发有着密切关系，日志是我们分析和排查问题的重要依据。今天就来简单总结下笔者个人对于项目中日志的一些经验。
+1. 日志文件规范 1.1 日志文件命名 日志文件名格式：logname_YY-MM-dd_hh.[roll-count].log例子：api_2022-06-20_12.0.log
+1.2 日志滚动大小  一般要限制每个日记文件的大小，需日志滚动。一般常设置文件大小为 100M。Linux 对于小文件存在 Inodes 限制，所以当日志量大时，日志文件大小不宜设置的过小，否则将会产生大量日志滚动，造成日志文件过多，造成 Inodes 报警。并且最好定期清理过期的日志文件。
+1.3 日志文件存放位置  日志文件统一保存在服务器的目录中，这个目录在团队内部最好是固定的，且有一定规律。例如日志的根目录均为 /data/logs，项目的日志可以放在/data/logs/app/order-service/ 目录下，nginx 的日志可以放在 /data/logs/service/nginx/ 目录下面。统一的日志存放路径便于后续接入日志平台与运维自动化，否则日志采集 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/07/15/beanstalkd/" title="简单易用的任务队列 -beanstalkd">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/bg-beanstalkd.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="简单易用的任务队列 -beanstalkd"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/15/beanstalkd/" title="简单易用的任务队列 -beanstalkd">简单易用的任务队列 -beanstalkd</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-07-15T13:14:27.000Z" title="发表于 2022-07-15 21:14:27">2022-07-15</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Linux/">Linux</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/beanstalkd/">beanstalkd</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/MQ/">MQ</a></span></div><div class="content">概述beanstalkd 是一个简单快速的分布式工作队列系统，协议基于 ASCII 编码运行在 TCP 上。其最初设计的目的是通过后台异步执行耗时任务的方式降低高容量 Web 应用的页面延时。其具有简单、轻量、易用等特点，也支持对任务优先级、延时 / 超时重发等控制，同时还有众多语言版本的客户端支持，这些优点使得它成为各种需要队列系统场景的一种常见选择。
+beanstalkd 优点
+如他官网的介绍，simple&amp;fast，使用非常简单，适合需要引入消息队列又不想引入 kafka 这类重型的 mq，维护成本低；同时，它的性能非常高，大部分场景下都可以 cover 住。
+支持持久化
+支持消息优先级，topic，延时消息，消息重试等
+主流语言客户端都支持，还可以根据 beanstalkd 协议自行实现。
+
+beanstalkd 不足
+无最大内存控制，当业务消息极多时，服务可能会不稳定。
+官方没有提供集群故障切换方案(主从或哨兵等)，需要自己解决。
+
+beanstalkd 重点概念
+job
+
+任务，队列中的基本单元，每个 job 都会有 id 和优先级。有点类似其他消息队列中的 mes ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/06/29/nginx-signal-manage/" title="nginx 信号管理">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="nginx 信号管理"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/29/nginx-signal-manage/" title="nginx 信号管理">nginx 信号管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-29T13:17:17.000Z" title="发表于 2022-06-29 21:17:17">2022-06-29</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Linux/">Linux</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/nginx/">nginx</a></span></div><div class="content">概述  本文笔者主要介绍 nginx 信号管理方面的知识及实践操作，内容包括 nginx 信号管理体系，nginx 信号管理的常见操作，通过具体案例来分析，如 nginx 的 reload，热升级以及日志切割。
+nginx 命令行管理nginx 的管理可以通过两种方式实现。一种是通过命令行，下面是 nginx 常用的操作命令，
+123456789101112131415root@sh192-168-1-71:~# nginx -hnginx version: nginx/1.10.3 (Ubuntu)Usage: nginx [-?hvVtTq] [-s signal] [-c filename] [-p prefix] [-g directives]Options:  -?,-h         : this help  -v            : show version and exit  -V            : show version and configure options then exit  -t            : test configurati ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/06/11/postfix-aws-ses/" title="ubuntu 使用 postfix 和 AWS-SES 发送邮件">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/bg-postfix-aws-ses.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ubuntu 使用 postfix 和 AWS-SES 发送邮件"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/11/postfix-aws-ses/" title="ubuntu 使用 postfix 和 AWS-SES 发送邮件">ubuntu 使用 postfix 和 AWS-SES 发送邮件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-10T17:27:01.000Z" title="发表于 2022-06-11 01:27:01">2022-06-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/AWS/">AWS</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/ubuntu/">ubuntu</a></span></div><div class="content">在日常开发中，邮件发送是个比较常见的场景。因此出现了很多相关的软件和服务，各大云厂商也推出自己的邮件服务。今天笔者就像大家介绍一种常见的组合，AWS 的邮件服务 SES 与邮件服务器 postfix 的配置和使用方法。
+概述
+什么是 AWS-SES
+
+Amazon Simple Email Service (SES) 是一种经济高效、灵活且可扩展的电子邮件服务，使开发人员能够从任何应用程序中发送电子邮件。 您可以快速配置 Amazon SES 以支持多种电子邮件使用案例，包括交易、营销或群发电子邮件通信。
+
+什么是 postfix
+
+Postfix 是一种电子邮件服务器，它是由任职于 IBM 华生研究中心（T.J. Watson Research Center）的荷兰籍研究员 Wietse Venema 为了改良 sendmail 邮件服务器而产生的。它是为了改良 sendmail 产生的，同时它兼容 sendmail，是比较常用的一种邮件服务器。
+开通 Amazon Simple Email Service (SES)服务
+创建一个 identity
+
+
+此处我们为了演示方便，使用  ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/04/25/mydumper-myloader/" title="mydumper-myloader">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/pg-mydumper-myloader.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mydumper-myloader"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/04/25/mydumper-myloader/" title="mydumper-myloader">mydumper-myloader</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-24T17:58:53.000Z" title="发表于 2022-04-25 01:58:53">2022-04-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/mysql/">mysql</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/mysql/">mysql</a></span></div><div class="content">简介mydumper 是一款开源的 MySQL 逻辑备份工具，主要由 C 语言编写。与 MySQL 自带的 mysqldump 类似，但是 mydumper 更快更高效。mydumper 的一些优点特性：
+
+轻量级 C 语言开发
+支持多线程备份数据，备份后按表生成多个备份文件
+支持事务性和非事务性表一致性备份
+支持将导出的文件压缩，节约空间
+支持多线程恢复
+支持已守护进程模式工作，定时快照和连续二进制日志
+支持按指定大小将备份文件切割
+数据与建表语句分离
+
+下载安装  安装方式非常多，以下介绍几种常见的方式。
+
+Ubuntu 中自带了 myloader
+
+sudo apt-get install mydumper
+
+
+使用 deb 包安装，以 Ubuntu 为例
+
+apt-get install libatomic1wget https://github.com/mydumper/mydumper/releases/download/v0.11.5/mydumper_0.11.5-1.$(lsb_release -cs)_amd64.deb         dpkg -i mydump ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/19/git-migrate-project/" title="git 使用命令行保留原分支迁移代码仓库">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/pg-git-migrate-project.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git 使用命令行保留原分支迁移代码仓库"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/19/git-migrate-project/" title="git 使用命令行保留原分支迁移代码仓库">git 使用命令行保留原分支迁移代码仓库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-18T17:54:57.000Z" title="发表于 2022-03-19 01:54:57">2022-03-19</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/git/">git</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/git/">git</a></span></div><div class="content"> 有些时候我们需要对 git 仓库中的项目进行一些迁移，如从 a 账号迁移到 b 账号下，从 github 平台迁移到内部的 gitlab 平台等。一般平台会自带 migrate 或者 import 的功能，可以很方便的进行仓库的迁移。当然，我们也可以自行进行迁移，当需要迁移的项目比较多时，脚本进行迁移更快捷。
+ 下面来看看如何进行手动迁移，同时在迁移后，保留原项目的分支和 tag，以及提交记录等。
+
+ 先将待迁移的项目 clone 下来 
+
+12git clone --mirror &lt;url_of_old_repo&gt;cd &lt;name_of_old_repo&gt;
+
+ 确保新的空仓库已经创建完成，然后即可将项目推送到新的空仓库中。
+
+123git remote rm origingit remote add origin &lt;url_of_new_repo&gt;git push origin --mirror
+ 大功告成，可以看到新的仓库中，项目的分支和 tag，以及提交记录等，都会保留。
+</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Max Fang</div><div class="author-info__description">Keep coding. Keep running.&ensp;<i class="fas fa-flag"></i></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FX-Max"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FX-Max" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maxfang007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep coding. Keep running.</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/13/redis-client-output-buffer-limit/" title="认识 Redis client-output-buffer-limit 参数与源码分析"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="认识 Redis client-output-buffer-limit 参数与源码分析"/></a><div class="content"><a class="title" href="/2022/12/13/redis-client-output-buffer-limit/" title="认识 Redis client-output-buffer-limit 参数与源码分析">认识 Redis client-output-buffer-limit 参数与源码分析</a><time datetime="2022-12-13T13:51:08.000Z" title="发表于 2022-12-13 21:51:08">2022-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/authorization-header/" title="API 的 Authorization 头里为啥有个 Bearer"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="API 的 Authorization 头里为啥有个 Bearer"/></a><div class="content"><a class="title" href="/2022/09/05/authorization-header/" title="API 的 Authorization 头里为啥有个 Bearer">API 的 Authorization 头里为啥有个 Bearer</a><time datetime="2022-09-04T16:33:48.000Z" title="发表于 2022-09-05 00:33:48">2022-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/prometheus-grafana-mysql/" title="【Prometheus+Grafana 系列】监控 MySQL 服务"><img src="https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-mysql.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Prometheus+Grafana 系列】监控 MySQL 服务"/></a><div class="content"><a class="title" href="/2022/08/24/prometheus-grafana-mysql/" title="【Prometheus+Grafana 系列】监控 MySQL 服务">【Prometheus+Grafana 系列】监控 MySQL 服务</a><time datetime="2022-08-24T04:26:08.000Z" title="发表于 2022-08-24 12:26:08">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/23/prometheus-grafana-docker-compose-build/" title="【Prometheus+Grafana 系列】基于 docker-compose 搭建"><img src="https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-docker-compose-build.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Prometheus+Grafana 系列】基于 docker-compose 搭建"/></a><div class="content"><a class="title" href="/2022/08/23/prometheus-grafana-docker-compose-build/" title="【Prometheus+Grafana 系列】基于 docker-compose 搭建">【Prometheus+Grafana 系列】基于 docker-compose 搭建</a><time datetime="2022-08-23T14:40:33.000Z" title="发表于 2022-08-23 22:40:33">2022-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/25/talking-log-specification/" title="日志规范实践"><img src="https://cdn.immaxfang.com/images/post/2022/bg-talking-log-specification.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志规范实践"/></a><div class="content"><a class="title" href="/2022/07/25/talking-log-specification/" title="日志规范实践">日志规范实践</a><time datetime="2022-07-25T10:28:30.000Z" title="发表于 2022-07-25 18:28:30">2022-07-25</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AWS/"><span class="card-category-list-name">AWS</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/movie/"><span class="card-category-list-name">movie</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">1</span></a></li>
+            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/categories/">
+                <span>查看更多</span><i class="fas fa-angle-right"></i></a></li>
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AWS/" style="font-size: 1.3em; color: #99a1ac">AWS</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Linux/" style="font-size: 1.5em; color: #99a9bf">Linux</a> <a href="/tags/MQ/" style="font-size: 1.1em; color: #999">MQ</a> <a href="/tags/MySQL/" style="font-size: 1.3em; color: #99a1ac">MySQL</a> <a href="/tags/RDS/" style="font-size: 1.1em; color: #999">RDS</a> <a href="/tags/YAML/" style="font-size: 1.1em; color: #999">YAML</a> <a href="/tags/beanstalkd/" style="font-size: 1.1em; color: #999">beanstalkd</a> <a href="/tags/beyondcompre/" style="font-size: 1.1em; color: #999">beyondcompre</a> <a href="/tags/devops/" style="font-size: 1.3em; color: #99a1ac">devops</a> <a href="/tags/git/" style="font-size: 1.3em; color: #99a1ac">git</a> <a href="/tags/hexo/" style="font-size: 1.3em; color: #99a1ac">hexo</a> <a href="/tags/laravel/" style="font-size: 1.3em; color: #99a1ac">laravel</a> <a href="/tags/mac/" style="font-size: 1.3em; color: #99a1ac">mac</a> <a href="/tags/movie/" style="font-size: 1.1em; color: #999">movie</a> <a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/nginx/" style="font-size: 1.3em; color: #99a1ac">nginx</a> <a href="/tags/php/" style="font-size: 1.3em; color: #99a1ac">php</a> <a href="/tags/php-fpm/" style="font-size: 1.1em; color: #999">php-fpm</a> <a href="/tags/reading-list/" style="font-size: 1.3em; color: #99a1ac">reading list</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/rss/" style="font-size: 1.1em; color: #999">rss</a> <a href="/tags/sourcetree/" style="font-size: 1.1em; color: #999">sourcetree</a> <a href="/tags/ubuntu/" style="font-size: 1.1em; color: #999">ubuntu</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 1.1em; color: #999">源码</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 1.1em; color: #999">源码分析</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives/">
+              <span>查看更多</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-11-10T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-12-13T14:14:55.209Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Max Fang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>皖ICP备2022015199号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function subtitleType () {
+  $.getJSON('https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json',function (data) {
+    if (true) {
+      var sub = "Keep coding. Keep running.".length == 0 ? new Array() : "Keep coding. Keep running.".split(',')
+      var both = sub.unshift(data.text)
+      typed = new Typed('#subtitle', {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 150,
+        loop: true,
+        backSpeed: 50,
+      })
+    } else {
+      document.getElementById('subtitle').innerHTML = data.text
+    }
+  })
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}
+</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Max's Blog</title><meta name="author" content="Max Fang,maxfang007@gmail.com"><meta name="copyright" content="Max Fang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta property="og:type" content="website">
+<meta property="og:title" content="Max&#39;s Blog">
+<meta property="og:url" content="http://www.immaxfang.com/page/2/index.html">
+<meta property="og:site_name" content="Max&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.immaxfang.com/img/avatar.png">
+<meta property="article:author" content="Max Fang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.immaxfang.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.immaxfang.com/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'GTM-NMPJ73S');
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-12-13 22:14:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/talking/"><i class="fa-fw fas fa-music"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/cinemas/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-users"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://cdn.immaxfang.com/images/theme/background.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Max's Blog</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/talking/"><i class="fa-fw fas fa-music"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/cinemas/"><i class="fa-fw fas fa-video"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-users"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">Max's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/FX-Max" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maxfang007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/01/07/source-analysis-laravel-queue/" title="laravel 源码分析 - 队列 Queue">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2022/pg-source-analysis-laravel-queue.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="laravel 源码分析 - 队列 Queue"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/01/07/source-analysis-laravel-queue/" title="laravel 源码分析 - 队列 Queue">laravel 源码分析 - 队列 Queue</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-07T07:28:21.000Z" title="发表于 2022-01-07 15:28:21">2022-01-07</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/php/">php</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/php/">php</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/laravel/">laravel</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></span></div><div class="content">
+laravel 源码分析具体注释见 https://github.com/FX-Max/source-analysis-laravel
+
+前言  队列 (Queue) 是 laravel 中比较常用的一个功能，队列的目的是将耗时的任务延时处理，比如发送邮件，从而大幅度缩短 Web 请求和响应的时间。本文我们就来分析下队列创建和执行的源码。
+
+本文笔者基于 laravel 5.8.* 版本
+
+队列任务的创建  先通过命令创建一个 Job 类，成功之后会创建如下文件 laravel-src/laravel/app/Jobs/DemoJob.php。
+123&gt; php artisan make:job DemoJob&gt; Job created successfully.
+下面我们来分析一下 Job 类的具体生成过程。
+执行 php artisan make:job DemoJob 后，会触发调用如下方法。
+laravel-src/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Providers/Artisa ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/09/27/hexo-upgrade-2021/" title="hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2021/cover-20211007-hexo.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/09/27/hexo-upgrade-2021/" title="hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly">hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-09-26T16:39:59.000Z" title="发表于 2021-09-27 00:39:59">2021-09-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/hexo/">hexo</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content"> 周末升级了下 hexo 到新版本，发现升级后，构建时出现了一些错误，以下是出现的问题，及解决方法。
+
+WARN  Deprecated config detected: “external_link” with a Boolean value is deprecated. See https://hexo.io/docs/configuration for more details.
+
+ 修改 _config.yml 文件，将如下内容做调整。
+1external_link: true
+ 将上面的内容，修改为如下内容。
+1234external_link:  enable: true # Open external links in new tab  field: site # Apply to the whole site  exclude: &#x27;&#x27;
+
+err: TypeError: Cannot read property ‘bind’ of undefined
+
+123err: TypeError: Cannot read property &#x27;bind ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/09/22/yaml-quick-start/" title="YAML 语言初识">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2021/cover-20211009-yaml.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="YAML 语言初识"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/09/22/yaml-quick-start/" title="YAML 语言初识">YAML 语言初识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-09-21T16:16:18.000Z" title="发表于 2021-09-22 00:16:18">2021-09-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Docker/">Docker</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Docker/">Docker</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/YAML/">YAML</a></span></div><div class="content"> 日常工作中，我们经常会遇到 YAML，例如 docker-compose 配置，ELK 中的 filebeat 配置， K8S 集群配置，ansible 的 playbook 等，也有越来越多的项目使用了 YAML 作为配置文件的选型。那今天，我们就来了解下它到底是何许人也。
+ 什么是 YAMLYAML 官网：https://yaml.org/
+YAML (YAML: YAML Ain’t Markup Language) 是一种类似 XML，JSON 的数据序列化语言，是一种通用的数据串行化格式。它是主要用来写配置文件的语言，比 XML 要简洁和简单，便于人阅读理解，号称  一种人性化的数据格式语言  。
+ 正如其官网介绍，What It Is: YAML is a human friendly data serialization standard for all programming languages.
+YAML 的基本语法 YAML 配置文件的后缀为 .yml，如 docker-compose.yml。
+ 基本语法 
+
+ 大小写敏感 
+ 使用缩进表示层级关系 
+ 缩进不允 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/07/18/aws-rds-change-timezone/" title="AWS 修改 RDS 时区">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2021/cover-20211006-rds.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWS 修改 RDS 时区"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/18/aws-rds-change-timezone/" title="AWS 修改 RDS 时区">AWS 修改 RDS 时区</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-18T15:05:40.000Z" title="发表于 2021-07-18 23:05:40">2021-07-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/AWS/">AWS</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/RDS/">RDS</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/MySQL/">MySQL</a></span></div><div class="content">查看 RDS 当前时区  默认情况下，AWS 的 RDS 采用的是 UTC 时间。而我们地区一般位于东八区，因此我们本地的时间是 UTC+8。
+连接到 RDS 上，查询当前实例的时区。
+1show variables where variable_name like &#x27;time_zone&#x27;;
+显示的结果如下，表示当前 RDS 时区的 UTC。
+
+time_zone   UTC
+
+调整 RDS 时区RDS 的时区调整是通过调整参数组来操作的。AWS 的 RDS 是不允许修改 default 参数组的。因此先要确认下当前 RDS 采用的参数组是不是 default 参数组。如果是 default 参数组，则需要新建一个参数组。然后在该参数组上调整 timezone 相关参数，然后变更 RDS 使用的参数组，使用新的参数组。
+从左侧的参数组菜单进入，即可新建参数组。一般我们都会从把当前在使用的参数组作为模版来复制一份新的来调整。选择当前在使用的参数组，Actions-&gt;Copy 即可。以笔者测试为例，当前在使用的参数组为 pg-mysql57-demo ，复制过来的 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/06/20/case-laravel-schedule-not-run/" title="Laravel 调度任务不执行问题">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2021/cover-20211009-laravel.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Laravel 调度任务不执行问题"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/06/20/case-laravel-schedule-not-run/" title="Laravel 调度任务不执行问题">Laravel 调度任务不执行问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-06-20T11:59:03.000Z" title="发表于 2021-06-20 19:59:03">2021-06-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/php/">php</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/php/">php</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/laravel/">laravel</a></span></div><div class="content">在使用 laravel 的调度任务时候，有时候会出现正确配置了调度任务，但是脚本却没有执行的情况，具体什么问题呢，今天我们来分析一下。
+1. 什么原因造成的  在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。
+有些时候，由于一些特殊原因，导致上一次任务没有正常结束，这个锁还未过期情况下，就会出现调度任务不会执行的情况。
+2. 如何解决  这种情况下，处理的情况也比较简单，手动清除锁即可。这个锁的生成位置由 config/cache.php 指定，默认情况下，在配置的 CACHE_DRIVER 是 file 的情况下，只需要将 storage/framework/cache 下的文件删除即可。 
+
+Happy coding.
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/21/mac_chrome_hot_key/" title="Mac 下 Chrome 的优雅操作">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2020/bg/bg0221.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mac 下 Chrome 的优雅操作"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/21/mac_chrome_hot_key/" title="Mac 下 Chrome 的优雅操作">Mac 下 Chrome 的优雅操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-20T18:09:09.000Z" title="发表于 2021-02-21 02:09:09">2021-02-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/mac/">mac</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">标签页和窗口快捷键
+
+
+⌘-N
+打开新窗口
+
+
+
+
+⌘-T
+打开新标签页
+
+
+⌘-Shift-N
+在隐身模式下打开新窗口
+
+
+按 ⌘-O，然后选择文件
+在 Chrome 浏览器中打开计算机中的文件
+
+
+按住 ⌘ 的同时点击链接。或用鼠标中键（或鼠标滚轮）点击链接
+从后台在新标签页中打开链接
+
+
+按住 ⌘-Shift 的同时点击链接。或按住 Shift 键的同时用鼠标中键（或鼠标滚轮）点击链接
+在新标签页中打开链接并切换到刚打开的标签页
+
+
+按住 Shift 键的同时点击链接
+在新窗口中打开链接
+
+
+⌘-Shift-T
+重新打开上次关闭的标签页。Chrome 浏览器可记住最近关闭的 10 个标签页
+
+
+将标签页拖出标签栏
+在新窗口中打开标签页
+
+
+将标签页从标签栏拖到现有窗口中
+在现有窗口中打开标签页
+
+
+同时按 ⌘-Option 和向右箭头键
+切换到下一个标签页
+
+
+同时按 ⌘-Option 和向左箭头键
+切换到上一个标签页
+
+
+⌘-W
+关闭当前标签页或弹出窗口
+
+
+⌘-Shift-W
+关闭当前窗口
+
+
+点击并按住浏览器工具栏中的后退或前进箭头
+在新标签页中显示浏览历史记录
+
+
+按 D ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/12/08/note-mysql-server-has-gone-away/" title="MySQL- 出现 MySQL server has gone away 原因和解决方法">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2020/bg/bg1228.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL- 出现 MySQL server has gone away 原因和解决方法"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/12/08/note-mysql-server-has-gone-away/" title="MySQL- 出现 MySQL server has gone away 原因和解决方法">MySQL- 出现 MySQL server has gone away 原因和解决方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-12-08T14:53:27.000Z" title="发表于 2020-12-08 22:53:27">2020-12-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/MySQL/">MySQL</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/MySQL/">MySQL</a></span></div><div class="content">可能的原因
+MySQL 服务宕机
+MySQL 连接被主动 kill 掉
+MySQL 连接超时
+SQL 超长，超出 max_allowed_packet 限制
+
+具体情况分析和处理 MySQL 服务宕机 可能是异常情况，访问过程中数据库宕机或重启了，期间的数据库访问请求会出现错误。此种情况可以查看对应时候的 MySQL 相关日志，或者查询 MySQL 运行时间。可通过运行时间和日志，判断该时间是否有服务中断。123456mysql&gt; show global status like &#x27;uptime&#x27;;+---------------+----------+| Variable_name | Value    |+---------------+----------+| Uptime        | 23948658 |+---------------+----------+
+MySQL 连接被主动 kill 掉  部分系统会配置一些连接数过多等情况下，脚本主动 kill 掉相关数据库请求进程，或者可能 DBA 等处理问题时手动 kill 掉，此种情况下也会出现报 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/11/22/restart-hexo-blog/" title="重新开启 hexo 博客">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2020/bg/bg1122.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重新开启 hexo 博客"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/11/22/restart-hexo-blog/" title="重新开启 hexo 博客">重新开启 hexo 博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-22T13:25:48.000Z" title="发表于 2020-11-22 21:25:48">2020-11-22</time></span></div><div class="content"> 这些年尝试了不同的博客工具, hexo, hugo, wp, 还有一些博客内容平台，中间也自己写过博客系统。 最终还是懒得再折腾了，重新切回 hexo，继续记录个人的学习生活。 原来其他地方的文章也不搬了，继续开始吧。
+Happy Coding.
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/06/19/hexo-series-0/" title="hexo 使用札记 - 常用命令">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2020/bg/bg0619.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo 使用札记 - 常用命令"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/06/19/hexo-series-0/" title="hexo 使用札记 - 常用命令">hexo 使用札记 - 常用命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-18T17:15:11.000Z" title="发表于 2020-06-19 01:15:11">2020-06-19</time></span></div><div class="content">今年前一段时间将博客从 jeklly 转到 hexo ，感觉还是非常好用的，hexo 的常用命令不多，本文就介绍一下使用 hexo 的常用基本命令。
+hexo cl
+全名：hexo clean
+清除缓存文件 db.json 和已生成的静态文件 public。
+
+hexo g
+全名: hexo generate
+生成网站静态文件，默认保存在 public 文件夹。
+
+
+由于 hexo 源文件可读性不强，使用 hexo g 可以将 hexo 源文件生成静态文件，便于调试，生成的静态文件可以直接部署网站。 
+
+hero s
+全名：hexo server
+启动本地服务器，访问本地 hexo 项目，默认的访问地址是 http://localhost:4000/ ，可以很方便的在本地预览博客样式和内容。
+
+
+
+修改文章内容或是修改样式代码，不需要重新运行 hexo s 重启本地服务器，只需要保存文件后刷新页面即可看到效果。若是修改了 hexo 根目录下的 _config.yml ，则需要重新运行 hexo s 命令重启本地服务器。 
+
+hero d
+全名：hexo deploy
+生成网站的静态文件 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/05/17/weekly-reading-list-20190519/" title="每周阅读清单 -20190519">     <img class="post_bg" src="https://cdn.immaxfang.com/images/post/2020/bg/bg0519.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每周阅读清单 -20190519"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/05/17/weekly-reading-list-20190519/" title="每周阅读清单 -20190519">每周阅读清单 -20190519</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-16T16:15:15.000Z" title="发表于 2020-05-17 00:15:15">2020-05-17</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E9%98%85%E8%AF%BB/">阅读</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/reading-list/">reading list</a></span></div><div class="content"> 技术 
+MySQL · 引擎特性 · 临时表那些事儿 
+
+ 生活 
+
+Keep reading. Keep running.
+
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Max Fang</div><div class="author-info__description">Keep coding. Keep running.&ensp;<i class="fas fa-flag"></i></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FX-Max"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/FX-Max" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:maxfang007@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Keep coding. Keep running.</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/13/redis-client-output-buffer-limit/" title="认识 Redis client-output-buffer-limit 参数与源码分析"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="认识 Redis client-output-buffer-limit 参数与源码分析"/></a><div class="content"><a class="title" href="/2022/12/13/redis-client-output-buffer-limit/" title="认识 Redis client-output-buffer-limit 参数与源码分析">认识 Redis client-output-buffer-limit 参数与源码分析</a><time datetime="2022-12-13T13:51:08.000Z" title="发表于 2022-12-13 21:51:08">2022-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/authorization-header/" title="API 的 Authorization 头里为啥有个 Bearer"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="API 的 Authorization 头里为啥有个 Bearer"/></a><div class="content"><a class="title" href="/2022/09/05/authorization-header/" title="API 的 Authorization 头里为啥有个 Bearer">API 的 Authorization 头里为啥有个 Bearer</a><time datetime="2022-09-04T16:33:48.000Z" title="发表于 2022-09-05 00:33:48">2022-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/24/prometheus-grafana-mysql/" title="【Prometheus+Grafana 系列】监控 MySQL 服务"><img src="https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-mysql.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Prometheus+Grafana 系列】监控 MySQL 服务"/></a><div class="content"><a class="title" href="/2022/08/24/prometheus-grafana-mysql/" title="【Prometheus+Grafana 系列】监控 MySQL 服务">【Prometheus+Grafana 系列】监控 MySQL 服务</a><time datetime="2022-08-24T04:26:08.000Z" title="发表于 2022-08-24 12:26:08">2022-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/23/prometheus-grafana-docker-compose-build/" title="【Prometheus+Grafana 系列】基于 docker-compose 搭建"><img src="https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-docker-compose-build.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【Prometheus+Grafana 系列】基于 docker-compose 搭建"/></a><div class="content"><a class="title" href="/2022/08/23/prometheus-grafana-docker-compose-build/" title="【Prometheus+Grafana 系列】基于 docker-compose 搭建">【Prometheus+Grafana 系列】基于 docker-compose 搭建</a><time datetime="2022-08-23T14:40:33.000Z" title="发表于 2022-08-23 22:40:33">2022-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/25/talking-log-specification/" title="日志规范实践"><img src="https://cdn.immaxfang.com/images/post/2022/bg-talking-log-specification.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志规范实践"/></a><div class="content"><a class="title" href="/2022/07/25/talking-log-specification/" title="日志规范实践">日志规范实践</a><time datetime="2022-07-25T10:28:30.000Z" title="发表于 2022-07-25 18:28:30">2022-07-25</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AWS/"><span class="card-category-list-name">AWS</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Docker/"><span class="card-category-list-name">Docker</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git/"><span class="card-category-list-name">git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/movie/"><span class="card-category-list-name">movie</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/mysql/"><span class="card-category-list-name">mysql</span><span class="card-category-list-count">1</span></a></li>
+            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/categories/">
+                <span>查看更多</span><i class="fas fa-angle-right"></i></a></li>
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AWS/" style="font-size: 1.3em; color: #99a1ac">AWS</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Linux/" style="font-size: 1.5em; color: #99a9bf">Linux</a> <a href="/tags/MQ/" style="font-size: 1.1em; color: #999">MQ</a> <a href="/tags/MySQL/" style="font-size: 1.3em; color: #99a1ac">MySQL</a> <a href="/tags/RDS/" style="font-size: 1.1em; color: #999">RDS</a> <a href="/tags/YAML/" style="font-size: 1.1em; color: #999">YAML</a> <a href="/tags/beanstalkd/" style="font-size: 1.1em; color: #999">beanstalkd</a> <a href="/tags/beyondcompre/" style="font-size: 1.1em; color: #999">beyondcompre</a> <a href="/tags/devops/" style="font-size: 1.3em; color: #99a1ac">devops</a> <a href="/tags/git/" style="font-size: 1.3em; color: #99a1ac">git</a> <a href="/tags/hexo/" style="font-size: 1.3em; color: #99a1ac">hexo</a> <a href="/tags/laravel/" style="font-size: 1.3em; color: #99a1ac">laravel</a> <a href="/tags/mac/" style="font-size: 1.3em; color: #99a1ac">mac</a> <a href="/tags/movie/" style="font-size: 1.1em; color: #999">movie</a> <a href="/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/tags/nginx/" style="font-size: 1.3em; color: #99a1ac">nginx</a> <a href="/tags/php/" style="font-size: 1.3em; color: #99a1ac">php</a> <a href="/tags/php-fpm/" style="font-size: 1.1em; color: #999">php-fpm</a> <a href="/tags/reading-list/" style="font-size: 1.3em; color: #99a1ac">reading list</a> <a href="/tags/redis/" style="font-size: 1.1em; color: #999">redis</a> <a href="/tags/rss/" style="font-size: 1.1em; color: #999">rss</a> <a href="/tags/sourcetree/" style="font-size: 1.1em; color: #999">sourcetree</a> <a href="/tags/ubuntu/" style="font-size: 1.1em; color: #999">ubuntu</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/%E6%BA%90%E7%A0%81/" style="font-size: 1.1em; color: #999">源码</a> <a href="/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 1.1em; color: #999">源码分析</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">八月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives/">
+              <span>查看更多</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-11-10T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-12-13T14:14:55.209Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Max Fang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>皖ICP备2022015199号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function subtitleType () {
+  $.getJSON('https://api.btstu.cn/yan/api.php?charset=utf-8&encode=json',function (data) {
+    if (true) {
+      var sub = "Keep coding. Keep running.".length == 0 ? new Array() : "Keep coding. Keep running.".split(',')
+      var both = sub.unshift(data.text)
+      typed = new Typed('#subtitle', {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 150,
+        loop: true,
+        backSpeed: 50,
+      })
+    } else {
+      document.getElementById('subtitle').innerHTML = data.text
+    }
+  })
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}
+</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div></body></html>
