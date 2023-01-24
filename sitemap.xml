@@ -2,161 +2,168 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.immaxfang.com/2020/11/22/restart-hexo-blog/</loc>
+    <loc>http://www.immaxfang.com/link/index.html</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/01/01/hello-world/</loc>
+    <loc>http://www.immaxfang.com/restart-hexo-blog</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/02/28/hexo-add-rss-plugin/</loc>
+    <loc>http://www.immaxfang.com/hello-world</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/03/14/mac-sourcetree-beyondcompre/</loc>
+    <loc>http://www.immaxfang.com/hexo-add-rss-plugin</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2021/02/21/mac_chrome_hot_key/</loc>
+    <loc>http://www.immaxfang.com/mac-sourcetree-beyondcompre</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2021/09/27/hexo-upgrade-2021/</loc>
+    <loc>http://www.immaxfang.com/mac_chrome_hot_key</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/06/19/hexo-series-0/</loc>
+    <loc>http://www.immaxfang.com/hexo-upgrade-2021</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/03/19/git-migrate-project/</loc>
+    <loc>http://www.immaxfang.com/hexo-series-0</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2021/06/20/case-laravel-schedule-not-run/</loc>
+    <loc>http://www.immaxfang.com/git-migrate-project</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/07/15/beanstalkd/</loc>
+    <loc>http://www.immaxfang.com/case-laravel-schedule-not-run</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2021/07/18/aws-rds-change-timezone/</loc>
+    <loc>http://www.immaxfang.com/beanstalkd</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/09/05/authorization-header/</loc>
+    <loc>http://www.immaxfang.com/aws-rds-change-timezone</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/04/25/mydumper-myloader/</loc>
+    <loc>http://www.immaxfang.com/authorization-header</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/04/30/nginx-phpfpm-status/</loc>
+    <loc>http://www.immaxfang.com/mydumper-myloader</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/06/29/nginx-signal-manage/</loc>
+    <loc>http://www.immaxfang.com/nginx-phpfpm-status</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2021/09/22/yaml-quick-start/</loc>
+    <loc>http://www.immaxfang.com/nginx-signal-manage</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/07/25/talking-log-specification/</loc>
+    <loc>http://www.immaxfang.com/yaml-quick-start</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/01/07/source-analysis-laravel-queue/</loc>
+    <loc>http://www.immaxfang.com/talking-log-specification</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/06/11/postfix-aws-ses/</loc>
+    <loc>http://www.immaxfang.com/source-analysis-laravel-queue</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/12/08/note-mysql-server-has-gone-away/</loc>
+    <loc>http://www.immaxfang.com/postfix-aws-ses</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/08/23/prometheus-grafana-docker-compose-build/</loc>
+    <loc>http://www.immaxfang.com/note-mysql-server-has-gone-away</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/08/24/prometheus-grafana-mysql/</loc>
+    <loc>http://www.immaxfang.com/prometheus-grafana-docker-compose-build</loc>
     
     <lastmod>2023-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2022/12/13/redis-client-output-buffer-limit/</loc>
+    <loc>http://www.immaxfang.com/prometheus-grafana-mysql</loc>
+    
+    <lastmod>2023-01-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.immaxfang.com/redis-client-output-buffer-limit</loc>
     
     <lastmod>2023-01-24</lastmod>
     
@@ -177,21 +184,21 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/05/12/weekly-reading-list-20190512/</loc>
+    <loc>http://www.immaxfang.com/weekly-reading-list-20190512</loc>
     
     <lastmod>2022-10-31</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/05/17/weekly-reading-list-20190519/</loc>
+    <loc>http://www.immaxfang.com/weekly-reading-list-20190519</loc>
     
     <lastmod>2022-10-31</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/2020/03/16/movie-huashuimu/</loc>
+    <loc>http://www.immaxfang.com/movie-huashuimu</loc>
     
     <lastmod>2022-10-31</lastmod>
     
@@ -215,13 +222,6 @@
     <loc>http://www.immaxfang.com/share-list-0/index.html</loc>
     
     <lastmod>2022-07-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/link/index.html</loc>
-    
-    <lastmod>2021-01-16</lastmod>
     
   </url>
   
@@ -347,14 +347,14 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/tags/movie/</loc>
+    <loc>http://www.immaxfang.com/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>http://www.immaxfang.com/tags/movie/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -475,14 +475,14 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/categories/movie/</loc>
+    <loc>http://www.immaxfang.com/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>http://www.immaxfang.com/categories/movie/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

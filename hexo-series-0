@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="hexo 使用札记 - 常用命令"/><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/hexo-series-0"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>hexo 使用札记 - 常用命令 - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">hexo 使用札记 - 常用命令
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-06-19
+        </span></div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-cl"><span class="toc-text">hexo cl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-g"><span class="toc-text">hexo g</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hero-s"><span class="toc-text">hero s</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hero-d"><span class="toc-text">hero d</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-n-page-xxx"><span class="toc-text">hexo n page xxx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo-n-xxx"><span class="toc-text">hexo n xxx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p>今年前一段时间将博客从 jeklly 转到 hexo ，感觉还是非常好用的，hexo 的常用命令不多，本文就介绍一下使用 hexo 的常用基本命令。</p>
+<h2 id="hexo-cl"><a href="#hexo-cl" class="headerlink" title="hexo cl"></a>hexo cl</h2><ul>
+<li>全名：hexo clean</li>
+<li>清除缓存文件 <strong>db.json</strong> 和已生成的静态文件 <strong>public</strong>。</li>
+</ul>
+<span id="more"></span>
+<h2 id="hexo-g"><a href="#hexo-g" class="headerlink" title="hexo g"></a>hexo g</h2><ul>
+<li>全名: hexo generate</li>
+<li>生成网站静态文件，默认保存在 <strong>public</strong> 文件夹。</li>
+</ul>
+<blockquote>
+<p>由于 hexo 源文件可读性不强，使用 <strong>hexo g</strong> 可以将 hexo 源文件生成静态文件，便于调试，生成的静态文件可以直接部署网站。 </p>
+</blockquote>
+<h2 id="hero-s"><a href="#hero-s" class="headerlink" title="hero s"></a>hero s</h2><ul>
+<li>全名：hexo server</li>
+<li>启动本地服务器，访问本地 hexo 项目，默认的访问地址是 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> ，可以很方便的在本地预览博客样式和内容。</li>
+</ul>
+<!-- more -->
+<blockquote>
+<p>修改文章内容或是修改样式代码，不需要重新运行 <strong>hexo s</strong> 重启本地服务器，只需要保存文件后刷新页面即可看到效果。<br>若是修改了 hexo 根目录下的 <strong>_config.yml</strong> ，则需要重新运行 <strong>hexo s</strong> 命令重启本地服务器。 </p>
+</blockquote>
+<h2 id="hero-d"><a href="#hero-d" class="headerlink" title="hero d"></a>hero d</h2><ul>
+<li>全名：hexo deploy</li>
+<li>生成网站的静态文件，并将其部署到 <strong>_config.yml</strong> 文件中配置的仓库中。</li>
+</ul>
+<h2 id="hexo-n-page-xxx"><a href="#hexo-n-page-xxx" class="headerlink" title="hexo n page xxx"></a>hexo n page xxx</h2><ul>
+<li>全名：hexo new page xxx</li>
+<li>新建一个名为 <strong>xxx</strong> 的页面，文件地址为 <strong>source/xxx/index.md</strong>  。</li>
+</ul>
+<blockquote>
+<p>使用该命令生成的文件名，可以手动在项目中进行重命名，同时生成的页面不会出现在文章列表和归档文件中，也不支持设置分类和标签。<br>若需要删除该页面，只需要手动删除 <strong>source/xxx</strong> 目录即可。</p>
+</blockquote>
+<h2 id="hexo-n-xxx"><a href="#hexo-n-xxx" class="headerlink" title="hexo n xxx"></a>hexo n xxx</h2><ul>
+<li>全名：hexo new xxx</li>
+<li>新建一篇名为 <strong>xxx</strong> 的文章，文件地址为 <strong>source/_posts/xxx.md</strong> 。</li>
+</ul>
+<blockquote>
+<p>使用该命令生成的文章名，可以在项目中手动进行修改。<br>如果文章名中有空格，则文章名需要使用 <strong>“”</strong> ，例如 hexo new “hello world”。<br>若需要删除某篇文章，只需要手动删除 <strong>source/_posts/xxx.md</strong> 文件即可。</p>
+</blockquote>
+<h2 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands.html">hexo 中文文档</a></li>
+</ul>
+<hr>
+<p>Happy Coding.</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/hexo-series-0">http://www.immaxfang.com/hexo-series-0</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        
+        <nav class="post-nav"><a class="prev" href="/restart-hexo-blog">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">重新开启 hexo 博客</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/weekly-reading-list-20190519">
+        <span class="next-text nav-default">每周阅读清单 -20190519</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>

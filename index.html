@@ -50,7 +50,10 @@
       </a><a href="/categories/">
         <li class="mobile-menu-item">Categories
           </li>
-      </a><a href="/about/">
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/about">
         <li class="mobile-menu-item">About
           </li>
       </a></ul>
@@ -81,7 +84,12 @@
             </a>
         </li>
       <li class="menu-item">
-          <a class="menu-item-link" href="/about/">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
             About
             </a>
         </li>
@@ -92,7 +100,7 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/12/13/redis-client-output-buffer-limit/">认识 Redis client-output-buffer-limit 参数与源码分析</a>
+      <h1 class="post-title"><a class="post-link" href="/redis-client-output-buffer-limit">认识 Redis client-output-buffer-limit 参数与源码分析</a>
         </h1>
 
       <div class="post-meta">
@@ -116,12 +124,12 @@
 <li>Pub/Sub 模式中的 client</li>
 </ul>
           <div class="read-more">
-            <a href="/2022/12/13/redis-client-output-buffer-limit/" class="read-more-link">Read more..</a>
+            <a href="/redis-client-output-buffer-limit" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/09/05/authorization-header/">API 的 Authorization 头里为啥有个 Bearer</a>
+      <h1 class="post-title"><a class="post-link" href="/authorization-header">API 的 Authorization 头里为啥有个 Bearer</a>
         </h1>
 
       <div class="post-meta">
@@ -134,12 +142,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization : Bearer Tokenxxxxxx</span><br></pre></td></tr></table></figure>
 <p>为什么前面会有个Bearer，直接弄成这样不是更简单么。</p>
           <div class="read-more">
-            <a href="/2022/09/05/authorization-header/" class="read-more-link">Read more..</a>
+            <a href="/authorization-header" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/08/24/prometheus-grafana-mysql/">【Prometheus+Grafana 系列】监控 MySQL 服务</a>
+      <h1 class="post-title"><a class="post-link" href="/prometheus-grafana-mysql">【Prometheus+Grafana 系列】监控 MySQL 服务</a>
         </h1>
 
       <div class="post-meta">
@@ -154,12 +162,12 @@
     <div class="post-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前面的一篇文章已经介绍了 docker-compose 搭建 Prometheus + Grafana 服务。当时实现了监控服务器指标数据，是通过 node_exporter。Prometheus 还可用来监控很多服务，比如常见的  MySQL。本文就介绍如何通过 mysqld_exporter 来监控 MySQL 指标。</p>
 <h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">wget https:<span class="comment">//github.com/prometheus/mysqld_exporter/releases/download/v0.14.0/mysqld_exporter-0.14.0.linux-amd64.tar.gz</span></span><br><span class="line">tar xvf mysqld_exporter-<span class="number">0.14</span>.<span class="number">0</span>.linux-amd64.tar.gz</span><br><span class="line">mv mysqld_exporter-<span class="number">0.14</span>.<span class="number">0</span>.linux-amd64 mysqld_exporter</span><br><span class="line">mv /opt/mysqld_exporter /usr/local/</span><br></pre></td></tr></table></figure>
           <div class="read-more">
-            <a href="/2022/08/24/prometheus-grafana-mysql/" class="read-more-link">Read more..</a>
+            <a href="/prometheus-grafana-mysql" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/08/23/prometheus-grafana-docker-compose-build/">【Prometheus+Grafana 系列】基于 docker-compose 搭建</a>
+      <h1 class="post-title"><a class="post-link" href="/prometheus-grafana-docker-compose-build">【Prometheus+Grafana 系列】基于 docker-compose 搭建</a>
         </h1>
 
       <div class="post-meta">
@@ -181,12 +189,12 @@
 <li>可以使用 API，Prometheus Console 或者 Grafana 查询和聚合数据。</li>
 </ul>
           <div class="read-more">
-            <a href="/2022/08/23/prometheus-grafana-docker-compose-build/" class="read-more-link">Read more..</a>
+            <a href="/prometheus-grafana-docker-compose-build" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/07/25/talking-log-specification/">日志规范实践</a>
+      <h1 class="post-title"><a class="post-link" href="/talking-log-specification">日志规范实践</a>
         </h1>
 
       <div class="post-meta">
@@ -198,12 +206,12 @@
     <div class="post-content"><p>日志与我们日常的项目开发有着密切关系，日志是我们分析和排查问题的重要依据。今天就来简单总结下笔者个人对于项目中日志的一些经验。</p>
 <h1 id="1-日志文件规范"><a href="#1-日志文件规范" class="headerlink" title="1.日志文件规范"></a>1.日志文件规范</h1><h2 id="1-1日志文件命名"><a href="#1-1日志文件命名" class="headerlink" title="1.1日志文件命名"></a>1.1日志文件命名</h2><p>日志文件名格式：logname_YY-MM-dd_hh.[roll-count].log<br>例子：api_2022-06-20_12.0.log</p>
           <div class="read-more">
-            <a href="/2022/07/25/talking-log-specification/" class="read-more-link">Read more..</a>
+            <a href="/talking-log-specification" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/07/15/beanstalkd/">简单易用的任务队列 -beanstalkd</a>
+      <h1 class="post-title"><a class="post-link" href="/beanstalkd">简单易用的任务队列 -beanstalkd</a>
         </h1>
 
       <div class="post-meta">
@@ -223,12 +231,12 @@
 <li>主流语言客户端都支持，还可以根据 beanstalkd 协议自行实现。</li>
 </ul>
           <div class="read-more">
-            <a href="/2022/07/15/beanstalkd/" class="read-more-link">Read more..</a>
+            <a href="/beanstalkd" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/06/29/nginx-signal-manage/">nginx 信号管理</a>
+      <h1 class="post-title"><a class="post-link" href="/nginx-signal-manage">nginx 信号管理</a>
         </h1>
 
       <div class="post-meta">
@@ -243,12 +251,12 @@
     <div class="post-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文笔者主要介绍 nginx 信号管理方面的知识及实践操作，内容包括 nginx 信号管理体系，nginx 信号管理的常见操作，通过具体案例来分析，如 nginx 的 reload，热升级以及日志切割。</p>
 <h1 id="nginx-命令行管理"><a href="#nginx-命令行管理" class="headerlink" title="nginx 命令行管理"></a>nginx 命令行管理</h1><p>nginx 的管理可以通过两种方式实现。一种是通过命令行，下面是 nginx 常用的操作命令，</p>
           <div class="read-more">
-            <a href="/2022/06/29/nginx-signal-manage/" class="read-more-link">Read more..</a>
+            <a href="/nginx-signal-manage" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/06/11/postfix-aws-ses/">ubuntu 使用 postfix 和 AWS-SES 发送邮件</a>
+      <h1 class="post-title"><a class="post-link" href="/postfix-aws-ses">ubuntu 使用 postfix 和 AWS-SES 发送邮件</a>
         </h1>
 
       <div class="post-meta">
@@ -266,12 +274,12 @@
 </ul>
 <p>Amazon Simple Email Service (SES) 是一种经济高效、灵活且可扩展的电子邮件服务，使开发人员能够从任何应用程序中发送电子邮件。 您可以快速配置Amazon SES 以支持多种电子邮件使用案例，包括交易、营销或群发电子邮件通信。</p>
           <div class="read-more">
-            <a href="/2022/06/11/postfix-aws-ses/" class="read-more-link">Read more..</a>
+            <a href="/postfix-aws-ses" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/04/25/mydumper-myloader/">mydumper-myloader</a>
+      <h1 class="post-title"><a class="post-link" href="/mydumper-myloader">mydumper-myloader</a>
         </h1>
 
       <div class="post-meta">
@@ -295,12 +303,12 @@
 <li>数据与建表语句分离</li>
 </ul>
           <div class="read-more">
-            <a href="/2022/04/25/mydumper-myloader/" class="read-more-link">Read more..</a>
+            <a href="/mydumper-myloader" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2022/03/19/git-migrate-project/">git 使用命令行保留原分支迁移代码仓库</a>
+      <h1 class="post-title"><a class="post-link" href="/git-migrate-project">git 使用命令行保留原分支迁移代码仓库</a>
         </h1>
 
       <div class="post-meta">
@@ -315,7 +323,7 @@
     <div class="post-content"><p>有些时候我们需要对git仓库中的项目进行一些迁移，如从a账号迁移到b账号下，从github平台迁移到内部的gitlab平台等。一般平台会自带 migrate 或者 import 的功能，可以很方便的进行仓库的迁移。当然，我们也可以自行进行迁移，当需要迁移的项目比较多时，脚本进行迁移更快捷。</p>
 <p>下面来看看如何进行手动迁移，同时在迁移后，保留原项目的分支和tag，以及提交记录等。</p>
           <div class="read-more">
-            <a href="/2022/03/19/git-migrate-project/" class="read-more-link">Read more..</a>
+            <a href="/git-migrate-project" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">

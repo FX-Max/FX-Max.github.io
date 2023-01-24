@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="日志规范实践"/><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/talking-log-specification"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>日志规范实践 - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">日志规范实践
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-07-25
+        </span></div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%20%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%A7%84%E8%8C%83"><span class="toc-text">1. 日志文件规范 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1%20%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D"><span class="toc-text">1.1 日志文件命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%20%E6%97%A5%E5%BF%97%E6%BB%9A%E5%8A%A8%E5%A4%A7%E5%B0%8F"><span class="toc-text">1.2 日志滚动大小 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3%20%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE"><span class="toc-text">1.3 日志文件存放位置 </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%20%E6%97%A5%E5%BF%97%E5%86%85%E5%AE%B9%E8%A7%84%E8%8C%83"><span class="toc-text">2. 日志内容规范 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1%20%E6%A8%A1%E5%9D%97%E7%BC%96%E5%8F%B7%20-app-id"><span class="toc-text">2.1 模块编号(app_id)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2%20%E6%97%B6%E9%97%B4%E6%88%B3%20-timestamp"><span class="toc-text">2.2 时间戳(@timestamp)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3%20%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%20-level"><span class="toc-text">2.3 日志级别(level)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4%20%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F%E4%B8%8E%E5%AD%97%E6%AE%B5"><span class="toc-text">2.4 日志格式与字段 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5%20%E6%97%A5%E5%BF%97%E5%AE%89%E5%85%A8"><span class="toc-text">2.5 日志安全 </span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>日志与我们日常的项目开发有着密切关系，日志是我们分析和排查问题的重要依据。今天就来简单总结下笔者个人对于项目中日志的一些经验。</p>
+<h1 id="1- 日志文件规范"><a href="#1- 日志文件规范" class="headerlink" title="1. 日志文件规范"></a>1. 日志文件规范 </h1><h2 id="1-1 日志文件命名"><a href="#1-1 日志文件命名" class="headerlink" title="1.1 日志文件命名"></a>1.1 日志文件命名</h2><p> 日志文件名格式：logname_YY-MM-dd_hh.[roll-count].log<br>例子：api_2022-06-20_12.0.log</p>
+<span id="more"></span>
+<h2 id="1-2 日志滚动大小"><a href="#1-2 日志滚动大小" class="headerlink" title="1.2 日志滚动大小"></a>1.2 日志滚动大小 </h2><p> 一般要限制每个日记文件的大小，需日志滚动。一般常设置文件大小为 100M。<br>Linux 对于小文件存在 Inodes 限制，所以当日志量大时，日志文件大小不宜设置的过小，否则将会产生大量日志滚动，造成日志文件过多，造成 Inodes 报警。并且最好定期清理过期的日志文件。</p>
+<h2 id="1-3 日志文件存放位置"><a href="#1-3 日志文件存放位置" class="headerlink" title="1.3 日志文件存放位置"></a>1.3 日志文件存放位置 </h2><p> 日志文件统一保存在服务器的目录中，这个目录在团队内部最好是固定的，且有一定规律。<br>例如日志的根目录均为 <code>/data/logs</code>，项目的日志可以放在<code>/data/logs/app/order-service/</code> 目录下，nginx 的日志可以放在 <code>/data/logs/service/nginx/</code> 目录下面。<br>统一的日志存放路径便于后续接入日志平台与运维自动化，否则日志采集程序需要定义不同的日志路径，这将是一件非常复杂且不利于维护的事情。</p>
+<h1 id="2- 日志内容规范"><a href="#2- 日志内容规范" class="headerlink" title="2. 日志内容规范"></a>2. 日志内容规范 </h1><h2 id="2-1 模块编号 -app-id"><a href="#2-1 模块编号 -app-id" class="headerlink" title="2.1 模块编号(app_id)"></a>2.1 模块编号(app_id)</h2><p> 为每个模块或组件分配一个编号，即 app_id，该值需要全局唯一，便于在 ELK 等日志平台检索指定业务模块的日志。</p>
+<h2 id="2-2 时间戳 -timestamp"><a href="#2-2 时间戳 -timestamp" class="headerlink" title="2.2 时间戳 (@timestamp)"></a>2.2 时间戳(@timestamp)</h2><p> 日志产生的时间，建议使用 Time_ISO8601。其中，yyyy 代表四位数年份，MM 代表两位数月份，dd 代表两位数日期，HH 代表两位数小时时间，mm 代表两位数分钟时间，ss 代表两位数秒时间，Time_zone 代表时区。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@timestamp=<span class="string">&quot;yyyy-MM-ddTHH:mm:ss+Time_zone&quot;</span></span><br><span class="line"><span class="comment"># 例子：</span></span><br><span class="line">@timestamp=<span class="string">&quot;2022-06-20T03:01:15+08:00&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-3 日志级别 -level"><a href="#2-3 日志级别 -level" class="headerlink" title="2.3 日志级别(level)"></a>2.3 日志级别(level)</h2><table>
+<thead>
+<tr>
+<th><strong>日志级别</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>类别</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FATAL</td>
+<td>业务软件发生严重错误，服务被终止或重启，需立即被处理。</td>
+<td>错误信息日志</td>
+</tr>
+<tr>
+<td>ERROR</td>
+<td>业务软件发生错误，后续流程还能继续进行，但已经影响用户正常访问。该级别错误也需要马上被处理。</td>
+<td>错误信息日志</td>
+</tr>
+<tr>
+<td>WARN</td>
+<td>有潜在风险、不会造成大危害的错误，需开发人员关注，一般是程序逻辑缺陷。</td>
+<td>错误信息日志</td>
+</tr>
+<tr>
+<td>INFO</td>
+<td>在正常运行状态中，粗粒度的、关键流程或事件、业务软件重要的配置和参数信息，可用来表示业务软件健康度的信息。</td>
+<td>一般信息日志</td>
+</tr>
+<tr>
+<td>DEBUG</td>
+<td>对调试有帮助的信息或事件，默认情况下不打开日志记录。</td>
+<td>调试信息日志</td>
+</tr>
+</tbody>
+</table>
+<p>按照业务要求，打开合适级别的日志记录。同时在代码中记录日志时，level 也要评估好。禁止乱使用 level，无用的数据打入日志。</p>
+<h2 id="2-4 日志格式与字段"><a href="#2-4 日志格式与字段" class="headerlink" title="2.4 日志格式与字段"></a>2.4 日志格式与字段 </h2><p> 一般使用 json 格式，主流日志分析平台都支持，且各种程序语言对于 json 格式日志写入也都有很好的库支持。<br>每条业务日志必须包含的字段： app_id，@timestamp，level。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;@timestamp&quot;</span>: <span class="string">&quot;2022-06-20T03:01:15+08:00&quot;</span>, <span class="string">&quot;app_id&quot;</span>: <span class="string">&quot;DFNAKLPYH&quot;</span>, <span class="string">&quot;level&quot;</span>: <span class="string">&quot;INFO&quot;</span>, ....&#125;</span><br></pre></td></tr></table></figure>
+<p>对于多系统间调用，还需要至少包含 trace_id 标识，一次完整的调用链路需要传递并记录唯一的 trace_id。</p>
+<h2 id="2-5 日志安全"><a href="#2-5 日志安全" class="headerlink" title="2.5 日志安全"></a>2.5 日志安全 </h2><p> 对可能含有敏感信息的文本打入日志要保持敬畏。同时对于进入日志中的敏感信息，要在日志采集器或者日志平台中进行脱敏处理，避免其出现在日志检索中。</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/talking-log-specification">http://www.immaxfang.com/talking-log-specification</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        
+        <nav class="post-nav"><a class="prev" href="/prometheus-grafana-docker-compose-build">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">【Prometheus+Grafana 系列】基于 docker-compose 搭建</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/beanstalkd">
+        <span class="next-text nav-default">简单易用的任务队列 -beanstalkd</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>

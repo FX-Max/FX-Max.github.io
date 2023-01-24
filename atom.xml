@@ -18,8 +18,8 @@
   
   <entry>
     <title>认识 Redis client-output-buffer-limit 参数与源码分析</title>
-    <link href="http://www.immaxfang.com/2022/12/13/redis-client-output-buffer-limit/"/>
-    <id>http://www.immaxfang.com/2022/12/13/redis-client-output-buffer-limit/</id>
+    <link href="http://www.immaxfang.com/redis-client-output-buffer-limit"/>
+    <id>http://www.immaxfang.com/redis-client-output-buffer-limit</id>
     <published>2022-12-13T13:51:08.000Z</published>
     <updated>2023-01-24T05:56:43.028Z</updated>
     
@@ -52,8 +52,8 @@
   
   <entry>
     <title>API 的 Authorization 头里为啥有个 Bearer</title>
-    <link href="http://www.immaxfang.com/2022/09/05/authorization-header/"/>
-    <id>http://www.immaxfang.com/2022/09/05/authorization-header/</id>
+    <link href="http://www.immaxfang.com/authorization-header"/>
+    <id>http://www.immaxfang.com/authorization-header</id>
     <published>2022-09-04T16:33:48.000Z</published>
     <updated>2023-01-24T05:58:38.540Z</updated>
     
@@ -72,8 +72,8 @@
   
   <entry>
     <title>【Prometheus+Grafana 系列】监控 MySQL 服务</title>
-    <link href="http://www.immaxfang.com/2022/08/24/prometheus-grafana-mysql/"/>
-    <id>http://www.immaxfang.com/2022/08/24/prometheus-grafana-mysql/</id>
+    <link href="http://www.immaxfang.com/prometheus-grafana-mysql"/>
+    <id>http://www.immaxfang.com/prometheus-grafana-mysql</id>
     <published>2022-08-24T04:26:08.000Z</published>
     <updated>2023-01-24T05:56:53.670Z</updated>
     
@@ -97,8 +97,8 @@
   
   <entry>
     <title>【Prometheus+Grafana 系列】基于 docker-compose 搭建</title>
-    <link href="http://www.immaxfang.com/2022/08/23/prometheus-grafana-docker-compose-build/"/>
-    <id>http://www.immaxfang.com/2022/08/23/prometheus-grafana-docker-compose-build/</id>
+    <link href="http://www.immaxfang.com/prometheus-grafana-docker-compose-build"/>
+    <id>http://www.immaxfang.com/prometheus-grafana-docker-compose-build</id>
     <published>2022-08-23T14:40:33.000Z</published>
     <updated>2023-01-24T05:57:02.872Z</updated>
     
@@ -129,8 +129,8 @@
   
   <entry>
     <title>日志规范实践</title>
-    <link href="http://www.immaxfang.com/2022/07/25/talking-log-specification/"/>
-    <id>http://www.immaxfang.com/2022/07/25/talking-log-specification/</id>
+    <link href="http://www.immaxfang.com/talking-log-specification"/>
+    <id>http://www.immaxfang.com/talking-log-specification</id>
     <published>2022-07-25T10:28:30.000Z</published>
     <updated>2023-01-24T05:57:52.887Z</updated>
     
@@ -148,8 +148,8 @@
   
   <entry>
     <title>简单易用的任务队列 -beanstalkd</title>
-    <link href="http://www.immaxfang.com/2022/07/15/beanstalkd/"/>
-    <id>http://www.immaxfang.com/2022/07/15/beanstalkd/</id>
+    <link href="http://www.immaxfang.com/beanstalkd"/>
+    <id>http://www.immaxfang.com/beanstalkd</id>
     <published>2022-07-15T13:14:27.000Z</published>
     <updated>2023-01-24T05:58:51.314Z</updated>
     
@@ -180,8 +180,8 @@
   
   <entry>
     <title>nginx 信号管理</title>
-    <link href="http://www.immaxfang.com/2022/06/29/nginx-signal-manage/"/>
-    <id>http://www.immaxfang.com/2022/06/29/nginx-signal-manage/</id>
+    <link href="http://www.immaxfang.com/nginx-signal-manage"/>
+    <id>http://www.immaxfang.com/nginx-signal-manage</id>
     <published>2022-06-29T13:17:17.000Z</published>
     <updated>2023-01-24T05:58:10.371Z</updated>
     
@@ -205,8 +205,8 @@
   
   <entry>
     <title>ubuntu 使用 postfix 和 AWS-SES 发送邮件</title>
-    <link href="http://www.immaxfang.com/2022/06/11/postfix-aws-ses/"/>
-    <id>http://www.immaxfang.com/2022/06/11/postfix-aws-ses/</id>
+    <link href="http://www.immaxfang.com/postfix-aws-ses"/>
+    <id>http://www.immaxfang.com/postfix-aws-ses</id>
     <published>2022-06-10T17:27:01.000Z</published>
     <updated>2023-01-24T05:57:31.802Z</updated>
     
@@ -233,8 +233,8 @@
   
   <entry>
     <title>mydumper-myloader</title>
-    <link href="http://www.immaxfang.com/2022/04/25/mydumper-myloader/"/>
-    <id>http://www.immaxfang.com/2022/04/25/mydumper-myloader/</id>
+    <link href="http://www.immaxfang.com/mydumper-myloader"/>
+    <id>http://www.immaxfang.com/mydumper-myloader</id>
     <published>2022-04-24T17:58:53.000Z</published>
     <updated>2023-01-24T05:58:23.274Z</updated>
     
@@ -265,8 +265,8 @@
   
   <entry>
     <title>git 使用命令行保留原分支迁移代码仓库</title>
-    <link href="http://www.immaxfang.com/2022/03/19/git-migrate-project/"/>
-    <id>http://www.immaxfang.com/2022/03/19/git-migrate-project/</id>
+    <link href="http://www.immaxfang.com/git-migrate-project"/>
+    <id>http://www.immaxfang.com/git-migrate-project</id>
     <published>2022-03-18T17:54:57.000Z</published>
     <updated>2023-01-24T05:59:09.620Z</updated>
     
@@ -288,8 +288,8 @@
   
   <entry>
     <title>laravel 源码分析 - 队列 Queue</title>
-    <link href="http://www.immaxfang.com/2022/01/07/source-analysis-laravel-queue/"/>
-    <id>http://www.immaxfang.com/2022/01/07/source-analysis-laravel-queue/</id>
+    <link href="http://www.immaxfang.com/source-analysis-laravel-queue"/>
+    <id>http://www.immaxfang.com/source-analysis-laravel-queue</id>
     <published>2022-01-07T07:28:21.000Z</published>
     <updated>2023-01-24T05:57:43.745Z</updated>
     
@@ -321,8 +321,8 @@
   
   <entry>
     <title>hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly</title>
-    <link href="http://www.immaxfang.com/2021/09/27/hexo-upgrade-2021/"/>
-    <id>http://www.immaxfang.com/2021/09/27/hexo-upgrade-2021/</id>
+    <link href="http://www.immaxfang.com/hexo-upgrade-2021"/>
+    <id>http://www.immaxfang.com/hexo-upgrade-2021</id>
     <published>2021-09-26T16:39:59.000Z</published>
     <updated>2023-01-24T05:59:40.450Z</updated>
     
@@ -346,8 +346,8 @@
   
   <entry>
     <title>YAML 语言初识</title>
-    <link href="http://www.immaxfang.com/2021/09/22/yaml-quick-start/"/>
-    <id>http://www.immaxfang.com/2021/09/22/yaml-quick-start/</id>
+    <link href="http://www.immaxfang.com/yaml-quick-start"/>
+    <id>http://www.immaxfang.com/yaml-quick-start</id>
     <published>2021-09-21T16:16:18.000Z</published>
     <updated>2023-01-24T05:58:02.453Z</updated>
     
@@ -373,8 +373,8 @@
   
   <entry>
     <title>AWS 修改 RDS 时区</title>
-    <link href="http://www.immaxfang.com/2021/07/18/aws-rds-change-timezone/"/>
-    <id>http://www.immaxfang.com/2021/07/18/aws-rds-change-timezone/</id>
+    <link href="http://www.immaxfang.com/aws-rds-change-timezone"/>
+    <id>http://www.immaxfang.com/aws-rds-change-timezone</id>
     <published>2021-07-18T15:05:40.000Z</published>
     <updated>2023-01-24T05:58:45.579Z</updated>
     
@@ -405,8 +405,8 @@
   
   <entry>
     <title>Laravel 调度任务不执行问题</title>
-    <link href="http://www.immaxfang.com/2021/06/20/case-laravel-schedule-not-run/"/>
-    <id>http://www.immaxfang.com/2021/06/20/case-laravel-schedule-not-run/</id>
+    <link href="http://www.immaxfang.com/case-laravel-schedule-not-run"/>
+    <id>http://www.immaxfang.com/case-laravel-schedule-not-run</id>
     <published>2021-06-20T11:59:03.000Z</published>
     <updated>2023-01-24T05:59:01.053Z</updated>
     
@@ -430,8 +430,8 @@
   
   <entry>
     <title>Mac 下 Chrome 的优雅操作</title>
-    <link href="http://www.immaxfang.com/2021/02/21/mac_chrome_hot_key/"/>
-    <id>http://www.immaxfang.com/2021/02/21/mac_chrome_hot_key/</id>
+    <link href="http://www.immaxfang.com/mac_chrome_hot_key"/>
+    <id>http://www.immaxfang.com/mac_chrome_hot_key</id>
     <published>2021-02-20T18:09:09.000Z</published>
     <updated>2023-01-24T05:59:53.754Z</updated>
     
@@ -454,8 +454,8 @@
   
   <entry>
     <title>MySQL- 出现 MySQL server has gone away 原因和解决方法</title>
-    <link href="http://www.immaxfang.com/2020/12/08/note-mysql-server-has-gone-away/"/>
-    <id>http://www.immaxfang.com/2020/12/08/note-mysql-server-has-gone-away/</id>
+    <link href="http://www.immaxfang.com/note-mysql-server-has-gone-away"/>
+    <id>http://www.immaxfang.com/note-mysql-server-has-gone-away</id>
     <published>2020-12-08T14:53:27.000Z</published>
     <updated>2023-01-24T05:57:24.570Z</updated>
     
@@ -481,8 +481,8 @@
   
   <entry>
     <title>重新开启 hexo 博客</title>
-    <link href="http://www.immaxfang.com/2020/11/22/restart-hexo-blog/"/>
-    <id>http://www.immaxfang.com/2020/11/22/restart-hexo-blog/</id>
+    <link href="http://www.immaxfang.com/restart-hexo-blog"/>
+    <id>http://www.immaxfang.com/restart-hexo-blog</id>
     <published>2020-11-22T13:25:48.000Z</published>
     <updated>2023-01-24T06:00:40.681Z</updated>
     
@@ -500,8 +500,8 @@
   
   <entry>
     <title>hexo 使用札记 - 常用命令</title>
-    <link href="http://www.immaxfang.com/2020/06/19/hexo-series-0/"/>
-    <id>http://www.immaxfang.com/2020/06/19/hexo-series-0/</id>
+    <link href="http://www.immaxfang.com/hexo-series-0"/>
+    <id>http://www.immaxfang.com/hexo-series-0</id>
     <published>2020-06-18T17:15:11.000Z</published>
     <updated>2023-01-24T05:59:33.310Z</updated>
     
@@ -522,8 +522,8 @@
   
   <entry>
     <title>每周阅读清单 -20190519</title>
-    <link href="http://www.immaxfang.com/2020/05/17/weekly-reading-list-20190519/"/>
-    <id>http://www.immaxfang.com/2020/05/17/weekly-reading-list-20190519/</id>
+    <link href="http://www.immaxfang.com/weekly-reading-list-20190519"/>
+    <id>http://www.immaxfang.com/weekly-reading-list-20190519</id>
     <published>2020-05-16T16:15:15.000Z</published>
     <updated>2022-10-31T18:24:10.670Z</updated>
     
