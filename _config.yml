@@ -17,7 +17,8 @@ email: maxfang007@gmail.com
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.immaxfang.com
 root: /
-permalink: :year/:month/:day/:title/
+#permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -132,7 +133,7 @@ social_icons:
 #RSS
 plugin:
 - hexo-generator-feed
-- hexo-qiniu-sync
+#- hexo-qiniu-sync
 #Feed Atom
 feed:
 type: atom
@@ -140,7 +141,7 @@ path: atom
 #Qiniu
 qiniu:
   offline: false
-  sync: true
+  sync: false
   bucket: max-fang-blog
   access_key: vD3roq0M09ztRwurGLGPOmX6eBuxxDcwnQQsrf8k
   secret_key: KFl4y4blnj8fgrpVPFV2UiLZqYddFPP3hM1rP83u
