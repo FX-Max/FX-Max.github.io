@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="mydumper-myloader"/><meta name="keywords" content="mysql, Max's Blog" /><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/mydumper-myloader/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>mydumper-myloader - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">mydumper-myloader
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-04-25
+        </span><span class="post-category">
+            <a href="/categories/mysql/">mysql</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-text">下载安装 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">参数说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mydumper-%20%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">mydumper 参数说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#myloader-%20%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">myloader 参数说明</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-text">常用案例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mydumper-%20%E5%AF%BC%E5%87%BA%E7%A4%BA%E4%BE%8B"><span class="toc-text">mydumper 导出示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#myloader-%20%E5%AF%BC%E5%85%A5%E6%A1%88%E4%BE%8B"><span class="toc-text">myloader 导入案例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E5%AE%9E%E8%B7%B5%E7%BB%8F%E9%AA%8C"><span class="toc-text">常见问题与实践经验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9E%B6%E6%9E%84"><span class="toc-text">原理与架构 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mydumper-%20%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">mydumper 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#myloader-%20%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">myloader 工作原理</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="简介"><a href="# 简介" class="headerlink" title="简介"></a>简介</h1><p>mydumper 是一款开源的 MySQL 逻辑备份工具，主要由 C 语言编写。与 MySQL 自带的 mysqldump 类似，但是 mydumper 更快更高效。<br>mydumper 的一些优点特性：</p>
+<ul>
+<li>轻量级 C 语言开发</li>
+<li>支持多线程备份数据，备份后按表生成多个备份文件</li>
+<li>支持事务性和非事务性表一致性备份</li>
+<li>支持将导出的文件压缩，节约空间</li>
+<li>支持多线程恢复</li>
+<li>支持已守护进程模式工作，定时快照和连续二进制日志</li>
+<li>支持按指定大小将备份文件切割</li>
+<li>数据与建表语句分离</li>
+</ul>
+<span id="more"></span>
+<h1 id="下载安装"><a href="# 下载安装" class="headerlink" title="下载安装"></a>下载安装 </h1><p> 安装方式非常多，以下介绍几种常见的方式。</p>
+<ul>
+<li><p>Ubuntu 中自带了 myloader</p>
+<blockquote>
+<p>sudo apt-get install mydumper</p>
+</blockquote>
+</li>
+<li><p>使用 deb 包安装，以 Ubuntu 为例</p>
+<blockquote>
+<p>apt-get install libatomic1<br>wget <a target="_blank" rel="noopener" href="https://github.com/mydumper/mydumper/releases/download/v0.11.5/mydumper_0.11.5-1.$">https://github.com/mydumper/mydumper/releases/download/v0.11.5/mydumper_0.11.5-1.$</a>(lsb_release -cs)_amd64.deb         dpkg -i mydumper_0.11.5-1.$(lsb_release -cs)_amd64.deb</p>
+</blockquote>
+</li>
+<li><p>编译安装</p>
+</li>
+<li>docker 安装</li>
+</ul>
+<p>根据实际平台情况，可选择不同的安装方式，官方也提供了一些常见的安装文档，<a target="_blank" rel="noopener" href="https://github.com/mydumper/mydumper">https://github.com/mydumper/mydumper</a></p>
+<h1 id="参数说明"><a href="# 参数说明" class="headerlink" title="参数说明"></a>参数说明</h1><h2 id="mydumper- 参数说明"><a href="#mydumper- 参数说明" class="headerlink" title="mydumper 参数说明"></a>mydumper 参数说明</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">-B, --database              要备份的数据库，不指定则备份所有库，一般建议备份的时候一个库一条命令</span><br><span class="line">-T, --tables-list           需要备份的表，名字用逗号隔开</span><br><span class="line">-o, --outputdir             备份文件输出的目录</span><br><span class="line">-s, --statement-size        生成的 insert 语句的字节数，默认 1000000</span><br><span class="line">-r, --rows                  将表按行分块时，指定的块行数，指定这个选项会关闭 --chunk-filesize</span><br><span class="line">-F, --chunk-filesize        将表按大小分块时，指定的块大小，单位是 MB</span><br><span class="line">-c, --compress              压缩输出文件</span><br><span class="line">-e, --build-empty-files     如果表数据是空，还是产生一个空文件（默认无数据则只有表结构文件）</span><br><span class="line">-x, --regex                 是同正则表达式匹配 &#x27;db.table&#x27;</span><br><span class="line">-i, --ignore-engines        忽略的存储引擎，用逗号分割</span><br><span class="line">-m, --no-schemas            不备份表结构</span><br><span class="line">-d, --no-data               不备份表数据</span><br><span class="line">-G, --triggers              备份触发器</span><br><span class="line">-E, --events                备份事件</span><br><span class="line">-R, --routines              备份存储过程和函数</span><br><span class="line">-W, --no-views              不备份视图</span><br><span class="line">--where                     只导出符合条件的数据</span><br><span class="line">-k, --no-locks              不使用临时共享只读锁，使用这个选项会造成数据不一致</span><br><span class="line">--less-locking              减少对 InnoDB 表的锁施加时间（这种模式的机制下文详解）</span><br><span class="line">-l, --long-query-guard      设定阻塞备份的长查询超时时间，单位是秒，默认是 60 秒（超时后默认 mydumper 将会退出）</span><br><span class="line">--kill-long-queries         杀掉长查询 (不退出)</span><br><span class="line">-b, --binlogs               导出 binlog</span><br><span class="line">-D, --daemon                启用守护进程模式，守护进程模式以某个间隔不间断对数据库进行备份</span><br><span class="line">-I, --snapshot-interval     dump 快照间隔时间，默认 60s，需要在 daemon 模式下</span><br><span class="line">-L, --logfile               使用的日志文件名(mydumper 所产生的日志), 默认使用标准输出</span><br><span class="line">--tz-utc                    跨时区时使用的选项。允许备份 timestamp, 这样会导致不同时区的备份还原出问题，默认关闭。</span><br><span class="line">--skip-tz-utc               同上，默认值。</span><br><span class="line">--use-savepoints            使用 savepoints 来减少采集 metadata 所造成的锁时间，需要 SUPER 权限</span><br><span class="line">--success-on-1146           Not increment error count and Warning instead of Critical in case of table doesn&#x27;t exist</span><br><span class="line">-h, --host                  连接的主机名</span><br><span class="line">-u, --user                  备份所使用的用户</span><br><span class="line">-p, --password              密码</span><br><span class="line">-P, --port                  端口</span><br><span class="line">-S, --socket                使用 socket 通信时的 socket 文件</span><br><span class="line">-t, --threads               开启的备份线程数，默认是 4</span><br><span class="line">-C, --compress-protocol     压缩与 mysql 通信的数据</span><br><span class="line">-V, --version               显示版本号</span><br><span class="line">-v, --verbose               输出信息模式, 0 = silent, 1 = errors, 2 = warnings, 3 = info, 默认为 2</span><br></pre></td></tr></table></figure>
+<h2 id="myloader- 参数说明"><a href="#myloader- 参数说明" class="headerlink" title="myloader 参数说明"></a>myloader 参数说明</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-d, --directory                   备份文件的文件夹</span><br><span class="line">-q, --queries-per-transaction     每次事务执行的查询数量，默认是 1000</span><br><span class="line">-o, --overwrite-tables            如果要恢复的表存在，则先 drop 掉该表，使用该参数，需要备份时候要备份表结构</span><br><span class="line">-B, --database                    还原到的数据库（目标库）</span><br><span class="line">-s, --source-db                   被还原的数据库（源数据库），-s db1 -B db2，表示源库中的 db1 数据库，导入到 db2 数据库中。</span><br><span class="line">-e, --enable-binlog               启用还原数据的二进制日志，具体见下面关于 -e 的提示说明</span><br><span class="line">-h, --host                        主机</span><br><span class="line">-u, --user                        还原的用户</span><br><span class="line">-p, --password                    密码</span><br><span class="line">-P, --port                        端口</span><br><span class="line">-S, --socket                      socket 文件</span><br><span class="line">-t, --threads                     还原所使用的线程数，默认是 4</span><br><span class="line">-C, --compress-protocol           压缩协议</span><br><span class="line">-V, --version                     显示版本</span><br><span class="line">-v, --verbose                     输出模式, 0 = silent, 1 = errors, 2 = warnings, 3 = info, 默认为 2</span><br></pre></td></tr></table></figure>
+<h1 id="常用案例"><a href="# 常用案例" class="headerlink" title="常用案例"></a>常用案例</h1><h2 id="mydumper- 导出示例"><a href="#mydumper- 导出示例" class="headerlink" title="mydumper 导出示例"></a>mydumper 导出示例</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 个人实际中最常用的备份语句</span></span><br><span class="line">mydumper -B test -o /home/mydumper/data/test -e -G -R -E -D -u root -p 123456 -h 192.168.0.191 -P 3306 -v 3 --long-query-guard 288000 --skip-tz-utc --no-locks --logfile /home/mydumper/log/test</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份全部数据库</span> </span><br><span class="line">mydumper -u root -p 123456 -o /home/mydumper/data/all/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份全部数据库，排除系统库，</span></span><br><span class="line">mydumper -u root -p 123456 --regex &#x27;^(?!(mysql|sys|performance_schema|information_schema))&#x27; -o /home/mydumper/data/all/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份全部数据库，包含触发器、事件、存储过程及函数</span></span><br><span class="line">mydumper -u root -p 123456 -G -R -E -o /home/mydumper/data/all/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份指定库</span></span><br><span class="line">mydumper -u root -p 123456 -G -R -E -B db1 -o /home/mydumper/data/db1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份指定表</span></span><br><span class="line">mydumper -u root -p 123456 -B db1 -T tb1,tb2 -o /home/mydumper/data/db1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 只备份表结构</span></span><br><span class="line">mydumper -u root -p 123456 -B db1 -d -o /home/mydumper/data/db1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 只备份表数据</span></span><br><span class="line">mydumper -u root -p 123456 -B db1 -m -o /home/mydumper/data/db1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="myloader- 导入案例"><a href="#myloader- 导入案例" class="headerlink" title="myloader 导入案例"></a>myloader 导入案例</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 个人实际中最常用的导入语句</span></span><br><span class="line">myloader -h 192.168.0.192 -P 33306 -u root -p 123456 -t 1 -v 3 -d /home/mydumper/data/test/0/ -B test</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 从备份中恢复指定库</span></span><br><span class="line">myloader -u root -p 123456 -s db1 -o -d /home/mydumper/data/all/0/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 导入时开启 binlog</span></span><br><span class="line">myloader -u root -p 123456 -e -o -d /home/mydumper/data/db1/0/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将源库的 db1 导入到备库的 db1_bak 库中</span></span><br><span class="line">myloader -u root -p 123456 -B db1_bak -s db1 -o -d /home/mydumper/data/db1/0/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 导入特定的某几张表</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 先将 metadata 文件和需要单独导入的表的结构文件和数据文件导入到单独的文件夹中。此处默认库已建好，否则还需要复制建库相关语句。</span></span></span><br><span class="line">cp /home/mydumper/data/db1/0/metadata /backup/db1/0/</span><br><span class="line">cp /home/mydumper/data/db1/0/d1.t1-schema.sql /backup/db1/0/</span><br><span class="line">cp /home/mydumper/data/db1/0/d1.t1.sql /backup/db1/0/</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 从新文件夹中导入数据</span></span></span><br><span class="line">myloader -u root -p 123456 -B db1 -d /backup/db1/0/</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 以上就可以单独导入 db1.t1 表</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于 -e 参数，需要稍微注意下。默认情况下，myloader 是不开启 binlog 的，这样可以提高导入速度。如果导入实例有从库，且需要导入的结果同步到从库上，则需要使用 -e 打开 binlog 记录。</p>
+</blockquote>
+<p>导出之后的目录如下，以数据库 d1 ，其中有表  t1 为例：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-d1</span><br><span class="line"> -0</span><br><span class="line">   metadata             记录备份时间点的 Binlog 信息，日志文件名和写入位置</span><br><span class="line">   d1-schema-create.sql 建库语句</span><br><span class="line">   d1-schema-post.sql   存储过程，函数，事件创建语句</span><br><span class="line">   d1.t1-schema.sql     表结构文件</span><br><span class="line">   d1.t1.sql            表数据文件，若使用了分块参数，大表的数据文件会出现多个，以数字分开。</span><br><span class="line"> -1</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以上为比较常见的导出后的目录结构，根据实际情况不同，可能还有会含有触发器的文件，含有视图的文件等。</p>
+</blockquote>
+<h1 id="常见问题与实践经验"><a href="# 常见问题与实践经验" class="headerlink" title="常见问题与实践经验"></a>常见问题与实践经验</h1><ul>
+<li><p>Error switching to database whilst restoring table</p>
+<p>  使用 myloader 导入时会出现这类报错，可以尝试的解决方法如下：调大 wait_timeout 参数；调大 max_packet_size 参数；使用一个线程导入，  -t 1。</p>
+</li>
+<li><p>(myloader:35671): CRITICAL **: Error restoring test.email_logger from file test.email_logger.sql: Cannot create a JSON value from a string with CHARACTER SET ‘binary’.</p>
+<p> MySQL 的一个 Bug，可以尝试手动修改对应的备份文件，将 </p>
+<blockquote>
+<p>/<em>!40101 SET NAMES binary</em>/;</p>
+</blockquote>
+<p> 修改为：</p>
+<blockquote>
+<p>/<em>!40101 SET NAMES utf8mb4</em>/;</p>
+</blockquote>
+</li>
+<li><p>(myloader:34726): CRITICAL **: Error restoring test.(null) from file test-schema-post.sql: Access denied; you need (at least one of) the SUPER privilege(s) for this operation</p>
+<p> 在导入 AWS RDS 时部分存储过程创建失败，有比较严格的权限限制，需要导入用户有 SUPER 权限，但是 AWS RDS 用户无法授予 SUPER 权限。针对这部分存储过程，可以考虑手动在备份库上创建。</p>
+</li>
+<li><p>大表导出优化</p>
+<p>  使用 <code>-r</code>或 <code>-F</code> 参数，对导出的数据文件进行分片。</p>
+</li>
+<li><p>备份机器配置尽可能高</p>
+<p>  备份前先预估大小，避免机器磁盘不足。尽可能选用配置较高的机器，加快备份速度。</p>
+</li>
+<li><p>非必要数据不备份</p>
+<p>  备份前对于不用备份的数据可以提前进行一次删除，也可在导出数据时添加正则参数等过滤部分表</p>
+</li>
+<li><p>备份尽量不跨网络</p>
+<p>  备份数据时尽量在内网中进行，若需要将数据迁移到外网，可以备份完之后，将备份文件拷贝到外网服务器上，尽量减少导出时网络不稳定的干扰。导入时同理。</p>
+</li>
+<li><p>加快导入速度的一些方法</p>
+<p>  选择合适的线程数，根据实际情况和机器配置，选择合适的线程参数，并非线程数越多越快。<br>  导入时关闭 MySQL 的 binlog 写入，待导入完成后再开启。<br>  在内网或较稳定的环境中进行导入。</p>
+</li>
+</ul>
+<h1 id="原理与架构"><a href="# 原理与架构" class="headerlink" title="原理与架构"></a>原理与架构 </h1><h2 id="mydumper- 工作流程"><a href="#mydumper- 工作流程" class="headerlink" title="mydumper 工作流程"></a>mydumper 工作流程</h2><p><img src="https://cdn.immaxfang.com/images/post/2022/post-mydumper.png" alt><br> 主要步骤概括</p>
+<ul>
+<li>主线程 FLUSH TABLES WITH READ LOCK，施加全局只读锁，阻止 DML 语句写入，保证数据的一致性。</li>
+<li>读取当前时间点的二进制日志文件名和日志写入的位置并记录在 metadata 文件中。</li>
+<li>N 个 dump 线程 START TRANSACTION WITH CONSISTENT SNAPSHOT，开启读一致的事务。</li>
+<li>dump non-InnoDB tables， 首先导出非事务引擎的表。</li>
+<li>主线程 UNLOCK TABLES 非事务引擎备份完后，释放全局只读锁。</li>
+<li>dump InnoDB tables，基于事务导出 InnoDB 表。</li>
+<li>事务结束。</li>
+</ul>
+<h2 id="myloader- 工作原理"><a href="#myloader- 工作原理" class="headerlink" title="myloader 工作原理"></a>myloader 工作原理</h2><p><img src="https://cdn.immaxfang.com/images/post/2022/post-myloader.png" alt></p>
+<hr>
+<p>更多技术文章，请关注我的个人博客 <a href="https://www.immaxfang.com/">www.immaxfang.com</a> 和小公众号 <code>Max 的学习札记</code>。</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/mydumper-myloader/">http://www.immaxfang.com/mydumper-myloader/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/mysql/">mysql</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/postfix-aws-ses/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">ubuntu 使用 postfix 和 AWS-SES 发送邮件</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/git-migrate-project/">
+        <span class="next-text nav-default">git 使用命令行保留原分支迁移代码仓库</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>

@@ -19,7 +19,23 @@
 <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
 
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
 <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script>
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
 </script>
 
@@ -100,7 +116,7 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/source-analysis-laravel-queue">laravel 源码分析 - 队列 Queue</a>
+      <h1 class="post-title"><a class="post-link" href="/source-analysis-laravel-queue/">laravel 源码分析 - 队列 Queue</a>
         </h1>
 
       <div class="post-meta">
@@ -121,12 +137,12 @@
 </blockquote>
 <h1 id="队列任务的创建"><a href="#队列任务的创建" class="headerlink" title="队列任务的创建"></a>队列任务的创建</h1><p>先通过命令创建一个 Job 类，成功之后会创建如下文件 laravel-src/laravel/app/Jobs/DemoJob.php。</p>
           <div class="read-more">
-            <a href="/source-analysis-laravel-queue" class="read-more-link">Read more..</a>
+            <a href="/source-analysis-laravel-queue/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/hexo-upgrade-2021">hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly</a>
+      <h1 class="post-title"><a class="post-link" href="/hexo-upgrade-2021/">hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly</a>
         </h1>
 
       <div class="post-meta">
@@ -143,12 +159,12 @@
 <li>WARN  Deprecated config detected: “external_link” with a Boolean value is deprecated. See <a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration">https://hexo.io/docs/configuration</a> for more details.</li>
 </ul>
           <div class="read-more">
-            <a href="/hexo-upgrade-2021" class="read-more-link">Read more..</a>
+            <a href="/hexo-upgrade-2021/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/yaml-quick-start">YAML 语言初识</a>
+      <h1 class="post-title"><a class="post-link" href="/yaml-quick-start/">YAML 语言初识</a>
         </h1>
 
       <div class="post-meta">
@@ -165,12 +181,12 @@
 <p>YAML (YAML: YAML Ain’t Markup Language) 是一种类似 XML，JSON 的数据序列化语言，是一种通用的数据串行化格式。它是主要用来写配置文件的语言，比 XML 要简洁和简单，便于人阅读理解，号称 <code>一种人性化的数据格式语言</code> 。</p>
 <p>正如其官网介绍，What It Is: YAML is a human friendly data serialization standard for all programming languages.</p>
           <div class="read-more">
-            <a href="/yaml-quick-start" class="read-more-link">Read more..</a>
+            <a href="/yaml-quick-start/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/aws-rds-change-timezone">AWS 修改 RDS 时区</a>
+      <h1 class="post-title"><a class="post-link" href="/aws-rds-change-timezone/">AWS 修改 RDS 时区</a>
         </h1>
 
       <div class="post-meta">
@@ -190,12 +206,12 @@
 <p>time_zone   UTC</p>
 </blockquote>
           <div class="read-more">
-            <a href="/aws-rds-change-timezone" class="read-more-link">Read more..</a>
+            <a href="/aws-rds-change-timezone/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/case-laravel-schedule-not-run">Laravel 调度任务不执行问题</a>
+      <h1 class="post-title"><a class="post-link" href="/case-laravel-schedule-not-run/">Laravel 调度任务不执行问题</a>
         </h1>
 
       <div class="post-meta">
@@ -210,12 +226,12 @@
     <div class="post-content"><p>在使用 laravel 的调度任务时候，有时候会出现正确配置了调度任务，但是脚本却没有执行的情况，具体什么问题呢，今天我们来分析一下。</p>
 <h2 id="1-什么原因造成的"><a href="#1-什么原因造成的" class="headerlink" title="1.什么原因造成的"></a>1.什么原因造成的</h2><p>在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。</p>
           <div class="read-more">
-            <a href="/case-laravel-schedule-not-run" class="read-more-link">Read more..</a>
+            <a href="/case-laravel-schedule-not-run/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/mac_chrome_hot_key">Mac 下 Chrome 的优雅操作</a>
+      <h1 class="post-title"><a class="post-link" href="/mac_chrome_hot_key/">Mac 下 Chrome 的优雅操作</a>
         </h1>
 
       <div class="post-meta">
@@ -229,12 +245,12 @@
 
     <div class="post-content"><h3 id="标签页和窗口快捷键"><a href="#标签页和窗口快捷键" class="headerlink" title="标签页和窗口快捷键"></a>标签页和窗口快捷键</h3>
           <div class="read-more">
-            <a href="/mac_chrome_hot_key" class="read-more-link">Read more..</a>
+            <a href="/mac_chrome_hot_key/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/note-mysql-server-has-gone-away">MySQL- 出现 MySQL server has gone away 原因和解决方法</a>
+      <h1 class="post-title"><a class="post-link" href="/note-mysql-server-has-gone-away/">MySQL- 出现 MySQL server has gone away 原因和解决方法</a>
         </h1>
 
       <div class="post-meta">
@@ -253,12 +269,12 @@
 <li>SQL 超长，超出 max_allowed_packet 限制</li>
 </ul>
           <div class="read-more">
-            <a href="/note-mysql-server-has-gone-away" class="read-more-link">Read more..</a>
+            <a href="/note-mysql-server-has-gone-away/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/restart-hexo-blog">重新开启 hexo 博客</a>
+      <h1 class="post-title"><a class="post-link" href="/restart-hexo-blog/">重新开启 hexo 博客</a>
         </h1>
 
       <div class="post-meta">
@@ -270,12 +286,12 @@
     <div class="post-content"><p>这些年尝试了不同的博客工具, hexo, hugo, wp, 还有一些博客内容平台，中间也自己写过博客系统。<br>最终还是懒得再折腾了，重新切回 hexo，继续记录个人的学习生活。<br>原来其他地方的文章也不搬了，继续开始吧。</p>
 <p>Happy Coding.</p>
           <div class="read-more">
-            <a href="/restart-hexo-blog" class="read-more-link">Read more..</a>
+            <a href="/restart-hexo-blog/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/hexo-series-0">hexo 使用札记 - 常用命令</a>
+      <h1 class="post-title"><a class="post-link" href="/hexo-series-0/">hexo 使用札记 - 常用命令</a>
         </h1>
 
       <div class="post-meta">
@@ -290,12 +306,12 @@
 <li>清除缓存文件<strong>db.json</strong>和已生成的静态文件 <strong>public</strong>。</li>
 </ul>
           <div class="read-more">
-            <a href="/hexo-series-0" class="read-more-link">Read more..</a>
+            <a href="/hexo-series-0/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/weekly-reading-list-20190519">每周阅读清单 -20190519</a>
+      <h1 class="post-title"><a class="post-link" href="/weekly-reading-list-20190519/">每周阅读清单 -20190519</a>
         </h1>
 
       <div class="post-meta">
