@@ -14,6 +14,8 @@ tags: [AWS , ubuntu]
 
 Amazon Simple Email Service (SES) 是一种经济高效、灵活且可扩展的电子邮件服务，使开发人员能够从任何应用程序中发送电子邮件。 您可以快速配置Amazon SES 以支持多种电子邮件使用案例，包括交易、营销或群发电子邮件通信。
 
+<!-- more -->
+
 - 什么是 postfix
 
 Postfix 是一种电子邮件服务器，它是由任职于IBM华生研究中心（T.J. Watson Research Center）的荷兰籍研究员Wietse Venema为了改良sendmail邮件服务器而产生的。

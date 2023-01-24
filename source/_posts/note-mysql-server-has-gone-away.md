@@ -12,6 +12,8 @@ tags: [MySQL]
 - MySQL 连接超时
 - SQL 超长，超出 max_allowed_packet 限制
 
+<!-- more -->
+
 # 具体情况分析和处理
 
 ## MySQL 服务宕机

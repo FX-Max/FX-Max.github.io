@@ -11,6 +11,8 @@ tags: [mac , git , sourcetree , beyondcompre ]
 
 BeyondCompare则是一个很优雅，且功能强大的文件对比工具，可以很方便的比较两个文件的差异，而且可以很好的集成到SourceTree中，windows下的安装本文就不介绍了，本文主要讲一下osx下SourceTree集成BeyondCompare工具。
 
+<!-- more -->
+
 ## 1.首先我们默认已经安装好了SourceTree(神马，还没有装，震惊！)。
 
 <!-- more -->   

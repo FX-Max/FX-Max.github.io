@@ -11,6 +11,7 @@ tags: [hexo]
 
 * WARN  Deprecated config detected: "external_link" with a Boolean value is deprecated. See https://hexo.io/docs/configuration for more details.
 
+<!-- more -->
 
 修改 _config.yml 文件，将如下内容做调整。
 

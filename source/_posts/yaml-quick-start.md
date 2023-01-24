@@ -18,6 +18,7 @@ YAML (YAML: YAML Ain't Markup Language) 是一种类似 XML，JSON 的数据序�
 
 正如其官网介绍，What It Is: YAML is a human friendly data serialization standard for all programming languages.
 
+<!-- more -->
 # YAML 的基本语法
 
 YAML 配置文件的后缀为 .yml，如 docker-compose.yml。

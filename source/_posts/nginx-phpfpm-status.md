@@ -15,6 +15,8 @@ tags: [Linux , nginx , php-fpm]
 
 - 配置 server ，一般我们在默认的主机下配置:
 
+<!-- more -->
+
 ```
 server {
         #listen 80;

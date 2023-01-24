@@ -18,6 +18,7 @@ Redis 的 client-output-buffer-limit 可以用来强制断开无法足够快从 
 - 主从同步时的 slave client
 - Pub/Sub 模式中的 client
 
+<!-- more -->
 # 配置介绍与分析
 该参数的配置语法：
 ```bash

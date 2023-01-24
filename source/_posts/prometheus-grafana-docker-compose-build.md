@@ -21,6 +21,8 @@ Pormetheus 几个主要模块有，Server，Exporters，Pushgateway，PromQL，A
 - Alertmanager 收到警告时，会根据配置，聚合、去重、降噪等操作，最后发送警告。
 - 可以使用 API，Prometheus Console 或者 Grafana 查询和聚合数据。
 
+<!-- more -->
+
 ## Grafana
 Grafana 是一个开源的度量分析及可视化套件。通过访问数据库（如InfluxDB、Prometheus），展示自定义图表。
 

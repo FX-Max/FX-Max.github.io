@@ -7,8 +7,8 @@ title: Max's Blog
 subtitle:
 description:
 author: Max Fang
-language: zh-CN
-#language: en
+#language: zh-CN
+language: en
 #language: zh-Hans
 timezone:
 email: maxfang007@gmail.com
@@ -73,7 +73,8 @@ pagination_dir: page
 # theme: landscape
 # theme: maupassant
 # theme: next
-theme: butterfly
+# theme: butterfly
+theme: even
 
 # 追剧追番
 ## https://github.com/HCLonely/hexo-bilibili-bangumi

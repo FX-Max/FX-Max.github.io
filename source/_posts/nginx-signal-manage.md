@@ -11,6 +11,8 @@ tags: [Linux , nginx]
 # nginx 命令行管理
 nginx 的管理可以通过两种方式实现。一种是通过命令行，下面是 nginx 常用的操作命令，
 
+<!-- more -->
+
 ```bash
 root@sh192-168-1-71:~# nginx -h
 nginx version: nginx/1.10.3 (Ubuntu)

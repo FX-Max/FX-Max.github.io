@@ -19,6 +19,8 @@ show variables where variable_name like 'time_zone';
 
 > time_zone   UTC
 
+<!-- more -->
+
 # 调整 RDS 时区
 
 RDS 的时区调整是通过调整参数组来操作的。AWS 的 RDS 是不允许修改 default 参数组的。因此先要确认下当前 RDS 采用的参数组是不是 default 参数组。如果是 default 参数组，则需要新建一个参数组。然后在该参数组上调整 timezone 相关参数，然后变更 RDS 使用的参数组，使用新的参数组。

@@ -18,6 +18,8 @@ tags: [php,laravel,源码分析]
 
 先通过命令创建一个 Job 类，成功之后会创建如下文件 laravel-src/laravel/app/Jobs/DemoJob.php。
 
+<!-- more -->
+
 ```bash
 > php artisan make:job DemoJob
 

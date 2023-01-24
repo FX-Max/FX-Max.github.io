@@ -14,6 +14,8 @@ Authorization : Bearer Tokenxxxxxx
 
 为什么前面会有个Bearer，直接弄成这样不是更简单么。
 
+<!-- more -->
+
 ```bash
 Authorization : Tokenxxxxxx
 ```

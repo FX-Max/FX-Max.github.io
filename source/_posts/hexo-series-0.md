@@ -14,6 +14,8 @@ tags:
 - 全名：hexo clean
 - 清除缓存文件**db.json**和已生成的静态文件 **public**。
 
+<!-- more -->
+
 ## hexo g
 
 - 全名: hexo generate

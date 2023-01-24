@@ -13,6 +13,8 @@ tags: [hexo , rss]
 ## 安装RSS插件
 > npm install hexo-generator-feed --save
 
+<!-- more -->
+
 ## 配置hexo配置文件_config.yml
 
 > #RSS订阅

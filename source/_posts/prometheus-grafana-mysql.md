@@ -18,6 +18,8 @@ mv mysqld_exporter-0.14.0.linux-amd64 mysqld_exporter
 mv /opt/mysqld_exporter /usr/local/
 ```
 
+<!-- more -->
+
 ## 创建监控账号并授权
 在需要监控的mysql上创建账号并授权。
 ```php
