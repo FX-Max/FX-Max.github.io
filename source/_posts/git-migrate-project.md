@@ -1,7 +1,7 @@
 ---
 title: git使用命令行保留原分支迁移代码仓库
 date: 2022-03-19 01:54:57
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pg-git-migrate-project.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/pg-git-migrate-project.png'
 categories: git
 tags: [git]
 ---

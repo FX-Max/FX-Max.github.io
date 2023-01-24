@@ -1,7 +1,7 @@
 ---
 title: laravel源码分析-队列Queue
 date: 2022-01-07 15:28:21
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pg-source-analysis-laravel-queue.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/pg-source-analysis-laravel-queue.png'
 categories: php
 tags: [php,laravel,源码分析]
 ---

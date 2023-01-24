@@ -1,7 +1,7 @@
 ---
 title: MySQL-出现 MySQL server has gone away 原因和解决方法
 date: 2020-12-08 22:53:27
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg1228.jpg'
+cover: 'https://cdn.immaxfang.com/images/post/2020/bg/bg1228.jpg'
 categories: MySQL
 tags: [MySQL]
 ---

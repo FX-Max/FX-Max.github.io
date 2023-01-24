@@ -1,7 +1,7 @@
 ---
 title: Mac下Chrome的优雅操作
 date: 2021-02-21 02:09:09
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0221.jpg'
+cover: 'https://cdn.immaxfang.com/images/post/2020/bg/bg0221.jpg'
 categories: 工具
 tags: [工具 , mac]
 ---

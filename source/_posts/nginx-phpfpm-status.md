@@ -1,7 +1,7 @@
 ---
 title: 开启nginx和php-fpm的status状态监控
 date: 2020-04-30 23:53:10
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0430.jpg'
+cover: 'https://cdn.immaxfang.com/images/post/2020/bg/bg0430.jpg'
 categories: Linux
 tags: [Linux , nginx , php-fpm]
 ---

@@ -1,7 +1,7 @@
 ---
 title: 每周阅读清单-20190519
 date: 2020-05-17 00:15:15
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg0519.jpg'
+cover: 'https://cdn.immaxfang.com/images/post/2020/bg/bg0519.jpg'
 categories: 阅读
 tags: [reading list]
 ---

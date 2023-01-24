@@ -1,7 +1,7 @@
 ---
 title: 日志规范实践
 date: 2022-07-25 18:28:30
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/bg-talking-log-specification.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/bg-talking-log-specification.png'
 categories:
 tags:
 ---

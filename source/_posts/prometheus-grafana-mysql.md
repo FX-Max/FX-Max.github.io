@@ -1,7 +1,7 @@
 ---
 title: 【Prometheus+Grafana系列】监控MySQL服务
 date: 2022-08-24 12:26:08
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/bg-prometheus-grafana-mysql.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-mysql.png'
 categories: 运维
 tags: [Linux , devops]
 ---

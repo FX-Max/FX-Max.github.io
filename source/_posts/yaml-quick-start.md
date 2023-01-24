@@ -1,7 +1,7 @@
 ---
 title: YAML语言初识
 date: 2021-09-22 00:16:18
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/cover-20211009-yaml.png'
+cover: 'https://cdn.immaxfang.com/images/post/2021/cover-20211009-yaml.png'
 categories: Docker
 tags: [Docker , YAML]
 ---

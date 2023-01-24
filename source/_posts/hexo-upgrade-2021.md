@@ -1,7 +1,7 @@
 ---
 title: hexo 升级5.4.0出现错误解决方法-hexo-theme-butterfly
 date: 2021-09-27 00:39:59
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/cover-20211007-hexo.jpeg'
+cover: 'https://cdn.immaxfang.com/images/post/2021/cover-20211007-hexo.jpeg'
 categories: hexo
 tags: [hexo]
 ---

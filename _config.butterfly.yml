@@ -89,31 +89,31 @@ avatar:
   effect: false
 
 # The banner image of home page
-index_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+index_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+default_top_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 # The banner image of archive page
-archive_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+archive_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
-tag_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+tag_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 # The banner image of tag page
 # format:
 #  - tag name: xxxxx
-tag_per_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+tag_per_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 # If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
-category_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+category_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 # The banner image of category page
 # format:
 #  - category name: xxxxx
-category_per_img: https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg
+category_per_img: https://cdn.immaxfang.com/images/theme/background.jpg
 
 cover:
   # display the cover or not (是否顯示文章封面)
@@ -388,9 +388,9 @@ footer:
   custom_text:
   copyright: true # Copyright of theme and framework
   ICP: # Chinese ICP License
-    enable: false
-    url:
-    text:
+    enable: true
+    url: https://beian.miit.gov.cn/
+    text: 皖ICP备2022015199号
     icon: /img/icp.png
 
 # Analysis
@@ -489,7 +489,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: url(https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/theme/background.jpg)
+background: url(https://cdn.immaxfang.com/images/theme/background.jpg)
 
 # Footer Background
 footer_bg: false

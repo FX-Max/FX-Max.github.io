@@ -1,7 +1,7 @@
 ---
 title: 【Prometheus+Grafana系列】基于docker-compose搭建
 date: 2022-08-23 22:40:33
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/bg-prometheus-grafana-docker-compose-build.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/bg-prometheus-grafana-docker-compose-build.png'
 categories: 运维
 tags: [Linux , devops]
 ---
@@ -27,10 +27,10 @@ Grafana 是一个开源的度量分析及可视化套件。通过访问数据库
 ## Exporter
 Exporter 是 Prometheus 推出的针对服务器状态监控的 Metrics 工具。目前开发中常见的组件都有对应的 exporter 可以直接使用。常见的有两大类，一种是社区提供的，包含数据库，消息队列，存储，HTTP服务，日志等，比如 node_exporter，mysqld_exporter等；还有一种是用户自定义的 exporter，可以基于官方提供的 Client Library 创建自己的 exporter 程序。
 每个 exporter 的一个实例被称为 target，Prometheus 通过轮询的方式定期从这些 target 中获取样本数据。
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-2.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-2.png)
 
 ## 原理简介
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-3.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-3.png)
 
 # 安装数据收集器 node-exporter
 
@@ -195,27 +195,27 @@ scrape_configs:
 
 ## 查看 prometheus 
 访问 `http://127.0.0.1:9090/targets`，效果如下，上面我们通过 node_exporter 收集的节点状态是 up 状态。
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-4.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-4.png)
 
 ## 配置 Grafana
 访问 `http://127.0.0.1:3000`，登录 Grafana，默认的账号密码是 admin:admin，首次登录需要修改默认密码。
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-5.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-5.png)
 
 按照如下添加 data sources，将 prometheus 添加到 data sources 中。
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-6.png)
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-7.png)
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-8.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-6.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-7.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-8.png)
 添加 prometheus 服务地址，此处由于服务是基于 docker-compose 构建的，没有填写ip，直接填写服务名即可。
 
 ## 添加监控模版
 
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-9.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-9.png)
 
 输入官方模版 id，1860，点击 load。然后按照下图选择确认即可。
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-10.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-10.png)
 
 导入成功后，会自动跳转到监控面板页面，如下图。
-![image.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pgd-11.png)
+![image.png](https://cdn.immaxfang.com/images/post/2022/pgd-11.png)
 
 # 结语
 本文简单介绍了 prometheus + grafana 服务搭建流程，初步跑通了整个服务。当然它还有很多功能，后续笔者会开新的文章来分享。

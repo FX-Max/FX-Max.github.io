@@ -1,7 +1,7 @@
 ---
 title: 重新开启 hexo 博客
 date: 2020-11-22 21:25:48
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2020/bg/bg1122.jpg'
+cover: 'https://cdn.immaxfang.com/images/post/2020/bg/bg1122.jpg'
 categories:
 tags:
 ---

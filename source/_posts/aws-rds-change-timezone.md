@@ -1,7 +1,7 @@
 ---
 title: AWS修改RDS时区
 date: 2021-07-18 23:05:40
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/cover-20211006-rds.jpeg'
+cover: 'https://cdn.immaxfang.com/images/post/2021/cover-20211006-rds.jpeg'
 categories: AWS
 tags: [AWS , RDS , MySQL]
 ---
@@ -26,24 +26,24 @@ RDS 的时区调整是通过调整参数组来操作的。AWS 的 RDS 是不允�
 从左侧的参数组菜单进入，即可新建参数组。一般我们都会从把当前在使用的参数组作为模版来复制一份新的来调整。
 选择当前在使用的参数组，Actions->Copy即可。以笔者测试为例，当前在使用的参数组为 pg-mysql57-demo ，复制过来的新的参数组为 pg-mysql57-demo-new 。
 
-![1](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/aws_rds_timezone_1.jpg)
+![1](https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_1.jpg)
 
-![2](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/aws_rds_timezone_2.jpg)
+![2](https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_2.jpg)
 
 接下来就可以修改新的参数组的参数了，点击改参数组进入详情页面，搜索关键词 time_zone，然后点击 Modify 即可对参数进行修改，从可选值中找到我们需要的值，此处我们选择 Asia/Shanghai，最后确认变更即可。
 
-![3](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/aws_rds_timezone_3.jpg)
+![3](https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_3.jpg)
 
-![4](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/aws_rds_timezone_4.jpg)
+![4](https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_4.jpg)
 
 再进入参数组，搜索 time_zone ，发现值已经修改为 Asia/Shanghai，说明已经修改完毕。
 
-![5](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/aws_rds_timezone_5.jpg)
+![5](https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_5.jpg)
 
 参数组调增完毕了，接下来就是给对应实例应用该参数组了。
 进入到需要调整的 RDS ，在参数组配置中，选择新的参数组。确认修改后，系统会提示是否立即应用修改。可以根据实际情况选择立即修改或者下一次维护窗口。修改 time_zone 需要重启数据库实例，这里我们选择下一次停机窗口重启。
 
-![6](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/aws_rds_timezone_6.jpg)
+![6](https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_6.jpg)
 
 选择合适的时机，重启 RDS 即可。
 

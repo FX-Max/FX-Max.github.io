@@ -1,7 +1,7 @@
 ---
 title: mydumper-myloader
 date: 2022-04-25 01:58:53
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/pg-mydumper-myloader.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/pg-mydumper-myloader.png'
 categories: mysql
 tags: [mysql]
 ---
@@ -206,7 +206,7 @@ myloader -u root -p 123456 -B db1 -d /backup/db1/0/
 
 # 原理与架构
 ## mydumper 工作流程
-![](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-mydumper.png)
+![](https://cdn.immaxfang.com/images/post/2022/post-mydumper.png)
 主要步骤概括
 
 - 主线程 FLUSH TABLES WITH READ LOCK，施加全局只读锁，阻止DML语句写入，保证数据的一致性。
@@ -218,7 +218,7 @@ myloader -u root -p 123456 -B db1 -d /backup/db1/0/
 - 事务结束。
 
 ## myloader 工作原理
-![](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-myloader.png)
+![](https://cdn.immaxfang.com/images/post/2022/post-myloader.png)
 
 ----
 更多技术文章，请关注我的个人博客 [www.immaxfang.com](https://www.immaxfang.com/) 和小公众号 `Max的学习札记`。

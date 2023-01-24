@@ -15,7 +15,7 @@ email: maxfang007@gmail.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://immaxfang.com
+url: http://www.immaxfang.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -140,11 +140,11 @@ path: atom
 qiniu:
   offline: false
   sync: true
-  bucket: maxfang-hexo-qiniu
-  access_key: E7L6nnxULAeukSw4AIogKPgBNNBciwE9j9ZFDXZF
-  secret_key: ic4_F7ztqpj90XRe7r7a8eFoM6tmcQ83BvBocK7J
+  bucket: max-fang-blog
+  access_key: vD3roq0M09ztRwurGLGPOmX6eBuxxDcwnQQsrf8k
+  secret_key: KFl4y4blnj8fgrpVPFV2UiLZqYddFPP3hM1rP83u
   dirPrefix:
-  urlPrefix: http://orjp0q80r.bkt.clouddn.com
+  urlPrefix: https://cdn.immaxfang.com
   local_dir: cdn
   update_exist: true
   image:

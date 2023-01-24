@@ -1,7 +1,7 @@
 ---
 title: ubuntu使用postfix和AWS-SES发送邮件
 date: 2022-06-11 01:27:01
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/bg-postfix-aws-ses.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/bg-postfix-aws-ses.png'
 categories: AWS
 tags: [AWS , ubuntu]
 ---
@@ -22,28 +22,28 @@ Postfix 是一种电子邮件服务器，它是由任职于IBM华生研究中心
 
 - 创建一个 identity
 
-![post-start-ses-1.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-start-ses-1.png)
+![post-start-ses-1.png](https://cdn.immaxfang.com/images/post/2022/post-start-ses-1.png)
 
 此处我们为了演示方便，使用`Email address`方式来验证。按下图填入后续要发送邮件的邮箱，随后 AWS 会给对应邮箱发一个确认验证的邮件，点击一下邮件连接即可表示确认授权。
 
-![post-start-ses-2.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-start-ses-2.png)
+![post-start-ses-2.png](https://cdn.immaxfang.com/images/post/2022/post-start-ses-2.png)
 
 - 创建凭证
 
 选择 Account dashboard，此处的 SMTP endpoint 就是我们的邮件服务器地址，后面配置邮件服务器的时候需要使用。
 
-![post-start-ses-3.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-start-ses-3.png)
+![post-start-ses-3.png](https://cdn.immaxfang.com/images/post/2022/post-start-ses-3.png)
 
 点击创建凭证，创建好后，新页面会有下载按钮，一定要及时下载凭证文件。
 凭证文件里有 Smtp Username 和 Smtp Password，后面配置 postfix 邮件服务器的时候需要用到。
 
-![post-start-ses-4.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-start-ses-4.png)
+![post-start-ses-4.png](https://cdn.immaxfang.com/images/post/2022/post-start-ses-4.png)
 
 - 测试邮件发送
 
 使用 AWS 自带的功能发送一下测试邮件，查看是否成功。
 
-![post-start-ses-5.png](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-start-ses-5.png)
+![post-start-ses-5.png](https://cdn.immaxfang.com/images/post/2022/post-start-ses-5.png)
 
 - 其他说明
 
@@ -118,7 +118,7 @@ tail -f /var/log/mail.log
 注意，此处的发送者和收件者邮件需要在 AWS 上进行验证，否则发送邮件会失败。验证方式见前面的 AWS开通 SES 服务部分。
 > 如果 SES 是在 sandbox 环境中，则发送者 `sender@example.com`和 收件人`receiver@example.com`都需要在 AWS 上进行验证。如果是在 production 环境中，则只需要发送者邮件验证通过即可。
 
-![post-postfix-aws-ses](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/post-postfix-aws-ses.png)
+![post-postfix-aws-ses](https://cdn.immaxfang.com/images/post/2022/post-postfix-aws-ses.png)
 
 - 其他说明
 

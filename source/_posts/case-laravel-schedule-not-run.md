@@ -1,7 +1,7 @@
 ---
 title: Laravel调度任务不执行问题
 date: 2021-06-20 19:59:03
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2021/cover-20211009-laravel.png'
+cover: 'https://cdn.immaxfang.com/images/post/2021/cover-20211009-laravel.png'
 categories: php
 tags: [php,laravel]
 ---

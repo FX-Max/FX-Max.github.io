@@ -1,7 +1,7 @@
 ---
 title: 简单易用的任务队列-beanstalkd
 date: 2022-07-15 21:14:27
-cover: 'https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/bg-beanstalkd.png'
+cover: 'https://cdn.immaxfang.com/images/post/2022/bg-beanstalkd.png'
 categories: 消息队列
 tags: [Linux , beanstalkd , MQ]
 ---
@@ -42,7 +42,7 @@ job 消费者。通过 reserve 来获取 job，通过 delete、release、bury �
 # beanstalkd 生命周期
 上文介绍到，beanstalkd 中 job 有状态区分，在整个生命周期中，job 可能有四种状态：`READY`, `RESERVED`, `DELAYED`, `BURIED`。只有处于`READY`状态的 job 才能被消费。下图介绍了各状态之间的流转情况。
 
-![beanstalkd-status](https://cdn.jsdelivr.net/gh/FX-Max/cdn/blog/post/2022/beanstalkd-status.png)
+![beanstalkd-status](https://cdn.immaxfang.com/images/post/2022/beanstalkd-status.png)
 
 producer 在创建 job 的时候有两种方式，put 和 put with delay（延时任务）。
 如果 producer 使用 put 直接创建一个 job 时，该 job 就处于 READY 状态，等待 consumer 处理。
