@@ -118,6 +118,29 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/hexo-change-default-post-url/">hexo-change-default-post-url</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2023-01-25
+        </span><span class="post-category">
+            <a href="/categories/hexo/">hexo</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="修改文章默认-url"><a href="#修改文章默认-url" class="headerlink" title="修改文章默认 url"></a>修改文章默认 url</h1><p>在 hexo 中新建的文章，默认的 url 路径是 <code>年/月/日/标题</code> 这样的格式，这其实是不利于 SEO 的。</p>
+<p>可以通过修改配置文件 <code>_config.yml</code> 来调整 hexo 生成文章的展示链接。</p>
+<p>默认的配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :year/:month/:day/:title/  </span><br></pre></td></tr></table></figure>
+<p>此处笔者修改为如下内容：</p>
+          <div class="read-more">
+            <a href="/hexo-change-default-post-url/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/redis-client-output-buffer-limit/">认识 Redis client-output-buffer-limit 参数与源码分析</a>
         </h1>
 
@@ -322,26 +345,6 @@
 </ul>
           <div class="read-more">
             <a href="/mydumper-myloader/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/git-migrate-project/">git 使用命令行保留原分支迁移代码仓库</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2022-03-19
-        </span><span class="post-category">
-            <a href="/categories/git/">git</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>有些时候我们需要对git仓库中的项目进行一些迁移，如从a账号迁移到b账号下，从github平台迁移到内部的gitlab平台等。一般平台会自带 migrate 或者 import 的功能，可以很方便的进行仓库的迁移。当然，我们也可以自行进行迁移，当需要迁移的项目比较多时，脚本进行迁移更快捷。</p>
-<p>下面来看看如何进行手动迁移，同时在迁移后，保留原项目的分支和tag，以及提交记录等。</p>
-          <div class="read-more">
-            <a href="/git-migrate-project/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">

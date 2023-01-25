@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.immaxfang.com/"/>
-  <updated>2023-01-24T05:56:43.028Z</updated>
+  <updated>2023-01-25T05:33:27.114Z</updated>
   <id>http://www.immaxfang.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo-change-default-post-url</title>
+    <link href="http://www.immaxfang.com/hexo-change-default-post-url/"/>
+    <id>http://www.immaxfang.com/hexo-change-default-post-url/</id>
+    <published>2023-01-25T05:30:44.000Z</published>
+    <updated>2023-01-25T05:33:27.114Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="修改文章默认 -url"><a href="# 修改文章默认 -url" class="headerlink" title="修改文章默认 url"></a> 修改文章默认 url</h1><p> 在 hexo 中新建的文章，默认的 url 路径是 <code> 年 / 月 / 日 / 标题 </code> 这样的格式，这其实是不利于 SEO 的。</p><p> 可以通过修改配置文件 <code>_config.yml</code> 来调整 hexo 生成文章的展示链接。</p><p> 默认的配置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :year/:month/:day/:title/  </span><br></pre></td></tr></table></figure><p> 此处笔者修改为如下内容：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :title/</span><br></pre></td></tr></table></figure><p>permalink 从原来的默认值 <code>:year/:month/:day/:title/</code> 修改成 <code>:title/</code> 之后生成文章的 url 中就没有日期了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.immaxfang.com/2022/07/15/beanstalkd/</span><br></pre></td></tr></table></figure><p> 上面修改前的 url 会变成如下的 url ：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.immaxfang.com/beanstalkd/</span><br></pre></td></tr></table></figure><h1 id="自定义 -url"><a href="# 自定义 -url" class="headerlink" title="自定义 url"></a> 自定义 url</h1><p> 当然，我们也可以自定义文章路径。如下面的例子，我们修改 <code>_config.yml</code> 配置一个自定义路径标签 <code>my</code> 。</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">:my/</span></span><br></pre></td></tr></table></figure><p> 在文章中我们给文章加入 <code>my</code> 标签，并赋予一个值。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---  </span><br><span class="line">title: beanstalkd  </span><br><span class="line">date: 2022-07-15 20:00</span><br><span class="line">my: a1c9d8acb9bca455ea3e81afce35e5  </span><br><span class="line">---</span><br></pre></td></tr></table></figure><p> 最终这篇文章的 url 会变成： <code>https://www.immaxfang.com/a1c9d8acb9bca455ea3e81afce35e5</code> 。</p><h1 id="参考"><a href="# 参考" class="headerlink" title="参考"></a> 参考 </h1><p><a href="https://hexo.io/zh-cn/docs/permalinks">https://hexo.io/zh-cn/docs/permalinks</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;修改文章默认-url&quot;&gt;&lt;a href=&quot;#修改文章默认-url&quot; class=&quot;headerlink&quot; title=&quot;修改文章默认 url&quot;&gt;&lt;/a&gt;修改文章默认 url&lt;/h1&gt;&lt;p&gt;在 hexo 中新建的文章，默认的 url 路径是 &lt;code&gt;年/月/日/标题&lt;/code&gt; 这样的格式，这其实是不利于 SEO 的。&lt;/p&gt;
+&lt;p&gt;可以通过修改配置文件 &lt;code&gt;_config.yml&lt;/code&gt; 来调整 hexo 生成文章的展示链接。&lt;/p&gt;
+&lt;p&gt;默认的配置如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;permalink: :year/:month/:day/:title/  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此处笔者修改为如下内容：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://www.immaxfang.com/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://www.immaxfang.com/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>认识 Redis client-output-buffer-limit 参数与源码分析</title>
@@ -517,32 +543,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>每周阅读清单 -20190519</title>
-    <link href="http://www.immaxfang.com/weekly-reading-list-20190519/"/>
-    <id>http://www.immaxfang.com/weekly-reading-list-20190519/</id>
-    <published>2020-05-16T16:15:15.000Z</published>
-    <updated>2022-10-31T18:24:10.670Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="技术"><a href="# 技术" class="headerlink" title="技术"></a> 技术 </h2><ul><li><a href="http://mysql.taobao.org/monthly/2019/04/01/">MySQL · 引擎特性 · 临时表那些事儿 </a></li></ul><h2 id="生活"><a href="# 生活" class="headerlink" title="生活"></a> 生活 </h2><hr><blockquote><p>Keep reading. Keep running.</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;技术&quot;&gt;&lt;a href=&quot;# 技术&quot; class=&quot;headerlink&quot; title=&quot;技术&quot;&gt;&lt;/a&gt; 技术 &lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://mysql.taobao.org/monthly/2019/04/01/&quot;&gt;MySQL ·
-      
-    
-    </summary>
-    
-      <category term="阅读" scheme="http://www.immaxfang.com/categories/%E9%98%85%E8%AF%BB/"/>
-    
-    
-      <category term="reading list" scheme="http://www.immaxfang.com/tags/reading-list/"/>
     
   </entry>
   
