@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="说说 Redis pipeline"/><meta name="keywords" content="redis, Max's Blog" /><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/redis-pipeline/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>说说 Redis pipeline - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+        <li class="mobile-menu-item">Talking
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+            Talking
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">说说 Redis pipeline
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2023-01-25
+        </span><span class="post-category">
+            <a href="/categories/redis/">redis</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%A8%A1%E5%BC%8F"><span class="toc-text">普通模式 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E6%A8%A1%E5%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">普通模式的问题 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pipeline-%20%E6%A8%A1%E5%BC%8F"><span class="toc-text">pipeline 模式 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pipeline-%20%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98"><span class="toc-text">pipeline 注意问题 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pipeline-%20%E4%B8%8E%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C%20-mget-%20%E7%AD%89%E5%8C%BA%E5%88%AB"><span class="toc-text">pipeline 与批量操作 mget 等区别 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pipeline-%20%E4%B8%8E%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">pipeline 与事务的区别 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结 </span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p>Redis 客户端和服务端之间是采用 TCP 协议进行通信的，是基于 Request/Response 这种一问一答的模式，即请求一次响应一次。</p>
+<h1 id="普通模式"><a href="# 普通模式" class="headerlink" title="普通模式"></a>普通模式 </h1><p> 我们先来看下普通模式下，一条 Redis 命令的简要执行过程：</p>
+<ul>
+<li>客户端发送一条命令给 redis-server，阻塞等待 redis-server 应答</li>
+<li>redis-server 接收到命令，执行命令</li>
+<li>redis-server 将结果返回给客户端</li>
+</ul>
+<span id="more"></span>
+<p><img src="https://cdn.immaxfang.com/image123.png" alt></p>
+<p>下面我们来简要了解下一个完整请求的交互过程。</p>
+<p><img src="https://cdn.immaxfang.com/1666327431748.png" alt></p>
+<ol>
+<li>客户端调用 write () 将消息写入操作系统为 socket 分配的 send buffer 中</li>
+<li>操作系统将 send buffer 中的内容发送到网卡，网卡通过网关路由把内容发送到服务器网卡</li>
+<li>服务器网卡将接受到的消息写入操作系统为 socket 分配的 recv buffer</li>
+<li>服务器进程调用 read () 从 recv buffer 中读取消息进行处理</li>
+<li>处理完成之后，服务器调用 write () 将响应内容发送的 send buffer 中</li>
+<li>服务器将 send buffer 中的内容通过网卡，发送到客户端</li>
+<li>客户端操作系统将网卡中的内容放入 recv buffer 中</li>
+<li>客户端进程调用 read () 从 recv buffer 中读取消息</li>
+</ol>
+<h1 id="普通模式的问题"><a href="# 普通模式的问题" class="headerlink" title="普通模式的问题"></a>普通模式的问题 </h1><p> 我们来想一下，这种情况下可能导致什么问题。<br>如果同时执行大量的命令，那对于每一个命令，都要按上面的流程走一次，当前的命令需要等待上一条命令执行应答完毕之后，才会执行。这个过程中会有多次的 RTT ，也还会伴随着很多的 IO 开销，发送网络请求等。每条命令的发送和接收的过程都会占用两边的网络传输。<br>简单的来说，每个命令的执行时间 = 客户端发送耗时 + 服务器处理耗时 + 服务器返回耗时 + 一个网络来回耗时。<br>在这里，一个网络来回耗时（RTT） 是不好控制的，也是不稳定的。它的影响因素很多，比如客户端到服务器的网络线路是否拥堵，经过了多少跳。还有就是 IO 系统调用也是耗时的，一个 read 系统调用，需要从用户态，切换到内核态。上文我们讲述一个命令的请求过程时多次降到 read 和 write 系统调用。<br>可以说一个命令的执行时间，很大程度上受到它们的限制。</p>
+<h1 id="pipeline- 模式"><a href="#pipeline- 模式" class="headerlink" title="pipeline 模式"></a>pipeline 模式 </h1><p> 有没有什么方法来解决这种问题呢。<br>第一种方法，就是利用多线程机制，并行执行命令。<br>第二种方法，调用批量命令，例如 <code>mget</code> 等，一次操作多个键。<br>很多时候我们要执行的命令并不是一样的命令，而是一组命令，这个时候就无法使用类似 <code>mget</code> 这样的批量命令了。那还有其他的方法吗？<br>回想一下，我们初学编程的时候，老手都会告诉我们，不要在循环里面做查询。我有一个 books 列表数据，要根据 book_id 查询它们的 price，如果我们循环 books 列表，在每次循环里面取查询单个 book_id 的 price，那性能肯定是不理想的。一般我们的优化方式是将多个 book_id 取出来，一次性去查多个 book_id 的 price，这样性能就有明显的提示。即将多次小命令中的耗时操作合并到一次，从而减少总的执行时间。<br>类似的，Redis pipeline 出现了，一般称之为管道。它允许客户端一次可以发送多条命令，而不用像普通模式那样每次执行一个小命令都要等待前一个小命令执行完，服务器在接收到一堆命令后，会依次执行，然后把结果打包，再一次性返回给客户端。<br>这样可以避免频繁的命令发送，<strong>减少 RTT，减少 IO 调用次数 </strong>。前面已经介绍了，IO 调用会涉及到用户态和内核态之间的切换，在高性能的一些系统中，我们都是尽可能的减少 IO 调用。<br> 简要流程如下图：</p>
+<p><img src="https://cdn.immaxfang.com/1666327582910.png" alt></p>
+<ul>
+<li><p>pipeline 的优点</p>
+<ul>
+<li>减少 RTT</li>
+<li>减少 IO 调用次数</li>
+</ul>
+</li>
+<li><p>基本使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Pipeline pipeline =jedis.pipelined();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)&#123;</span><br><span class="line">    pipeline.rpush(<span class="string">&quot;rediskey&quot;</span>, i + <span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pipeline.sync()</span><br></pre></td></tr></table></figure>
+<p>总结一下 pipeline 的核心，就是 <code>客户端将一组 Redis 命令进行组装，通过一次 RTT 发送给服务器，同时服务器再将这组命令的执行结果按照顺序一次返回给客户端</code>。</p>
+</li>
+</ul>
+<h1 id="pipeline- 注意问题"><a href="#pipeline- 注意问题" class="headerlink" title="pipeline 注意问题"></a>pipeline 注意问题 </h1><p> 虽然 pipeline 在某些情况下会带来不小的性能提升，但是，我们在使用的时候也需要注意。</p>
+<ul>
+<li>pipeline 中的命令数量不宜过多。</li>
+</ul>
+<p>客户端会先将多个命令写入内存 buffer 中（打包），命令过多，如果是超过了客户端设置的 buffer 上限，被客户端的处理策略处理了（不同的客户端实现可能会有差异，比如 jedis pipeline ，限制每次最大的发送字节数为 8192，缓冲区满了就发送，然后再写缓冲，最后才处理 Redis 服务器的应答）。如果客户端没有设置 buffer 上限或不支持上限设置，则会占用更多的客户端机器内存，造成客户端瘫痪。官方推荐是每次 10k 个命令。<br>建议做好规范，遇到一次包含大量命令的 pipeline，可以拆分成多个稍小的 pipeline 来完成。</p>
+<ul>
+<li>pipeline 一次只能运行在一个 Redis 节点上，一些集群或者 twemproxy 等中间件使用需要注意。</li>
+</ul>
+<p>在集群环境下，一次 pipeline 批量执行多个命令，每个命令需要根据 key 计算槽位，然后根据槽位去特定的节点上去执行命令，这样一次 pipeline 就会使用多个节点的 redis 连接，这种当前也是不支持的。</p>
+<ul>
+<li>pipeline 不保证原子性，如要求原子性，不建议使用 pipeline</li>
+</ul>
+<p>它仅是将多个命令打包发送出去而已，如果中间有命令执行异常，也会继续执行剩余命令。</p>
+<h1 id="pipeline- 与批量操作 -mget- 等区别"><a href="#pipeline- 与批量操作 -mget- 等区别" class="headerlink" title="pipeline 与批量操作 mget 等区别"></a>pipeline 与批量操作 mget 等区别 </h1><p> 其实 <code>meget</code> 和 pipeline 优化的方向是一致的，即多个命令打包一次发送，减少网络时间。但是也是有区别的。</p>
+<ul>
+<li><code>mget</code> 等的场景是一个命令对应多个键值对，而 pipeline 一般是多条命令（不同的命令）</li>
+<li><code>mget</code> 操作是一个原子操作，而 pipeline 不是原子操作</li>
+<li><code>mget</code> 是服务端实现，而 pipeline 是客户端和服务端共同实现</li>
+</ul>
+<h1 id="pipeline- 与事务的区别"><a href="#pipeline- 与事务的区别" class="headerlink" title="pipeline 与事务的区别"></a>pipeline 与事务的区别 </h1><p> 这两者关注和解决的问题不是一个东西，原理也不一样。</p>
+<ul>
+<li>pipeline 是一次请求，服务端顺序执行，一次返回。而事务是多次请求（先 multi，再多个操作命令，最后 exec），服务端顺序执行，一次返回</li>
+<li>pipeline 关注的是 RTT 时间和 IO 调用，事务关注的是一致性问题</li>
+</ul>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 本文主要讲了多命令执行时耗时问题，以及 pipeline 的解决方法，和其简单的原理，以及注意点。今天的学习就到这里，改天我们接着肝。</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/redis-pipeline/">http://www.immaxfang.com/redis-pipeline/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/redis/">redis</a>
+            </div>
+        
+        <nav class="post-nav"><a class="next" href="/hexo-change-default-post-url/">
+        <span class="next-text nav-default">Hexo 修改默认文章路径</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span><span class="division">|</span>
+      <a class="theme-link" href=https://beian.miit.gov.cn/>皖ICP备2022015199号</a><span class="division">|</span>
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span></span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><!-- valine Comments -->
+<script src="//github.elemecdn.com/leancloud-storage@3/dist/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.5.1/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: false,
+        app_id: "RoaKz6A3wbmwNFIRl6bNdOqC-gzGzoHsz",
+        app_key: "zRlIClO248YJDPefLLQe0F0B",
+        placeholder: "写下你的留言把！",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>

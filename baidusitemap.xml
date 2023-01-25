@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.immaxfang.com/redis-pipeline/</loc>
+    <lastmod>2023-01-25</lastmod>
+  </url>
+  <url>
     <loc>http://www.immaxfang.com/hexo-change-default-post-url/</loc>
     <lastmod>2023-01-25</lastmod>
   </url>

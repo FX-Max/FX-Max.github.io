@@ -118,7 +118,32 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/hexo-change-default-post-url/">hexo-change-default-post-url</a>
+      <h1 class="post-title"><a class="post-link" href="/redis-pipeline/">说说 Redis pipeline</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2023-01-25
+        </span><span class="post-category">
+            <a href="/categories/redis/">redis</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>Redis 客户端和服务端之间是采用 TCP 协议进行通信的，是基于 Request/Response 这种一问一答的模式，即请求一次响应一次。</p>
+<h1 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h1><p>我们先来看下普通模式下，一条 Redis 命令的简要执行过程：</p>
+<ul>
+<li>客户端发送一条命令给 redis-server，阻塞等待 redis-server 应答</li>
+<li>redis-server 接收到命令，执行命令</li>
+<li>redis-server 将结果返回给客户端</li>
+</ul>
+          <div class="read-more">
+            <a href="/redis-pipeline/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/hexo-change-default-post-url/">Hexo 修改默认文章路径</a>
         </h1>
 
       <div class="post-meta">
@@ -316,35 +341,6 @@
 <p>Amazon Simple Email Service (SES) 是一种经济高效、灵活且可扩展的电子邮件服务，使开发人员能够从任何应用程序中发送电子邮件。 您可以快速配置Amazon SES 以支持多种电子邮件使用案例，包括交易、营销或群发电子邮件通信。</p>
           <div class="read-more">
             <a href="/postfix-aws-ses/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/mydumper-myloader/">mydumper-myloader</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2022-04-25
-        </span><span class="post-category">
-            <a href="/categories/mysql/">mysql</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>mydumper 是一款开源的 MySQL 逻辑备份工具，主要由 C 语言编写。与 MySQL 自带的 mysqldump 类似，但是 mydumper 更快更高效。<br>mydumper 的一些优点特性：</p>
-<ul>
-<li>轻量级C语言开发</li>
-<li>支持多线程备份数据，备份后按表生成多个备份文件</li>
-<li>支持事务性和非事务性表一致性备份</li>
-<li>支持将导出的文件压缩，节约空间</li>
-<li>支持多线程恢复</li>
-<li>支持已守护进程模式工作，定时快照和连续二进制日志</li>
-<li>支持按指定大小将备份文件切割</li>
-<li>数据与建表语句分离</li>
-</ul>
-          <div class="read-more">
-            <a href="/mydumper-myloader/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">

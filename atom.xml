@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.immaxfang.com/"/>
-  <updated>2023-01-25T05:33:27.114Z</updated>
+  <updated>2023-01-25T12:30:33.011Z</updated>
   <id>http://www.immaxfang.com/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hexo-change-default-post-url</title>
+    <title>说说 Redis pipeline</title>
+    <link href="http://www.immaxfang.com/redis-pipeline/"/>
+    <id>http://www.immaxfang.com/redis-pipeline/</id>
+    <published>2023-01-25T07:29:32.000Z</published>
+    <updated>2023-01-25T12:30:33.011Z</updated>
+    
+    <content type="html"><![CDATA[<p>Redis 客户端和服务端之间是采用 TCP 协议进行通信的，是基于 Request/Response 这种一问一答的模式，即请求一次响应一次。</p><h1 id="普通模式"><a href="# 普通模式" class="headerlink" title="普通模式"></a>普通模式 </h1><p> 我们先来看下普通模式下，一条 Redis 命令的简要执行过程：</p><ul><li>客户端发送一条命令给 redis-server，阻塞等待 redis-server 应答</li><li>redis-server 接收到命令，执行命令</li><li>redis-server 将结果返回给客户端</li></ul><span id="more"></span><p><img src="https://cdn.immaxfang.com/image123.png" alt></p><p>下面我们来简要了解下一个完整请求的交互过程。</p><p><img src="https://cdn.immaxfang.com/1666327431748.png" alt></p><ol><li>客户端调用 write () 将消息写入操作系统为 socket 分配的 send buffer 中</li><li>操作系统将 send buffer 中的内容发送到网卡，网卡通过网关路由把内容发送到服务器网卡</li><li>服务器网卡将接受到的消息写入操作系统为 socket 分配的 recv buffer</li><li>服务器进程调用 read () 从 recv buffer 中读取消息进行处理</li><li>处理完成之后，服务器调用 write () 将响应内容发送的 send buffer 中</li><li>服务器将 send buffer 中的内容通过网卡，发送到客户端</li><li>客户端操作系统将网卡中的内容放入 recv buffer 中</li><li>客户端进程调用 read () 从 recv buffer 中读取消息</li></ol><h1 id="普通模式的问题"><a href="# 普通模式的问题" class="headerlink" title="普通模式的问题"></a>普通模式的问题 </h1><p> 我们来想一下，这种情况下可能导致什么问题。<br>如果同时执行大量的命令，那对于每一个命令，都要按上面的流程走一次，当前的命令需要等待上一条命令执行应答完毕之后，才会执行。这个过程中会有多次的 RTT ，也还会伴随着很多的 IO 开销，发送网络请求等。每条命令的发送和接收的过程都会占用两边的网络传输。<br>简单的来说，每个命令的执行时间 = 客户端发送耗时 + 服务器处理耗时 + 服务器返回耗时 + 一个网络来回耗时。<br>在这里，一个网络来回耗时（RTT） 是不好控制的，也是不稳定的。它的影响因素很多，比如客户端到服务器的网络线路是否拥堵，经过了多少跳。还有就是 IO 系统调用也是耗时的，一个 read 系统调用，需要从用户态，切换到内核态。上文我们讲述一个命令的请求过程时多次降到 read 和 write 系统调用。<br>可以说一个命令的执行时间，很大程度上受到它们的限制。</p><h1 id="pipeline- 模式"><a href="#pipeline- 模式" class="headerlink" title="pipeline 模式"></a>pipeline 模式 </h1><p> 有没有什么方法来解决这种问题呢。<br>第一种方法，就是利用多线程机制，并行执行命令。<br>第二种方法，调用批量命令，例如 <code>mget</code> 等，一次操作多个键。<br>很多时候我们要执行的命令并不是一样的命令，而是一组命令，这个时候就无法使用类似 <code>mget</code> 这样的批量命令了。那还有其他的方法吗？<br>回想一下，我们初学编程的时候，老手都会告诉我们，不要在循环里面做查询。我有一个 books 列表数据，要根据 book_id 查询它们的 price，如果我们循环 books 列表，在每次循环里面取查询单个 book_id 的 price，那性能肯定是不理想的。一般我们的优化方式是将多个 book_id 取出来，一次性去查多个 book_id 的 price，这样性能就有明显的提示。即将多次小命令中的耗时操作合并到一次，从而减少总的执行时间。<br>类似的，Redis pipeline 出现了，一般称之为管道。它允许客户端一次可以发送多条命令，而不用像普通模式那样每次执行一个小命令都要等待前一个小命令执行完，服务器在接收到一堆命令后，会依次执行，然后把结果打包，再一次性返回给客户端。<br>这样可以避免频繁的命令发送，<strong>减少 RTT，减少 IO 调用次数 </strong>。前面已经介绍了，IO 调用会涉及到用户态和内核态之间的切换，在高性能的一些系统中，我们都是尽可能的减少 IO 调用。<br> 简要流程如下图：</p><p><img src="https://cdn.immaxfang.com/1666327582910.png" alt></p><ul><li><p>pipeline 的优点</p><ul><li>减少 RTT</li><li>减少 IO 调用次数</li></ul></li><li><p>基本使用</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Pipeline pipeline =jedis.pipelined();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)&#123;</span><br><span class="line">    pipeline.rpush(<span class="string">&quot;rediskey&quot;</span>, i + <span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pipeline.sync()</span><br></pre></td></tr></table></figure><p>总结一下 pipeline 的核心，就是 <code>客户端将一组 Redis 命令进行组装，通过一次 RTT 发送给服务器，同时服务器再将这组命令的执行结果按照顺序一次返回给客户端</code>。</p></li></ul><h1 id="pipeline- 注意问题"><a href="#pipeline- 注意问题" class="headerlink" title="pipeline 注意问题"></a>pipeline 注意问题 </h1><p> 虽然 pipeline 在某些情况下会带来不小的性能提升，但是，我们在使用的时候也需要注意。</p><ul><li>pipeline 中的命令数量不宜过多。</li></ul><p>客户端会先将多个命令写入内存 buffer 中（打包），命令过多，如果是超过了客户端设置的 buffer 上限，被客户端的处理策略处理了（不同的客户端实现可能会有差异，比如 jedis pipeline ，限制每次最大的发送字节数为 8192，缓冲区满了就发送，然后再写缓冲，最后才处理 Redis 服务器的应答）。如果客户端没有设置 buffer 上限或不支持上限设置，则会占用更多的客户端机器内存，造成客户端瘫痪。官方推荐是每次 10k 个命令。<br>建议做好规范，遇到一次包含大量命令的 pipeline，可以拆分成多个稍小的 pipeline 来完成。</p><ul><li>pipeline 一次只能运行在一个 Redis 节点上，一些集群或者 twemproxy 等中间件使用需要注意。</li></ul><p>在集群环境下，一次 pipeline 批量执行多个命令，每个命令需要根据 key 计算槽位，然后根据槽位去特定的节点上去执行命令，这样一次 pipeline 就会使用多个节点的 redis 连接，这种当前也是不支持的。</p><ul><li>pipeline 不保证原子性，如要求原子性，不建议使用 pipeline</li></ul><p>它仅是将多个命令打包发送出去而已，如果中间有命令执行异常，也会继续执行剩余命令。</p><h1 id="pipeline- 与批量操作 -mget- 等区别"><a href="#pipeline- 与批量操作 -mget- 等区别" class="headerlink" title="pipeline 与批量操作 mget 等区别"></a>pipeline 与批量操作 mget 等区别 </h1><p> 其实 <code>meget</code> 和 pipeline 优化的方向是一致的，即多个命令打包一次发送，减少网络时间。但是也是有区别的。</p><ul><li><code>mget</code> 等的场景是一个命令对应多个键值对，而 pipeline 一般是多条命令（不同的命令）</li><li><code>mget</code> 操作是一个原子操作，而 pipeline 不是原子操作</li><li><code>mget</code> 是服务端实现，而 pipeline 是客户端和服务端共同实现</li></ul><h1 id="pipeline- 与事务的区别"><a href="#pipeline- 与事务的区别" class="headerlink" title="pipeline 与事务的区别"></a>pipeline 与事务的区别 </h1><p> 这两者关注和解决的问题不是一个东西，原理也不一样。</p><ul><li>pipeline 是一次请求，服务端顺序执行，一次返回。而事务是多次请求（先 multi，再多个操作命令，最后 exec），服务端顺序执行，一次返回</li><li>pipeline 关注的是 RTT 时间和 IO 调用，事务关注的是一致性问题</li></ul><h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 本文主要讲了多命令执行时耗时问题，以及 pipeline 的解决方法，和其简单的原理，以及注意点。今天的学习就到这里，改天我们接着肝。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Redis 客户端和服务端之间是采用 TCP 协议进行通信的，是基于 Request/Response 这种一问一答的模式，即请求一次响应一次。&lt;/p&gt;
+&lt;h1 id=&quot;普通模式&quot;&gt;&lt;a href=&quot;#普通模式&quot; class=&quot;headerlink&quot; title=&quot;普通模式&quot;&gt;&lt;/a&gt;普通模式&lt;/h1&gt;&lt;p&gt;我们先来看下普通模式下，一条 Redis 命令的简要执行过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端发送一条命令给 redis-server，阻塞等待 redis-server 应答&lt;/li&gt;
+&lt;li&gt;redis-server 接收到命令，执行命令&lt;/li&gt;
+&lt;li&gt;redis-server 将结果返回给客户端&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="redis" scheme="http://www.immaxfang.com/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="http://www.immaxfang.com/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 修改默认文章路径</title>
     <link href="http://www.immaxfang.com/hexo-change-default-post-url/"/>
     <id>http://www.immaxfang.com/hexo-change-default-post-url/</id>
     <published>2023-01-25T05:30:44.000Z</published>
-    <updated>2023-01-25T05:33:27.114Z</updated>
+    <updated>2023-01-25T07:27:05.692Z</updated>
     
     <content type="html"><![CDATA[<h1 id="修改文章默认 -url"><a href="# 修改文章默认 -url" class="headerlink" title="修改文章默认 url"></a> 修改文章默认 url</h1><p> 在 hexo 中新建的文章，默认的 url 路径是 <code> 年 / 月 / 日 / 标题 </code> 这样的格式，这其实是不利于 SEO 的。</p><p> 可以通过修改配置文件 <code>_config.yml</code> 来调整 hexo 生成文章的展示链接。</p><p> 默认的配置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :year/:month/:day/:title/  </span><br></pre></td></tr></table></figure><p> 此处笔者修改为如下内容：</p><span id="more"></span><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :title/</span><br></pre></td></tr></table></figure><p>permalink 从原来的默认值 <code>:year/:month/:day/:title/</code> 修改成 <code>:title/</code> 之后生成文章的 url 中就没有日期了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.immaxfang.com/2022/07/15/beanstalkd/</span><br></pre></td></tr></table></figure><p> 上面修改前的 url 会变成如下的 url ：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.immaxfang.com/beanstalkd/</span><br></pre></td></tr></table></figure><h1 id="自定义 -url"><a href="# 自定义 -url" class="headerlink" title="自定义 url"></a> 自定义 url</h1><p> 当然，我们也可以自定义文章路径。如下面的例子，我们修改 <code>_config.yml</code> 配置一个自定义路径标签 <code>my</code> 。</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">:my/</span></span><br></pre></td></tr></table></figure><p> 在文章中我们给文章加入 <code>my</code> 标签，并赋予一个值。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---  </span><br><span class="line">title: beanstalkd  </span><br><span class="line">date: 2022-07-15 20:00</span><br><span class="line">my: a1c9d8acb9bca455ea3e81afce35e5  </span><br><span class="line">---</span><br></pre></td></tr></table></figure><p> 最终这篇文章的 url 会变成： <code>https://www.immaxfang.com/a1c9d8acb9bca455ea3e81afce35e5</code> 。</p><h1 id="参考"><a href="# 参考" class="headerlink" title="参考"></a> 参考 </h1><p><a href="https://hexo.io/zh-cn/docs/permalinks">https://hexo.io/zh-cn/docs/permalinks</a></p>]]></content>
     
@@ -518,28 +546,6 @@
     
       &lt;p&gt;这些年尝试了不同的博客工具, hexo, hugo, wp, 还有一些博客内容平台，中间也自己写过博客系统。&lt;br&gt;最终还是懒得再折腾了，重新切回 hexo，继续记录个人的学习生活。&lt;br&gt;原来其他地方的文章也不搬了，继续开始吧。&lt;/p&gt;
 &lt;p&gt;Happy Coding.&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>hexo 使用札记 - 常用命令</title>
-    <link href="http://www.immaxfang.com/hexo-series-0/"/>
-    <id>http://www.immaxfang.com/hexo-series-0/</id>
-    <published>2020-06-18T17:15:11.000Z</published>
-    <updated>2023-01-24T05:59:33.310Z</updated>
-    
-    <content type="html"><![CDATA[<p>今年前一段时间将博客从 jeklly 转到 hexo ，感觉还是非常好用的，hexo 的常用命令不多，本文就介绍一下使用 hexo 的常用基本命令。</p><h2 id="hexo-cl"><a href="#hexo-cl" class="headerlink" title="hexo cl"></a>hexo cl</h2><ul><li>全名：hexo clean</li><li>清除缓存文件 <strong>db.json</strong> 和已生成的静态文件 <strong>public</strong>。</li></ul><span id="more"></span><h2 id="hexo-g"><a href="#hexo-g" class="headerlink" title="hexo g"></a>hexo g</h2><ul><li>全名: hexo generate</li><li>生成网站静态文件，默认保存在 <strong>public</strong> 文件夹。</li></ul><blockquote><p>由于 hexo 源文件可读性不强，使用 <strong>hexo g</strong> 可以将 hexo 源文件生成静态文件，便于调试，生成的静态文件可以直接部署网站。 </p></blockquote><h2 id="hero-s"><a href="#hero-s" class="headerlink" title="hero s"></a>hero s</h2><ul><li>全名：hexo server</li><li>启动本地服务器，访问本地 hexo 项目，默认的访问地址是 <a href="http://localhost:4000/">http://localhost:4000/</a> ，可以很方便的在本地预览博客样式和内容。</li></ul><!-- more --><blockquote><p>修改文章内容或是修改样式代码，不需要重新运行 <strong>hexo s</strong> 重启本地服务器，只需要保存文件后刷新页面即可看到效果。<br>若是修改了 hexo 根目录下的 <strong>_config.yml</strong> ，则需要重新运行 <strong>hexo s</strong> 命令重启本地服务器。 </p></blockquote><h2 id="hero-d"><a href="#hero-d" class="headerlink" title="hero d"></a>hero d</h2><ul><li>全名：hexo deploy</li><li>生成网站的静态文件，并将其部署到 <strong>_config.yml</strong> 文件中配置的仓库中。</li></ul><h2 id="hexo-n-page-xxx"><a href="#hexo-n-page-xxx" class="headerlink" title="hexo n page xxx"></a>hexo n page xxx</h2><ul><li>全名：hexo new page xxx</li><li>新建一个名为 <strong>xxx</strong> 的页面，文件地址为 <strong>source/xxx/index.md</strong>  。</li></ul><blockquote><p>使用该命令生成的文件名，可以手动在项目中进行重命名，同时生成的页面不会出现在文章列表和归档文件中，也不支持设置分类和标签。<br>若需要删除该页面，只需要手动删除 <strong>source/xxx</strong> 目录即可。</p></blockquote><h2 id="hexo-n-xxx"><a href="#hexo-n-xxx" class="headerlink" title="hexo n xxx"></a>hexo n xxx</h2><ul><li>全名：hexo new xxx</li><li>新建一篇名为 <strong>xxx</strong> 的文章，文件地址为 <strong>source/_posts/xxx.md</strong> 。</li></ul><blockquote><p>使用该命令生成的文章名，可以在项目中手动进行修改。<br>如果文章名中有空格，则文章名需要使用 <strong>“”</strong> ，例如 hexo new “hello world”。<br>若需要删除某篇文章，只需要手动删除 <strong>source/_posts/xxx.md</strong> 文件即可。</p></blockquote><h2 id="参考"><a href="# 参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://hexo.io/zh-cn/docs/commands.html">hexo 中文文档</a></li></ul><hr><p>Happy Coding.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今年前一段时间将博客从 jeklly 转到 hexo ，感觉还是非常好用的，hexo 的常用命令不多，本文就介绍一下使用 hexo 的常用基本命令。&lt;/p&gt;
-&lt;h2 id=&quot;hexo-cl&quot;&gt;&lt;a href=&quot;#hexo-cl&quot; class=&quot;headerlink&quot; title=&quot;hexo cl&quot;&gt;&lt;/a&gt;hexo cl&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;全名：hexo clean&lt;/li&gt;
-&lt;li&gt;清除缓存文件&lt;strong&gt;db.json&lt;/strong&gt;和已生成的静态文件 &lt;strong&gt;public&lt;/strong&gt;。&lt;/li&gt;
-&lt;/ul&gt;
     
     </summary>
     
