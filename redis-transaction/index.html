@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="redis-transaction"/><meta name="keywords" content="redis, Max's Blog" /><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/redis-transaction/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>redis-transaction - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+        <li class="mobile-menu-item">Talking
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/atom.xml">
+        <li class="mobile-menu-item">RSS
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+            Talking
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/atom.xml">
+            RSS
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">redis-transaction
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2023-01-31
+        </span><span class="post-category">
+            <a href="/categories/redis/">redis</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-%20%E4%BA%8B%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="toc-text">Redis 事务简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-%20%E4%BA%8B%E5%8A%A1%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">Redis 事务基本指令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90"><span class="toc-text">实例分析 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-%20%E4%BA%8B%E5%8A%A1%E4%B8%8E%20-ACID"><span class="toc-text">Redis 事务与 ACID</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-%20%E4%BA%8B%E5%8A%A1%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%94%AF%E6%8C%81%E5%9B%9E%E6%BB%9A"><span class="toc-text">Redis 事务为什么不支持回滚 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结 </span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="Redis- 事务简介"><a href="#Redis- 事务简介" class="headerlink" title="Redis 事务简介"></a>Redis 事务简介</h1><p>Redis 只是提供了简单的事务功能。其本质是一组命令的集合，事务支持一次执行多个命令，在事务执行过程中，会顺序执行队列中的命令，其他客户端提交的命令请求不会插入到本事务执行命令序列中。命令的执行过程是顺序执行的，但不能保证原子性。无法像 MySQL 那样，有隔离级别，出了问题之后还能回滚数据等高级操作。后面会详细分析。</p>
+<h1 id="Redis- 事务基本指令"><a href="#Redis- 事务基本指令" class="headerlink" title="Redis 事务基本指令"></a>Redis 事务基本指令</h1><p>Redis 提供了如下几个事务相关的基础指令。</p>
+<span id="more"></span>
+<ul>
+<li><code>MULTI</code> 开启事务，Redis 会将后续命令加到队列中，而不真正执行它们，直到后续使用 <code>EXEC</code> 来原子化的顺序执行这些命令</li>
+<li><code>EXEC</code> 执行所有事务块内的命令</li>
+<li><code>DISCARD</code> 取消事务，放弃执行事务块内所有的命令</li>
+<li><code>WATCH</code> 监视一个或多个 key，若事务在执行前，这些 key 被其他命令修改，则事务被终端，不会执行事务中的任何命令</li>
+<li><code>UNWATCH</code> 取消 <code>WATCH</code> 命令对所有 keys 的监视</li>
+</ul>
+<p>一般情况下，一个简单的 Redis 事务主要分为如下几个部分：</p>
+<ol>
+<li>执行命令 <code>MULTI</code> 开启一个事务。</li>
+<li>开启事务之后，执行命令的多个命令会依次被放入一个队列，放入成功则会返回 <code>QUEUED</code> 消息。</li>
+<li>执行命令 <code>EXEC</code> 提交事务，Redis 会依次执行队列中的命令，并依次返回所有命令的结果。（若想放弃提交事务，则执行 <code>DISCARD</code>）。</li>
+</ol>
+<p>下图简单介绍了下 Redis 事务执行的过程：</p>
+<p><img src="https://cdn.immaxfang.com/1666503863641.png" alt="1666503863641.png"></p>
+<h1 id="实例分析"><a href="# 实例分析" class="headerlink" title="实例分析"></a>实例分析 </h1><p> 下面我们来通过一些实际具体例子，来体会下 Redis 中的事务。前面我们也说到 Redis 的事务不是正真的事务，是无法完全满足标准事务的 <code>ACID</code> 特性的。通过下面的例子，我们来看看，Redis 的“破产版”事务到底存在什么问题。</p>
+<ul>
+<li><p>[A]正常执行提交</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET a <span class="number">1</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET b <span class="number">2</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; EXEC</span><br><span class="line"><span class="number">1</span>) OK</span><br><span class="line"><span class="number">2</span>) OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; GET a</span><br><span class="line"><span class="string">&quot;1&quot;</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; GET b</span><br><span class="line"><span class="string">&quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p>开启事务后，提交的命令都会加入队列（QUEUED），执行 EXEC 后会逐步执行命令并返回结果。这个看起来是不是和我们平时使用 MySQL 的事务操作相似，类似 start transaction 和 commit。</p>
+</li>
+<li><p>[B]正常取消事务</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET a <span class="number">1</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET b <span class="number">2</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; DISCARD</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; </span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="function">GET <span class="title">a</span></span></span><br><span class="line"><span class="function"><span class="params">(nil)</span></span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; GET <span class="title">b</span></span></span><br><span class="line"><span class="function"><span class="params">(nil)</span></span></span><br></pre></td></tr></table></figure>
+<p>开启事务后，若不想继续事务，使用 DISCARD 取消，前面提交的命令并不会真正执行，相关的 key 值不变。这个看起来也和 MySQL 的事务相似，类似 start transaction 和 rollback。</p>
+</li>
+<li><p>[C]WATCH 监视 key</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">-- 线程 <span class="number">1</span> 中执行</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="function">del <span class="title">a</span></span></span><br><span class="line"><span class="function"><span class="params">(integer)</span> 1</span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; get <span class="title">a</span></span></span><br><span class="line"><span class="function"><span class="params">(nil)</span></span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; SET a 0</span></span><br><span class="line"><span class="function">OK</span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; WATCH a</span></span><br><span class="line"><span class="function">OK</span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; MULTI</span></span><br><span class="line"><span class="function">OK</span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; SET a 1</span></span><br><span class="line"><span class="function">QUEUED</span></span><br><span class="line"><span class="function">----------------------------------------- 线程 2 中执行</span></span><br><span class="line"><span class="function">----------------------------------------- 127.0.0.1:6379&gt; SET a 2</span></span><br><span class="line"><span class="function">----------------------------------------- OK</span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; <span class="title">EXEC</span></span></span><br><span class="line"><span class="function"><span class="params">(nil)</span></span></span><br><span class="line"><span class="function">127.0.0.1:6379&gt; GET a</span></span><br><span class="line"><span class="function">&quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p>在开启事务之前 WATCH 了 a 的值，随后再开启事务。在另一个线程中设置了 a 的值（SET a 2），然后再 EXEC 执行事务，结果为 nil，<br>说明事务没有被执行。因为 a 的值在 WATCH 之后发生了变化，所以事务被取消了。</p>
+<blockquote>
+<p>需要注意的是，这里和开启事务的时间点没有关系，与 MULTI 和另一个线程设置 a 的值的先后没有关系。只要是在 WATCH 之后发生了变化。无论事务是否已经开启，执行事务（EXEC）的时候都会取消。<br>普通情况下，在执行 EXEC 和 DISCARD 命令时，都会默认执行 UNWATCH。</p>
+</blockquote>
+</li>
+<li><p>[D]语法错误</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET a <span class="number">1</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET b <span class="number">2</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET a <span class="number">11</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SETS b <span class="number">22</span></span><br><span class="line">(error) ERR unknown command <span class="string">&#x27;SETS&#x27;</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; EXEC</span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; GET a</span><br><span class="line"><span class="string">&quot;1&quot;</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; GET b</span><br><span class="line"><span class="string">&quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当 Redis 开启一个事务后，若添加的命令中有语法错误，会导致事务提交失败。这种情况下事务队列中的命令都不会被执行。如上面例子中 a 和 b 的值都是原有的值。<br>这类在 EXEC 之前产生的错误，如命令名称错误，命令参数错误等，会在 EXEC 执行之前被检测出来，所以在发生这些错误的时候，事务会被取消，事务中的所有命令都不会执行。（这种情况看起来是不是有点像回滚了）</p>
+</blockquote>
+</li>
+<li><p>[E]运行时错误</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET a <span class="number">1</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; SET b hello</span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; INCR b</span><br><span class="line">QUEUED</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; EXEC</span><br><span class="line"><span class="number">1</span>) OK</span><br><span class="line"><span class="number">2</span>) OK</span><br><span class="line"><span class="number">3</span>) (error) ERR value is <span class="keyword">not</span> an integer <span class="keyword">or</span> out of range</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; GET a</span><br><span class="line"><span class="string">&quot;1&quot;</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; GET b</span><br><span class="line"><span class="string">&quot;hello&quot;</span></span><br></pre></td></tr></table></figure>
+<p>当 Redis 开启一个事务后，添加的命令没有出现前面说的语法错误，但是在运行时检测到了类型错误，导致事务最提交失败（说未完全成功可能更准确点）。此时事务并不会回滚，而是跳过错误命令继续执行。<br>如上面的例子，未报错的命令值已经修改，a 被设置成了 1，b 被设置为了 hello，但是报错的值未被修改，即 INCR b 类型错误，并未执行，b 的值也没有被再更新。</p>
+</li>
+</ul>
+<h1 id="Redis- 事务与 -ACID"><a href="#Redis- 事务与 -ACID" class="headerlink" title="Redis 事务与 ACID"></a>Redis 事务与 ACID</h1><p>通过上面的例子，我们已经知道 Redis 的事务和我们通常接触的 MySQL 等关系数据库的事务还有有一定差异的。它不保证原子性。同时 Redis 事务也没有事务隔离级别的概念。下面我们来具体看下 Redis 在 ACID 四个特性中，那些是满足的，那些是不满足的。<br>事务执行可以分为命令入队（EXEC 执行前）和命令实际执行（EXEC 执行之后）两个阶段。下面我们在分析的时候，很多时候都会分这两种情况来分析。</p>
+<ul>
+<li>原子性（A）</li>
+</ul>
+<p>上面的实例分析中，[A]，[B]，[C]三种正常的情况，我们可以很明显的看出，是 <strong> 保证了原子性的 </strong>。<br> 但是一些异常情况下，是不满足原子性的。</p>
+<ol>
+<li>如 [D] 所示的情况，客户端发送的命令有语法错误，在命令入队列时 Redis 就判断出来了。等到执行 EXEC 命令时，Redis 就会拒绝执行所有提交的命令，返回事务失败的结果。此种情况下，事务中的所有命令都不会被执行了，是 <strong> 保证了原子性的</strong>。 </li>
+<li>如 [E] 所示的情况，事务操作入队时，命令和操作类型不匹配，此时 Redis 没有检查出错误（这类错误是运行时错误）。等到执行 EXEC 命令后，Redis 实际执行这些命令操作时，就会报错。需要注意的是，虽然 Redis 会对错误的命令报错不执行，但是其余正确的命令会依次执行完。此种情况下，是 <strong> 无法保证原子性的</strong>。</li>
+<li>在执行事务的 EXEC 命令时，Redis 实例发生了故障，导致事务执行失败。此时，如果开启了 AOF 日志，那么只会有部分事务操作被记录到 AOF 日志中。使用 <code>redis-check-aof</code> 工具检测 AOF 日志文件，可以把未完成的事务操作从 AOF 文件中去除。这样一来，使用 AOF 文件恢复实例后，事务操作不会被再执行，从而 <strong> 保证了原子性 </strong>。若使用的 RDB 模式，最新的 RDB 快照是在 EXEC 执行之前生成的，使用快照恢复之后，事务中的命令也都没有执行，从而<strong> 保证了原子性</strong>。若 Redis 没有开启持久化，则重启后内存中的数据全部丢失，也就谈不上原子性了。</li>
+</ol>
+<ul>
+<li>一致性（C）</li>
+</ul>
+<p>一致性指的是事务执行前后，数据符合数据库的定义和要求。这点在 Redis 事务中是满足的，不论是发生语法错误还是运行时错误，错误的命令均不会被执行。</p>
+<ol>
+<li>EXEC 执行之前，入队报错（实例分析中的语法错误）</li>
+</ol>
+<p>事务会放弃执行，故可以保证一致性。</p>
+<ol start="2">
+<li>EXEC 执行之后，实际执行时报错（实例分析中的运行时错误）</li>
+</ol>
+<p>错误的命令不会被执行，正确的命令被执行，一致性可以保证。</p>
+<ol start="3">
+<li>EXEC 执行时，实例宕机</li>
+</ol>
+<p>若 Redis 没有开启持久化，实例宕机重启后，数据都没有了，数据是一致的。<br>若配置了 RDB 方式，RDB 快照不会在事务执行时执行。所以，若事务执行到一半，实例发生了故障，此时上一次 RDB 快照中不会包含事务所做的修改，而下一次 RDB 快照还没有执行，实例重启后，事务修改的数据会丢失，数据是一致的。若事务已经完成，但新一次的 RDB 快照还没有生成，那事务修改的数据也会丢失，数据也是一致的。<br>若配置了 AOF 方式。当事务操作还没被记录到 AOF 日志时，实例就发生故障了，使用 AOF 日志恢复后数据是一致的。若事务中的只有部分操作被记录到 AOF 日志，可以使用 <code>redis-check-aof</code> 清除事务中已经完成的操作，数据库恢复后数据也是一致的。</p>
+<ul>
+<li>隔离性（I）<ol>
+<li>并发操作在 EXEC 执行前，隔离性需要通过 WATCH 机制来保证</li>
+<li>并发操作在 EXEC 命令之后，隔离性可以保证</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>情况 a  可以参考前面的实例分析 WATCH 命令的使用。<br>情况 b，由于 Redis 是单线程执行命令，EXEC 命令执行后，Redis 会保证先把事务队列中的所有命令执行完之后再执行之后的命令。</p>
+</blockquote>
+<ul>
+<li>持久性（D）</li>
+</ul>
+<p>若 Redis 没有开启持久化，那么就是所有数据都存储在内存中，一旦重启，数据就会丢失，因此此时事务的持久性是肯定无法得到保证的。<br>若 Redis 开启了持久化，当实例宕机重启，还是会有可能丢失数据，因此也并能完全保证持久性。<br>因此，我们可以说 Redis 事务无法一定保证持久性，仅在特殊的情况下，可以保证持久性。</p>
+<blockquote>
+<p>关于 Redis 在开启持久化之后，为啥还会丢失数据，笔者会单独整理一篇 Redis 持久化与主从相关的文章来介绍，此处简单说下。<br>如果配置了 RDB 模式，在一个事务执行后，下一次 RDB 快照还未执行前，Redis 实例发生了宕机，数据就会丢失、<br>如果配置了 AOF 模式，而 AOF 模式的三种配置选项 no，everysec，always 也都可能会产生数据丢失的情况。</p>
+</blockquote>
+<p>总结一下，Redis 事务对 ACID 的支持情况：</p>
+<ul>
+<li>具备一定的原子性，但不支持回滚</li>
+<li>满足一致性</li>
+<li>满足隔离性</li>
+<li>无法保证持久性</li>
+</ul>
+<h1 id="Redis- 事务为什么不支持回滚"><a href="#Redis- 事务为什么不支持回滚" class="headerlink" title="Redis 事务为什么不支持回滚"></a>Redis 事务为什么不支持回滚 </h1><p> 看一下官网的的说明：</p>
+<blockquote>
+<p>What about rollbacks?<br>Redis does not support rollbacks of transactions since supporting rollbacks would have a significant impact on the simplicity and performance of Redis.</p>
+</blockquote>
+<p><img src="https://cdn.immaxfang.com/1666511094564.png" alt="image.png"></p>
+<p>大部分需要事务回滚的情况是程序错误导致的，这种情况一般是开发环境，生产环境不应该出现这种错误。<br>对于逻辑错误，例如应该加 1，结果写成了加 2，这种情况无法通过回滚来解决。<br>Redis 追求的是简单高效，而传统事务的实现相对复杂很多，这和 Redis 的设计思想是违背的。当我们享受 Redis 的快速时，也就无法再要求它更多。</p>
+<h1 id="总结"><a href="# 总结" class="headerlink" title="总结"></a>总结 </h1><p> 本文主要介绍了 Redis 事务的基础指令与执行流程，并分析了其对传统 ACID 特性支持的情况，相信大家对 Redis 事务已经有了一个简单的了解。<br>通过上面的介绍，会发现 Redis 的事务似乎有点鸡肋，确实实际中也很少会使用。至于事务的具体实现，笔者后续文章会结合源码进行分析。今天的文章就到这里，下期我们接着学。</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/redis-transaction/">http://www.immaxfang.com/redis-transaction/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/redis/">redis</a>
+            </div>
+        
+        <nav class="post-nav"><a class="next" href="/redis-pipeline/">
+        <span class="next-text nav-default">说说 Redis pipeline</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span><span class="division">|</span>
+      <a class="theme-link" href=https://beian.miit.gov.cn/>皖ICP备2022015199号</a><span class="division">|</span>
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span></span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><!-- valine Comments -->
+<script src="//github.elemecdn.com/leancloud-storage@3/dist/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.5.1/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: false,
+        app_id: "RoaKz6A3wbmwNFIRl6bNdOqC-gzGzoHsz",
+        app_key: "zRlIClO248YJDPefLLQe0F0B",
+        placeholder: "写下你的留言把！",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>
