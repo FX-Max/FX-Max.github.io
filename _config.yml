@@ -136,8 +136,10 @@ plugin:
 #- hexo-qiniu-sync
 #Feed Atom
 feed:
-type: atom
-path: atom
+  type: atom
+  path: atom.xml
+  autodiscovery: true
+  
 #Qiniu
 qiniu:
   offline: false
