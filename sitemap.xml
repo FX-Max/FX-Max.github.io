@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.immaxfang.com/nginx-phpfpm-status/</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.immaxfang.com/movie-huashuimu/</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/keng-nginx-server-name/</loc>
     
     <lastmod>2023-02-04</lastmod>
@@ -135,13 +149,6 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/nginx-phpfpm-status/</loc>
-    
-    <lastmod>2023-01-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.immaxfang.com/nginx-signal-manage/</loc>
     
     <lastmod>2023-01-24</lastmod>
@@ -227,34 +234,6 @@
   
   <url>
     <loc>http://www.immaxfang.com/weekly-reading-list-20190519/</loc>
-    
-    <lastmod>2022-10-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/movie-huashuimu/</loc>
-    
-    <lastmod>2022-10-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/cdn/images/expression/bilibili_face/face.json</loc>
-    
-    <lastmod>2022-10-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/cdn/images/expression/face.json</loc>
-    
-    <lastmod>2022-10-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/cdn/images/expression/bilibili_tv/face.json</loc>
     
     <lastmod>2022-10-31</lastmod>
     
