@@ -6,16 +6,16 @@ categories: movie
 tags: movie
 ---
 
-![1](movie-huashuimu/picture_2.jpg)
+![1](https://cdn.immaxfang.com/picture_2.jpg)
 
 <!-- more -->
 
-![2](movie-huashuimu/picture_3.jpg)
+![2](https://cdn.immaxfang.com/picture_3.jpg)
 
 ## 花水木
 花水木的花语是感谢、回礼。
 
-![3](movie-huashuimu/picture_1.jpg)
+![3](https://cdn.immaxfang.com/picture_1.jpg)
 
 ## 【花水木】
 貌似好的电影总是需要有和它相配的音乐
@@ -28,9 +28,9 @@ tags: movie
 新垣结衣，当初的女神，出演过很多部日系纯爱片，真的好漂亮有木有哇。
 生田斗真，第一眼看到这个男主，让我想到了我的一个初中的死党，真的好像。当然，比我死党要帅。
 
-![4](movie-huashuimu/picture_4.jpg)
+![4](https://cdn.immaxfang.com/picture_4.jpg)
 
-![5](movie-huashuimu/picture_5.jpg)
+![5](https://cdn.immaxfang.com/picture_5.jpg)
 
 ## 十年前的相遇，十年后的重逢
 
@@ -40,9 +40,9 @@ tags: movie
 的纱织最终考入了理想的大学。她来到东京，康平则留在北海道，两人展开
 相隔两地的远距离恋爱，十年三国四地。
 
-![6](movie-huashuimu/picture_8.jpg)
+![6](https://cdn.immaxfang.com/picture_8.jpg)
 
-![7](movie-huashuimu/picture_7.jpg)
+![7](https://cdn.immaxfang.com/picture_7.jpg)
 
 
 当然，最终在仁慈的导演手中，两人最终走在了一起。电影是美好的，转了一个圈，又回到了原点。
@@ -56,4 +56,4 @@ tags: movie
 ## 【后来】
 电影和奶茶的【后来】是两种不一样的结局。好好的爱自己，时间会给你答案。
 
-![8](movie-huashuimu/picture_2.jpg)
+![8](https://cdn.immaxfang.com/picture_2.jpg)
