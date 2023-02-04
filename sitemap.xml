@@ -319,6 +319,13 @@
   </url>
   
   <url>
+    <loc>http://www.immaxfang.com/tags/git/</loc>
+    <lastmod>2023-02-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/tags/php/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>daily</changefreq>
@@ -327,13 +334,6 @@
   
   <url>
     <loc>http://www.immaxfang.com/tags/laravel/</loc>
-    <lastmod>2023-02-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/tags/git/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -489,14 +489,14 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/categories/php/</loc>
+    <loc>http://www.immaxfang.com/categories/git/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/categories/git/</loc>
+    <loc>http://www.immaxfang.com/categories/php/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
