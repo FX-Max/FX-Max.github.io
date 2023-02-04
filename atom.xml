@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.immaxfang.com/"/>
-  <updated>2023-01-31T15:09:31.057Z</updated>
+  <updated>2023-02-04T12:34:14.634Z</updated>
   <id>http://www.immaxfang.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【踩坑日记】nginx server_name 配置多域名的坑</title>
+    <link href="http://www.immaxfang.com/keng-nginx-server-name/"/>
+    <id>http://www.immaxfang.com/keng-nginx-server-name/</id>
+    <published>2023-02-04T12:30:58.000Z</published>
+    <updated>2023-02-04T12:34:14.634Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题介绍"><a href="# 问题介绍" class="headerlink" title="问题介绍"></a>问题介绍 </h1><p> 项目配置了多个域名，如下，php 代码中有获取 <code>$_SERVER[&#39;SERVER_NAME&#39;]</code> 的值。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">server_name a.demo.com b.demo.com;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当访问 <code>a.demo.com</code> 时，其获取的值是符合预期的。但是当访问 <code>b.demo.com</code> 时，其获取的值还是 <code>a.demo.com</code>，导致代码中的判断出现错误。</p><span id="more"></span><h1 id="问题分析"><a href="# 问题分析" class="headerlink" title="问题分析"></a>问题分析 </h1><p> 当 nginx 的一个 server 节点下，server_name 配置多个域名时，$server_name 变量的值是配置的第一个域名。结合上面我们的配置，此时我们的 $server_name 值为 <code>a.demo.com</code>。</p><h1 id="解决方案"><a href="# 解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ul><li>方案 1，将多个域名配置在不同的 server 段下（推荐）。</li></ul><p>例如上面的配置，可以改成如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">server_name a.demo.com;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">server_name b.demo.com;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>方案 2，修改 nginx 的 SERVER_NAME 值，使用 $host 变量。</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 默认</span><br><span class="line">fastcgi_param SERVER_NAME $server_name;</span><br><span class="line"># 修改为</span><br><span class="line">fastcgi_param SERVER_NAME $host;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;问题介绍&quot;&gt;&lt;a href=&quot;#问题介绍&quot; class=&quot;headerlink&quot; title=&quot;问题介绍&quot;&gt;&lt;/a&gt;问题介绍&lt;/h1&gt;&lt;p&gt;项目配置了多个域名，如下，php 代码中有获取 &lt;code&gt;$_SERVER[&amp;#39;SERVER_NAME&amp;#39;]&lt;/code&gt; 的值。&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;server &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	server_name a.demo.com b.demo.com;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当访问 &lt;code&gt;a.demo.com&lt;/code&gt; 时，其获取的值是符合预期的。但是当访问 &lt;code&gt;b.demo.com&lt;/code&gt; 时，其获取的值还是 &lt;code&gt;a.demo.com&lt;/code&gt;，导致代码中的判断出现错误。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="nginx" scheme="http://www.immaxfang.com/categories/nginx/"/>
+    
+      <category term="踩坑日记" scheme="http://www.immaxfang.com/categories/nginx/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="nginx" scheme="http://www.immaxfang.com/tags/nginx/"/>
+    
+      <category term="踩坑日记" scheme="http://www.immaxfang.com/tags/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>说说 Redis 事务</title>
@@ -526,33 +554,6 @@
       <category term="mac" scheme="http://www.immaxfang.com/tags/mac/"/>
     
       <category term="工具" scheme="http://www.immaxfang.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL- 出现 MySQL server has gone away 原因和解决方法</title>
-    <link href="http://www.immaxfang.com/note-mysql-server-has-gone-away/"/>
-    <id>http://www.immaxfang.com/note-mysql-server-has-gone-away/</id>
-    <published>2020-12-08T14:53:27.000Z</published>
-    <updated>2023-01-24T05:57:24.570Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="可能的原因"><a href="# 可能的原因" class="headerlink" title="可能的原因"></a>可能的原因</h1><ul><li>MySQL 服务宕机</li><li>MySQL 连接被主动 kill 掉</li><li>MySQL 连接超时</li><li>SQL 超长，超出 max_allowed_packet 限制</li></ul><span id="more"></span><h1 id="具体情况分析和处理"><a href="# 具体情况分析和处理" class="headerlink" title="具体情况分析和处理"></a>具体情况分析和处理 </h1><h2 id="MySQL- 服务宕机"><a href="#MySQL- 服务宕机" class="headerlink" title="MySQL 服务宕机"></a>MySQL 服务宕机</h2><p> 可能是异常情况，访问过程中数据库宕机或重启了，期间的数据库访问请求会出现错误。<br>此种情况可以查看对应时候的 MySQL 相关日志，或者查询 MySQL 运行时间。可通过运行时间和日志，判断该时间是否有服务中断。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global status like &#x27;uptime&#x27;;</span><br><span class="line">+---------------+----------+</span><br><span class="line">| Variable_name | Value    |</span><br><span class="line">+---------------+----------+</span><br><span class="line">| Uptime        | 23948658 |</span><br><span class="line">+---------------+----------+</span><br></pre></td></tr></table></figure></p><h2 id="MySQL- 连接被主动 -kill- 掉"><a href="#MySQL- 连接被主动 -kill- 掉" class="headerlink" title="MySQL 连接被主动 kill 掉"></a>MySQL 连接被主动 kill 掉 </h2><p> 部分系统会配置一些连接数过多等情况下，脚本主动 kill 掉相关数据库请求进程，或者可能 DBA 等处理问题时手动 kill 掉，此种情况下也会出现报错。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global status like &#x27;com_kill&#x27;;</span><br><span class="line">+---------------+-------+</span><br><span class="line">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span><br><span class="line">| Com_kill      | 100   |</span><br><span class="line">+---------------+-------+</span><br></pre></td></tr></table></figure></p><h2 id="MySQL- 连接超时"><a href="#MySQL- 连接超时" class="headerlink" title="MySQL 连接超时"></a>MySQL 连接超时 </h2><p>MySQL 的连接开启后，很久没有发起新的查询请求，达到了 server 端的超时时间，被 server 端强制关闭连接。此时若该连接再次发起请求时，则会报错 MySQL server has gone away 。此种情况比较常见，一般一个执行时间很长的脚本，开启连接查询部分数据后，进行计算或者请求第三方，在进行数据写入，写入时超时。<br> 可以通过如下命令查看当前 MySQL 的超时时间，<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global variables like &#x27;wait_timeout&#x27;;</span><br><span class="line">+---------------+-------+</span><br><span class="line">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span><br><span class="line">| wait_timeout  | 28800 |</span><br><span class="line">+---------------+-------+</span><br></pre></td></tr></table></figure></p><p>可以通过如下命令临时修改超时时间，<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global wait_timeout = 60 * 60 * 8;</span><br></pre></td></tr></table></figure><br>如要长期生效，则需要修改数据库配置文件，并重启 MySQL 服务。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wait_timeout = 28800</span><br><span class="line">interactive_timeout = 28800</span><br></pre></td></tr></table></figure></p><h2 id="SQL- 超长，超出 -max-allowed-packet- 限制"><a href="#SQL- 超长，超出 -max-allowed-packet- 限制" class="headerlink" title="SQL 超长，超出 max_allowed_packet 限制"></a>SQL 超长，超出 max_allowed_packet 限制</h2><p>MySQL 会限制 server 段接收的数据包的大小，有时候大的插入和更新发送的数据包大小超过 max_allowed_packet 的限制，服务端也会报错，导致写入或者更新失败。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show global variables like &#x27;%max_allowed_packet%&#x27;;</span><br><span class="line">+--------------------------+------------+</span><br><span class="line">| Variable_name            | Value      |</span><br><span class="line">+--------------------------+------------+</span><br><span class="line">| max_allowed_packet       | 1048576   |</span><br><span class="line">+--------------------------+------------+</span><br></pre></td></tr></table></figure><p>可以通过如下命令临时修改，<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; set global max_allowed_packet = 4 * 1024 * 1024;</span><br></pre></td></tr></table></figure></p><p>如要长期生效，则需要修改数据库配置文件，并重启 MySQL 服务。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max_allowed_packet = 4M</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;可能的原因&quot;&gt;&lt;a href=&quot;#可能的原因&quot; class=&quot;headerlink&quot; title=&quot;可能的原因&quot;&gt;&lt;/a&gt;可能的原因&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;MySQL 服务宕机&lt;/li&gt;
-&lt;li&gt;MySQL 连接被主动 kill 掉&lt;/li&gt;
-&lt;li&gt;MySQL 连接超时&lt;/li&gt;
-&lt;li&gt;SQL 超长，超出 max_allowed_packet 限制&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="MySQL" scheme="http://www.immaxfang.com/categories/MySQL/"/>
-    
-    
-      <category term="MySQL" scheme="http://www.immaxfang.com/tags/MySQL/"/>
     
   </entry>
   
