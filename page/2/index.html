@@ -126,6 +126,31 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/beanstalkd/">简单易用的任务队列 -beanstalkd</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-07-15
+        </span><span class="post-category">
+            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>beanstalkd 是一个简单快速的分布式工作队列系统，协议基于 ASCII 编码运行在 TCP 上。其最初设计的目的是通过后台异步执行耗时任务的方式降低高容量 Web 应用的页面延时。其具有简单、轻量、易用等特点，也支持对任务优先级、延时/超时重发等控制，同时还有众多语言版本的客户端支持，这些优点使得它成为各种需要队列系统场景的一种常见选择。</p>
+<h2 id="beanstalkd-优点"><a href="#beanstalkd-优点" class="headerlink" title="beanstalkd 优点"></a>beanstalkd 优点</h2><ul>
+<li>如他官网的介绍，simple&amp;fast，使用非常简单，适合需要引入消息队列又不想引入 kafka 这类重型的 mq，维护成本低；同时，它的性能非常高，大部分场景下都可以 cover 住。</li>
+<li>支持持久化</li>
+<li>支持消息优先级，topic，延时消息，消息重试等</li>
+<li>主流语言客户端都支持，还可以根据 beanstalkd 协议自行实现。</li>
+</ul>
+          <div class="read-more">
+            <a href="/beanstalkd/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/nginx-signal-manage/">nginx 信号管理</a>
         </h1>
 
@@ -329,25 +354,6 @@
 <h2 id="1-什么原因造成的"><a href="#1-什么原因造成的" class="headerlink" title="1.什么原因造成的"></a>1.什么原因造成的</h2><p>在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。</p>
           <div class="read-more">
             <a href="/case-laravel-schedule-not-run/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/mac_chrome_hot_key/">Mac 下 Chrome 的优雅操作</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2021-02-21
-        </span><span class="post-category">
-            <a href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h3 id="标签页和窗口快捷键"><a href="#标签页和窗口快捷键" class="headerlink" title="标签页和窗口快捷键"></a>标签页和窗口快捷键</h3>
-          <div class="read-more">
-            <a href="/mac_chrome_hot_key/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="prev" href="/">
