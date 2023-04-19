@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="AWS 修改 RDS 时区"/><meta name="keywords" content="AWS, RDS, MySQL, Max's Blog" /><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/aws-rds-change-timezone/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>AWS 修改 RDS 时区 - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+        <li class="mobile-menu-item">Memos
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/atom.xml">
+        <li class="mobile-menu-item">RSS
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+            Memos
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/atom.xml">
+            RSS
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">AWS 修改 RDS 时区
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-07-18
+        </span><span class="post-category">
+            <a href="/categories/AWS/">AWS</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%20-RDS-%20%E5%BD%93%E5%89%8D%E6%97%B6%E5%8C%BA"><span class="toc-text">查看 RDS 当前时区 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%20-RDS-%20%E6%97%B6%E5%8C%BA"><span class="toc-text">调整 RDS 时区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88"><span class="toc-text">验证修改生效 </span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="查看 -RDS- 当前时区"><a href="# 查看 -RDS- 当前时区" class="headerlink" title="查看 RDS 当前时区"></a>查看 RDS 当前时区 </h1><p> 默认情况下，AWS 的 RDS 采用的是 UTC 时间。而我们地区一般位于东八区，因此我们本地的时间是 UTC+8。</p>
+<p>连接到 RDS 上，查询当前实例的时区。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">where</span> variable_name <span class="keyword">like</span> <span class="string">&#x27;time_zone&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>显示的结果如下，表示当前 RDS 时区的 UTC。</p>
+<blockquote>
+<p>time_zone   UTC</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="调整 -RDS- 时区"><a href="# 调整 -RDS- 时区" class="headerlink" title="调整 RDS 时区"></a>调整 RDS 时区</h1><p>RDS 的时区调整是通过调整参数组来操作的。AWS 的 RDS 是不允许修改 default 参数组的。因此先要确认下当前 RDS 采用的参数组是不是 default 参数组。如果是 default 参数组，则需要新建一个参数组。然后在该参数组上调整 timezone 相关参数，然后变更 RDS 使用的参数组，使用新的参数组。</p>
+<p>从左侧的参数组菜单进入，即可新建参数组。一般我们都会从把当前在使用的参数组作为模版来复制一份新的来调整。<br>选择当前在使用的参数组，Actions-&gt;Copy 即可。以笔者测试为例，当前在使用的参数组为 pg-mysql57-demo ，复制过来的新的参数组为 pg-mysql57-demo-new 。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_1.jpg" alt="1"></p>
+<p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_2.jpg" alt="2"></p>
+<p>接下来就可以修改新的参数组的参数了，点击改参数组进入详情页面，搜索关键词 time_zone，然后点击 Modify 即可对参数进行修改，从可选值中找到我们需要的值，此处我们选择 Asia/Shanghai，最后确认变更即可。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_3.jpg" alt="3"></p>
+<p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_4.jpg" alt="4"></p>
+<p>再进入参数组，搜索 time_zone ，发现值已经修改为 Asia/Shanghai，说明已经修改完毕。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_5.jpg" alt="5"></p>
+<p>参数组调增完毕了，接下来就是给对应实例应用该参数组了。<br>进入到需要调整的 RDS ，在参数组配置中，选择新的参数组。确认修改后，系统会提示是否立即应用修改。可以根据实际情况选择立即修改或者下一次维护窗口。修改 time_zone 需要重启数据库实例，这里我们选择下一次停机窗口重启。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_6.jpg" alt="6"></p>
+<p>选择合适的时机，重启 RDS 即可。</p>
+<h1 id="验证修改生效"><a href="# 验证修改生效" class="headerlink" title="验证修改生效"></a>验证修改生效 </h1><p> 在 RDS 重启完毕之后，再次执行上面的查询时区的语句，显示的结果如下(Asia/Shanghai)，表示时区已修改成功。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">where</span> variable_name <span class="keyword">like</span> <span class="string">&#x27;time_zone&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>#time_zone    Asia/Shanghai</p>
+</blockquote>
+<hr>
+<p>Happy Coding.</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/aws-rds-change-timezone/">http://www.immaxfang.com/aws-rds-change-timezone/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/AWS/">AWS</a>
+            <a href="/tags/RDS/">RDS</a>
+            <a href="/tags/MySQL/">MySQL</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/yaml-quick-start/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">YAML 语言初识</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/case-laravel-schedule-not-run/">
+        <span class="next-text nav-default">Laravel 调度任务不执行问题</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span><span class="division">|</span>
+      <a class="theme-link" href=https://beian.miit.gov.cn/>皖ICP备2022015199号</a><span class="division">|</span>
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span></span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><!-- valine Comments -->
+<script src="//github.elemecdn.com/leancloud-storage@3/dist/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.5.1/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: false,
+        app_id: "RoaKz6A3wbmwNFIRl6bNdOqC-gzGzoHsz",
+        app_key: "zRlIClO248YJDPefLLQe0F0B",
+        placeholder: "写下你的留言把！",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>
