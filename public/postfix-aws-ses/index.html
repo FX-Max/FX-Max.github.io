@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="ubuntu 使用 postfix 和 AWS-SES 发送邮件"/><meta name="keywords" content="AWS, ubuntu, Max's Blog" /><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/postfix-aws-ses/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>ubuntu 使用 postfix 和 AWS-SES 发送邮件 - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+        <li class="mobile-menu-item">Memos
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/atom.xml">
+        <li class="mobile-menu-item">RSS
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+            Memos
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/atom.xml">
+            RSS
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">ubuntu 使用 postfix 和 AWS-SES 发送邮件
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-06-11
+        </span><span class="post-category">
+            <a href="/categories/AWS/">AWS</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E9%80%9A%20Amazon-Simple-Email-Service-SES-%20%E6%9C%8D%E5%8A%A1"><span class="toc-text">开通 Amazon Simple Email Service (SES)服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EC2-%20%E5%AE%89%E8%A3%85%20-postfix-%20%E5%B9%B6%E9%85%8D%E7%BD%AE%20-SES-%20%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6"><span class="toc-text">EC2 安装 postfix 并配置 SES 发送邮件 </span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p>在日常开发中，邮件发送是个比较常见的场景。因此出现了很多相关的软件和服务，各大云厂商也推出自己的邮件服务。今天笔者就像大家介绍一种常见的组合，AWS 的邮件服务 SES 与邮件服务器 postfix 的配置和使用方法。</p>
+<h1 id="概述"><a href="# 概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>什么是 AWS-SES</li>
+</ul>
+<p>Amazon Simple Email Service (SES) 是一种经济高效、灵活且可扩展的电子邮件服务，使开发人员能够从任何应用程序中发送电子邮件。 您可以快速配置 Amazon SES 以支持多种电子邮件使用案例，包括交易、营销或群发电子邮件通信。</p>
+<span id="more"></span>
+<ul>
+<li>什么是 postfix</li>
+</ul>
+<p>Postfix 是一种电子邮件服务器，它是由任职于 IBM 华生研究中心（T.J. Watson Research Center）的荷兰籍研究员 Wietse Venema 为了改良 sendmail 邮件服务器而产生的。<br>它是为了改良 sendmail 产生的，同时它兼容 sendmail，是比较常用的一种邮件服务器。</p>
+<h1 id="开通 Amazon-Simple-Email-Service-SES- 服务"><a href="# 开通 Amazon-Simple-Email-Service-SES- 服务" class="headerlink" title="开通 Amazon Simple Email Service (SES)服务"></a>开通 Amazon Simple Email Service (SES)服务</h1><ul>
+<li>创建一个 identity</li>
+</ul>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/post-start-ses-1.png" alt="post-start-ses-1.png"></p>
+<p>此处我们为了演示方便，使用 <code>Email address</code> 方式来验证。按下图填入后续要发送邮件的邮箱，随后 AWS 会给对应邮箱发一个确认验证的邮件，点击一下邮件连接即可表示确认授权。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/post-start-ses-2.png" alt="post-start-ses-2.png"></p>
+<ul>
+<li>创建凭证</li>
+</ul>
+<p>选择 Account dashboard，此处的 SMTP endpoint 就是我们的邮件服务器地址，后面配置邮件服务器的时候需要使用。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/post-start-ses-3.png" alt="post-start-ses-3.png"></p>
+<p>点击创建凭证，创建好后，新页面会有下载按钮，一定要及时下载凭证文件。<br>凭证文件里有 Smtp Username 和 Smtp Password，后面配置 postfix 邮件服务器的时候需要用到。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/post-start-ses-4.png" alt="post-start-ses-4.png"></p>
+<ul>
+<li>测试邮件发送</li>
+</ul>
+<p>使用 AWS 自带的功能发送一下测试邮件，查看是否成功。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/post-start-ses-5.png" alt="post-start-ses-5.png"></p>
+<ul>
+<li>其他说明</li>
+</ul>
+<p>SES 的验证方式支持单个邮箱验证和 domain 验证。本文中笔者为了演示简单，采用了单个邮箱验证，如果实际使用中，邮件发送者就是固定的几个邮箱，采用该方法就比较简单。若是邮件发送者比较多，不固定，每个邮箱验证一次不太现实，就可以采用 domain 验证的方式，由域名管理员来配合验证即可，具体的使用 dimain 方式验证的方法，可以参考 aws 官网文档，添加对应的 dns 记录即可。</p>
+<p>至此， SES 服务已经初步开通完毕，下面我们来看下 postfix 的相关配置。</p>
+<h1 id="EC2- 安装 -postfix- 并配置 -SES- 发送邮件"><a href="#EC2- 安装 -postfix- 并配置 -SES- 发送邮件" class="headerlink" title="EC2 安装 postfix 并配置 SES 发送邮件"></a>EC2 安装 postfix 并配置 SES 发送邮件 </h1><p> 笔者的环境是 ubuntu 20.04，其他版本的 ubuntu 方法基本类似。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; cat /etc/lsb-release</span><br><span class="line">DISTRIB_ID=Ubuntu</span><br><span class="line">DISTRIB_RELEASE=20.04</span><br><span class="line">DISTRIB_CODENAME=focal</span><br><span class="line">DISTRIB_DESCRIPTION=<span class="string">&quot;Ubuntu 20.04.3 LTS&quot;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>安装 postfix 邮件服务</li>
+</ul>
+<p>使用如下命令安装，安装过程中间直接选择默认的配置一路确认即可，后面我们单独修改配置。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mailutils -y</span><br></pre></td></tr></table></figure><br>安装完成之后，在 AWS 的 EC2 上是无法直接使用 mail 命令发邮件的，需要配置邮件服务器。<br>此处我们以 AWS 的 SES 服务为例，配合 postfix 进行邮件发送。</p>
+<ul>
+<li><p>修改 postfix 配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo postconf -e <span class="string">&quot;relayhost = [email-smtp.us-west-2.amazonaws.com]:587&quot;</span> \</span><br><span class="line"><span class="string">&quot;smtp_sasl_auth_enable = yes&quot;</span> \</span><br><span class="line"><span class="string">&quot;smtp_sasl_security_options = noanonymous&quot;</span> \</span><br><span class="line"><span class="string">&quot;smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd&quot;</span> \</span><br><span class="line"><span class="string">&quot;smtp_use_tls = yes&quot;</span> \</span><br><span class="line"><span class="string">&quot;smtp_tls_security_level = encrypt&quot;</span> \</span><br><span class="line"><span class="string">&quot;smtp_tls_note_starttls_offer = yes&quot;</span></span><br><span class="line"></span><br><span class="line">sudo postconf -e <span class="string">&quot;smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt&quot;</span></span><br></pre></td></tr></table></figure>
+<p>通过上述命令修改 postfix 的配置，其实修改的就是 <code>/etc/postfix/main.cf</code> 文件，也可以手动使用 vim 等修改，为了保持格式，直接使用自带的 postconf 命令修改即可。<br>注意：上述命令中的 <code>email-smtp.us-west-2.amazonaws.com</code>根据实际情况换成你自己开通的 SES 服务的地址，上文 SES 开通部分有介绍过。</p>
+</li>
+<li><p>填写账号文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/postfix/sasl_passwd</span><br><span class="line"><span class="comment"># 输入如下内容</span></span><br><span class="line">[email-smtp.us-west-2.amazonaws.com]:587 SMTPUSERNAME:SMTPPASSWORD</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>email-smtp.us-west-2.amazonaws.com：换成你自己的 SES 服务地址<br>SMTPUSERNAME：SMTP 用户名，上文 SES 开通部分有介绍过<br>SMTPPASSWORD：SMTP 密码，同上</p>
+</blockquote>
+</li>
+<li><p>编码账号文件和修改权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo postmap <span class="built_in">hash</span>:/etc/postfix/sasl_passwd</span><br><span class="line"></span><br><span class="line">sudo chown root:root /etc/postfix/sasl_passwd</span><br><span class="line">sudo chown root:root /etc/postfix/sasl_passwd.db</span><br><span class="line">sudo chmod 0600 /etc/postfix/sasl_passwd</span><br><span class="line">sudo chmod 0600 /etc/postfix/sasl_passwd.db</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启 postfix 服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload postfix</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试邮件发送并查看日志</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="built_in">test</span> | mail -s <span class="string">&quot;test message&quot;</span> -a <span class="string">&quot;From: sender@example.com&quot;</span> receiver@example.com</span><br><span class="line"></span><br><span class="line">tail -f /var/<span class="built_in">log</span>/mail.log</span><br></pre></td></tr></table></figure>
+<p>注意，此处的发送者和收件者邮件需要在 AWS 上进行验证，否则发送邮件会失败。验证方式见前面的 AWS 开通 SES 服务部分。</p>
+<blockquote>
+<p>如果 SES 是在 sandbox 环境中，则发送者 <a href="mailto:`sender@example.com">`sender@example.com</a><code>和 收件人</code><a href="mailto:receiver@example.com">receiver@example.com</a>` 都需要在 AWS 上进行验证。如果是在 production 环境中，则只需要发送者邮件验证通过即可。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/post-postfix-aws-ses.png" alt="post-postfix-aws-ses"></p>
+<ul>
+<li>其他说明</li>
+</ul>
+<p>若按照如上配置方式，邮件还是发送失败，可以查看机器上的日志，如<code>/var/log/mail.log</code>。还可以检查安全组，看是否是邮件相关端口未开放。</p>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ses/latest/dg/postfix.html">https://docs.aws.amazon.com/ses/latest/dg/postfix.html</a></p>
+<hr>
+<p>更多技术文章，请关注我的个人博客 <a href="https://www.immaxfang.com/">www.immaxfang.com</a> 和小公众号 <code>Max 的学习札记</code>。</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/postfix-aws-ses/">http://www.immaxfang.com/postfix-aws-ses/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/AWS/">AWS</a>
+            <a href="/tags/ubuntu/">ubuntu</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/nginx-signal-manage/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">nginx 信号管理</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/mydumper-myloader/">
+        <span class="next-text nav-default">mydumper-myloader</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span><span class="division">|</span>
+      <a class="theme-link" href=https://beian.miit.gov.cn/>皖ICP备2022015199号</a><span class="division">|</span>
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span></span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><!-- valine Comments -->
+<script src="//github.elemecdn.com/leancloud-storage@3/dist/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.5.1/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: false,
+        app_id: "RoaKz6A3wbmwNFIRl6bNdOqC-gzGzoHsz",
+        app_key: "zRlIClO248YJDPefLLQe0F0B",
+        placeholder: "写下你的留言把！",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>
