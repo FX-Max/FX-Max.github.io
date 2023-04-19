@@ -126,6 +126,28 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/kubernetes-v1-25-service-account-secret-not-listed/">【k8s 入门】Kubernetes v1.25 创建 ServiceAccount 未生成 Secret 问题</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2023-02-23
+        </span><span class="post-category">
+            <a href="/categories/k8s/">k8s</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><blockquote>
+<p>kubernetes v1.24.0 更新之后进行创建 ServiceAccount 不会自动生成 Secret 需要对其手动创建。</p>
+</blockquote>
+<p>网上的很多教程都没有创建 Secret 这步，应该是之前版本的教程，笔者使用的是 v1.25 版本，这部分需要特别添加。<br>以下以创建一个 jenkins 用户为例，演示下在新版本下如何操作。该用户的作用是后续会在 jenkins 中调度集群。</p>
+          <div class="read-more">
+            <a href="/kubernetes-v1-25-service-account-secret-not-listed/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/keng-nginx-server-name/">【踩坑日记】nginx server_name 配置多域名的坑</a>
         </h1>
 
@@ -323,31 +345,6 @@
 <h1 id="1-日志文件规范"><a href="#1-日志文件规范" class="headerlink" title="1.日志文件规范"></a>1.日志文件规范</h1><h2 id="1-1日志文件命名"><a href="#1-1日志文件命名" class="headerlink" title="1.1日志文件命名"></a>1.1日志文件命名</h2><p>日志文件名格式：logname_YY-MM-dd_hh.[roll-count].log<br>例子：api_2022-06-20_12.0.log</p>
           <div class="read-more">
             <a href="/talking-log-specification/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/beanstalkd/">简单易用的任务队列 -beanstalkd</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2022-07-15
-        </span><span class="post-category">
-            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>beanstalkd 是一个简单快速的分布式工作队列系统，协议基于 ASCII 编码运行在 TCP 上。其最初设计的目的是通过后台异步执行耗时任务的方式降低高容量 Web 应用的页面延时。其具有简单、轻量、易用等特点，也支持对任务优先级、延时/超时重发等控制，同时还有众多语言版本的客户端支持，这些优点使得它成为各种需要队列系统场景的一种常见选择。</p>
-<h2 id="beanstalkd-优点"><a href="#beanstalkd-优点" class="headerlink" title="beanstalkd 优点"></a>beanstalkd 优点</h2><ul>
-<li>如他官网的介绍，simple&amp;fast，使用非常简单，适合需要引入消息队列又不想引入 kafka 这类重型的 mq，维护成本低；同时，它的性能非常高，大部分场景下都可以 cover 住。</li>
-<li>支持持久化</li>
-<li>支持消息优先级，topic，延时消息，消息重试等</li>
-<li>主流语言客户端都支持，还可以根据 beanstalkd 协议自行实现。</li>
-</ul>
-          <div class="read-more">
-            <a href="/beanstalkd/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">

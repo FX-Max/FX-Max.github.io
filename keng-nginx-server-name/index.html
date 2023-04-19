@@ -158,6 +158,8 @@
 <li>方案 2，修改 nginx 的 SERVER_NAME 值，使用 $host 变量。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 默认</span><br><span class="line">fastcgi_param SERVER_NAME $server_name;</span><br><span class="line"># 修改为</span><br><span class="line">fastcgi_param SERVER_NAME $host;</span><br></pre></td></tr></table></figure>
+<p>今天的坑就踩到这，改天我们接着踩。</p>
+<p>更多技术文章，请关注我的个人博客 <a href="https://www.immaxfang.com/">www.immaxfang.com</a> 和小公众号 <code>Max 的技术札记</code>。</p>
 
       </div>
       <div class="post-copyright">
@@ -179,7 +181,12 @@
             <a href="/tags/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/">踩坑日记</a>
             </div>
         
-        <nav class="post-nav"><a class="next" href="/redis-transaction/">
+        <nav class="post-nav"><a class="prev" href="/kubernetes-v1-25-service-account-secret-not-listed/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">【k8s 入门】Kubernetes v1.25 创建 ServiceAccount 未生成 Secret 问题</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/redis-transaction/">
         <span class="next-text nav-default">说说 Redis 事务</span>
         <span class="prev-text nav-mobile">Next</span>
         <i class="iconfont icon-right"></i>
