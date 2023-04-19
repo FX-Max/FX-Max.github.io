@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/page/2/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+        <li class="mobile-menu-item">Memos
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/atom.xml">
+        <li class="mobile-menu-item">RSS
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+            Memos
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/atom.xml">
+            RSS
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><section id="posts" class="posts"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/beanstalkd/">简单易用的任务队列 -beanstalkd</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-07-15
+        </span><span class="post-category">
+            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>beanstalkd 是一个简单快速的分布式工作队列系统，协议基于 ASCII 编码运行在 TCP 上。其最初设计的目的是通过后台异步执行耗时任务的方式降低高容量 Web 应用的页面延时。其具有简单、轻量、易用等特点，也支持对任务优先级、延时/超时重发等控制，同时还有众多语言版本的客户端支持，这些优点使得它成为各种需要队列系统场景的一种常见选择。</p>
+<h2 id="beanstalkd-优点"><a href="#beanstalkd-优点" class="headerlink" title="beanstalkd 优点"></a>beanstalkd 优点</h2><ul>
+<li>如他官网的介绍，simple&amp;fast，使用非常简单，适合需要引入消息队列又不想引入 kafka 这类重型的 mq，维护成本低；同时，它的性能非常高，大部分场景下都可以 cover 住。</li>
+<li>支持持久化</li>
+<li>支持消息优先级，topic，延时消息，消息重试等</li>
+<li>主流语言客户端都支持，还可以根据 beanstalkd 协议自行实现。</li>
+</ul>
+          <div class="read-more">
+            <a href="/beanstalkd/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/nginx-signal-manage/">nginx 信号管理</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-06-29
+        </span><span class="post-category">
+            <a href="/categories/Linux/">Linux</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文笔者主要介绍 nginx 信号管理方面的知识及实践操作，内容包括 nginx 信号管理体系，nginx 信号管理的常见操作，通过具体案例来分析，如 nginx 的 reload，热升级以及日志切割。</p>
+<h1 id="nginx-命令行管理"><a href="#nginx-命令行管理" class="headerlink" title="nginx 命令行管理"></a>nginx 命令行管理</h1><p>nginx 的管理可以通过两种方式实现。一种是通过命令行，下面是 nginx 常用的操作命令，</p>
+          <div class="read-more">
+            <a href="/nginx-signal-manage/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/postfix-aws-ses/">ubuntu 使用 postfix 和 AWS-SES 发送邮件</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-06-11
+        </span><span class="post-category">
+            <a href="/categories/AWS/">AWS</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>在日常开发中，邮件发送是个比较常见的场景。因此出现了很多相关的软件和服务，各大云厂商也推出自己的邮件服务。今天笔者就像大家介绍一种常见的组合，AWS的邮件服务 SES 与邮件服务器 postfix 的配置和使用方法。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>什么是 AWS-SES</li>
+</ul>
+<p>Amazon Simple Email Service (SES) 是一种经济高效、灵活且可扩展的电子邮件服务，使开发人员能够从任何应用程序中发送电子邮件。 您可以快速配置Amazon SES 以支持多种电子邮件使用案例，包括交易、营销或群发电子邮件通信。</p>
+          <div class="read-more">
+            <a href="/postfix-aws-ses/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/mydumper-myloader/">mydumper-myloader</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-04-25
+        </span><span class="post-category">
+            <a href="/categories/mysql/">mysql</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>mydumper 是一款开源的 MySQL 逻辑备份工具，主要由 C 语言编写。与 MySQL 自带的 mysqldump 类似，但是 mydumper 更快更高效。<br>mydumper 的一些优点特性：</p>
+<ul>
+<li>轻量级C语言开发</li>
+<li>支持多线程备份数据，备份后按表生成多个备份文件</li>
+<li>支持事务性和非事务性表一致性备份</li>
+<li>支持将导出的文件压缩，节约空间</li>
+<li>支持多线程恢复</li>
+<li>支持已守护进程模式工作，定时快照和连续二进制日志</li>
+<li>支持按指定大小将备份文件切割</li>
+<li>数据与建表语句分离</li>
+</ul>
+          <div class="read-more">
+            <a href="/mydumper-myloader/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/git-migrate-project/">git 使用命令行保留原分支迁移代码仓库</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-03-19
+        </span><span class="post-category">
+            <a href="/categories/git/">git</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>有些时候我们需要对git仓库中的项目进行一些迁移，如从a账号迁移到b账号下，从github平台迁移到内部的gitlab平台等。一般平台会自带 migrate 或者 import 的功能，可以很方便的进行仓库的迁移。当然，我们也可以自行进行迁移，当需要迁移的项目比较多时，脚本进行迁移更快捷。</p>
+<p>下面来看看如何进行手动迁移，同时在迁移后，保留原项目的分支和tag，以及提交记录等。</p>
+          <div class="read-more">
+            <a href="/git-migrate-project/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/source-analysis-laravel-queue/">laravel 源码分析 - 队列 Queue</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-01-07
+        </span><span class="post-category">
+            <a href="/categories/php/">php</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><blockquote>
+<p>laravel 源码分析具体注释见 <a target="_blank" rel="noopener" href="https://github.com/FX-Max/source-analysis-laravel">https://github.com/FX-Max/source-analysis-laravel</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>队列 (Queue) 是 laravel 中比较常用的一个功能，队列的目的是将耗时的任务延时处理，比如发送邮件，从而大幅度缩短 Web 请求和响应的时间。本文我们就来分析下队列创建和执行的源码。</p>
+<blockquote>
+<p>本文笔者基于 laravel 5.8.* 版本</p>
+</blockquote>
+<h1 id="队列任务的创建"><a href="#队列任务的创建" class="headerlink" title="队列任务的创建"></a>队列任务的创建</h1><p>先通过命令创建一个 Job 类，成功之后会创建如下文件 laravel-src/laravel/app/Jobs/DemoJob.php。</p>
+          <div class="read-more">
+            <a href="/source-analysis-laravel-queue/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/hexo-upgrade-2021/">hexo 升级 5.4.0 出现错误解决方法 -hexo-theme-butterfly</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-09-27
+        </span><span class="post-category">
+            <a href="/categories/hexo/">hexo</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>周末升级了下 hexo 到新版本，发现升级后，构建时出现了一些错误，以下是出现的问题，及解决方法。</p>
+<ul>
+<li>WARN  Deprecated config detected: “external_link” with a Boolean value is deprecated. See <a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration">https://hexo.io/docs/configuration</a> for more details.</li>
+</ul>
+          <div class="read-more">
+            <a href="/hexo-upgrade-2021/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/yaml-quick-start/">YAML 语言初识</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-09-22
+        </span><span class="post-category">
+            <a href="/categories/Docker/">Docker</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>日常工作中，我们经常会遇到 YAML，例如 docker-compose 配置，ELK 中的 filebeat 配置， K8S 集群配置，ansible 的 playbook 等，也有越来越多的项目使用了 YAML 作为配置文件的选型。那今天，我们就来了解下它到底是何许人也。</p>
+<h1 id="什么是-YAML"><a href="#什么是-YAML" class="headerlink" title="什么是 YAML"></a>什么是 YAML</h1><p>YAML 官网：<a target="_blank" rel="noopener" href="https://yaml.org/">https://yaml.org/</a></p>
+<p>YAML (YAML: YAML Ain’t Markup Language) 是一种类似 XML，JSON 的数据序列化语言，是一种通用的数据串行化格式。它是主要用来写配置文件的语言，比 XML 要简洁和简单，便于人阅读理解，号称 <code>一种人性化的数据格式语言</code> 。</p>
+<p>正如其官网介绍，What It Is: YAML is a human friendly data serialization standard for all programming languages.</p>
+          <div class="read-more">
+            <a href="/yaml-quick-start/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/aws-rds-change-timezone/">AWS 修改 RDS 时区</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-07-18
+        </span><span class="post-category">
+            <a href="/categories/AWS/">AWS</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="查看-RDS-当前时区"><a href="#查看-RDS-当前时区" class="headerlink" title="查看 RDS 当前时区"></a>查看 RDS 当前时区</h1><p>默认情况下，AWS 的 RDS 采用的是 UTC 时间。而我们地区一般位于东八区，因此我们本地的时间是 UTC+8。</p>
+<p>连接到 RDS 上，查询当前实例的时区。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">where</span> variable_name <span class="keyword">like</span> <span class="string">&#x27;time_zone&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>显示的结果如下，表示当前 RDS 时区的 UTC。</p>
+<blockquote>
+<p>time_zone   UTC</p>
+</blockquote>
+          <div class="read-more">
+            <a href="/aws-rds-change-timezone/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/case-laravel-schedule-not-run/">Laravel 调度任务不执行问题</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-06-20
+        </span><span class="post-category">
+            <a href="/categories/php/">php</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p>在使用 laravel 的调度任务时候，有时候会出现正确配置了调度任务，但是脚本却没有执行的情况，具体什么问题呢，今天我们来分析一下。</p>
+<h2 id="1-什么原因造成的"><a href="#1-什么原因造成的" class="headerlink" title="1.什么原因造成的"></a>1.什么原因造成的</h2><p>在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。</p>
+          <div class="read-more">
+            <a href="/case-laravel-schedule-not-run/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <nav class="pagination"><a class="prev" href="/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">Prev</span>
+      </a>
+    <a class="next" href="/page/3/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></section></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span><span class="division">|</span>
+      <a class="theme-link" href=https://beian.miit.gov.cn/>皖ICP备2022015199号</a><span class="division">|</span>
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span></span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>
