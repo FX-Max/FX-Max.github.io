@@ -48,3 +48,8 @@ fastcgi_param SERVER_NAME $server_name;
 # 修改为
 fastcgi_param SERVER_NAME $host;
 ```
+
+今天的坑就踩到这，改天我们接着踩。
+
+更多技术文章，请关注我的个人博客 [www.immaxfang.com](https://www.immaxfang.com/) 和小公众号 `Max的技术札记`。
+
