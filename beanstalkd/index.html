@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="简单易用的任务队列 -beanstalkd"/><meta name="keywords" content="Linux, beanstalkd, MQ, Max's Blog" /><link rel="alternate" href="/atom.xml" title="Max's Blog" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.1" />
+<link rel="canonical" href="http://www.immaxfang.com/beanstalkd/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.1" />
+
+<script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?67809b4ebdab46caa23b4831eaa0da9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NMPJ73S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-NMPJ73S');
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>简单易用的任务队列 -beanstalkd - Max's Blog</title>
+  <meta name="generator" content="Hexo 5.4.2"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Max's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+        <li class="mobile-menu-item">Memos
+          </li>
+      </a><a href="/link">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a><a href="/atom.xml">
+        <li class="mobile-menu-item">RSS
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Max's Blog</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://memos.immaxfang.com/">
+            Memos
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link">
+            Link
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/atom.xml">
+            RSS
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">简单易用的任务队列 -beanstalkd
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-07-15
+        </span><span class="post-category">
+            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#beanstalkd-%20%E4%BC%98%E7%82%B9"><span class="toc-text">beanstalkd 优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#beanstalkd-%20%E4%B8%8D%E8%B6%B3"><span class="toc-text">beanstalkd 不足</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#beanstalkd-%20%E9%87%8D%E7%82%B9%E6%A6%82%E5%BF%B5"><span class="toc-text">beanstalkd 重点概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#beanstalkd-%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">beanstalkd 生命周期 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#beanstalkd-%20%E7%89%B9%E6%80%A7"><span class="toc-text">beanstalkd 特性 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-text"> 持久化 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">分布式 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%BB%B6%E6%97%B6"><span class="toc-text">任务延时 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">任务优先级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E6%9C%BA%E5%88%B6"><span class="toc-text">超时机制 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E9%A2%84%E7%95%99"><span class="toc-text">任务预留 </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-text">安装及配置 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#beanstalkd%20%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-text">beanstalkd 管理工具 </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="toc-text">实际应用 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85"><span class="toc-text">生产者 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-text">消费者 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#beanstalkd-%20%E4%BD%BF%E7%94%A8%E5%B0%8F%20-tips"><span class="toc-text">beanstalkd 使用小 tips</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="概述"><a href="# 概述" class="headerlink" title="概述"></a>概述</h1><p>beanstalkd 是一个简单快速的分布式工作队列系统，协议基于 ASCII 编码运行在 TCP 上。其最初设计的目的是通过后台异步执行耗时任务的方式降低高容量 Web 应用的页面延时。其具有简单、轻量、易用等特点，也支持对任务优先级、延时 / 超时重发等控制，同时还有众多语言版本的客户端支持，这些优点使得它成为各种需要队列系统场景的一种常见选择。</p>
+<h2 id="beanstalkd- 优点"><a href="#beanstalkd- 优点" class="headerlink" title="beanstalkd 优点"></a>beanstalkd 优点</h2><ul>
+<li>如他官网的介绍，simple&amp;fast，使用非常简单，适合需要引入消息队列又不想引入 kafka 这类重型的 mq，维护成本低；同时，它的性能非常高，大部分场景下都可以 cover 住。</li>
+<li>支持持久化</li>
+<li>支持消息优先级，topic，延时消息，消息重试等</li>
+<li>主流语言客户端都支持，还可以根据 beanstalkd 协议自行实现。</li>
+</ul>
+<span id="more"></span>
+<h2 id="beanstalkd- 不足"><a href="#beanstalkd- 不足" class="headerlink" title="beanstalkd 不足"></a>beanstalkd 不足</h2><ul>
+<li>无最大内存控制，当业务消息极多时，服务可能会不稳定。</li>
+<li>官方没有提供集群故障切换方案(主从或哨兵等)，需要自己解决。</li>
+</ul>
+<h1 id="beanstalkd- 重点概念"><a href="#beanstalkd- 重点概念" class="headerlink" title="beanstalkd 重点概念"></a>beanstalkd 重点概念</h1><ul>
+<li>job</li>
+</ul>
+<p>任务，队列中的基本单元，每个 job 都会有 id 和优先级。有点类似其他消息队列中的 message 的概念。但 job 有各种状态，下文介绍生命周期部分会重点介绍。job 存放在 tube 中。</p>
+<ul>
+<li>tube</li>
+</ul>
+<p>管道，用来存储同一类型的 job。有点类似其他消息队列中的 topic 的概念。beanstalkd 通过 tube 来实现多任务队列，beanstalkd 中可以有多个管道，每个管道有自己的 producer 和 consumer，管道之间互相不影响。</p>
+<ul>
+<li>producer</li>
+</ul>
+<p>job 生产者。通过 put 命令将一个 job 放入到一个 tube 中。</p>
+<ul>
+<li>consumer</li>
+</ul>
+<p>job 消费者。通过 reserve 来获取 job，通过 delete、release、bury 来改变 job 的状态。</p>
+<h1 id="beanstalkd- 生命周期"><a href="#beanstalkd- 生命周期" class="headerlink" title="beanstalkd 生命周期"></a>beanstalkd 生命周期 </h1><p> 上文介绍到，beanstalkd 中 job 有状态区分，在整个生命周期中，job 可能有四种状态：<code>READY</code>, <code>RESERVED</code>, <code>DELAYED</code>, <code>BURIED</code>。只有处于 <code>READY</code> 状态的 job 才能被消费。下图介绍了各状态之间的流转情况。</p>
+<p><img src="https://cdn.immaxfang.com/images/post/2022/beanstalkd-status.png" alt="beanstalkd-status"></p>
+<p>producer 在创建 job 的时候有两种方式，put 和 put with delay（延时任务）。<br>如果 producer 使用 put 直接创建一个 job 时，该 job 就处于 READY 状态，等待 consumer 处理。<br>如果 producer 使用 put with delay 方式创建 job，该 job 的初始状态为 DELAYED 状态，等待延迟时间过后才变更为 READY 状态。<br>以上两种方式创建的 job 都会传入一个 TTR（超时机制），当 job 处于 RESERVED 状态时，TTR 开始倒计时，当 TTR 倒计时完，job 状态还没有改变，则会认为该 job 处理失败，会被重新放回到队列中。</p>
+<p>consumer 获取到（reserve）一个 READY 状态的 job 之后，该 job 的状态就会变更为 RESERVED。此时，其他的 consumer 就不能再操作该 job 了。当 consumer 完成该 job 之后，可以选择 delete，release，或 bury 操作。</p>
+<ul>
+<li>delete ，job 被删除，从 beanstalkd 中清除，以后也无法再获取到，生命周期结束。</li>
+<li>release ，可以把该 job 重新变更为 READY 状态，使得其他的 consumer 可以继续获取和执行该 job，也可以使用 release with delay 延时操作，这样会先进入 DELAYED 状态，延迟时间到达后再变为 READY。</li>
+<li>bury，可以将 job 休眠，等需要的时候，在将休眠的 job 通过 kick 命令变更回 READY 状态，也可以通过 delete 直接删除 BURIED 状态的 job 。</li>
+</ul>
+<p>处于 BURIED 状态的 job，可以通过 kick 重回 READY 状态，也可以通过 delete 删除 job。</p>
+<p>为什么设计这个 BURIED 状态呢？<br>一般我们可以用这个状态来做异常捕获，例如执行超时或者异常的 job，我们可以将其置为 BURIED 状态，这样做有几个好处：<br>1. 可以便面这些异常的 job 直接被放回队列重试，影响正常的队列消费(这些失败一次的 job，很有可能再次失败)。如果没有这个 BURIED 状态，如果我们要单独隔离，一般我们会使用一个新的 tube 单独存放这些异常的 job，使用单独的 consumer 消费。这样就不会影响正常的新消息消费。特别是失败率比较高的时候，会占用很多的正常资源。<br>2. 便于人工排查，上面已经讲到，可以将异常的 job 置为 BURIED 状态，这样人工排查时重点关注这个状态就可以了。</p>
+<h1 id="beanstalkd- 特性"><a href="#beanstalkd- 特性" class="headerlink" title="beanstalkd 特性"></a>beanstalkd 特性 </h1><h2 id="持久化"><a href="# 持久化" class="headerlink" title="持久化"></a> 持久化 </h2><p> 通过 binlog 将 job 及其状态记录到本地文件，当 beanstalkd 重启时，可以通过读取 binlog 来恢复之前的 job 状态。</p>
+<h2 id="分布式"><a href="# 分布式" class="headerlink" title="分布式"></a>分布式 </h2><p> 在 beanstalkd 的文档中，其实是支持分布式的，其设计思想和 Memcached 类似，beanstalkd 各个 server 之间并不知道彼此的存在，是通过 client 实现分布式以及根据 tube 名称去特定的 server 上获取 job。贴一篇专门讨论 beanstalkd 分布式的文章，<a target="_blank" rel="noopener" href="https://www.fzb.me/2016-4-1-beanstalkd-in-distributed.html">Beanstalkd 的一种分布式方案</a></p>
+<h2 id="任务延时"><a href="# 任务延时" class="headerlink" title="任务延时"></a>任务延时 </h2><p> 天然支持延时任务，可以在创建 job 时指定延时时间，也可以当 job 被处理完后才能后，消费者使用 release with delay 将 job 再次放入队列延时执行。</p>
+<h2 id="任务优先级"><a href="# 任务优先级" class="headerlink" title="任务优先级"></a>任务优先级</h2><p>producer 生成的 job 可以给他分配优先级，支持 0 到 2^32 的优先级，值越小，优先级越高，默认优先级为 1024。优先级高的 job 会被 consumer 优先执行。</p>
+<h2 id="超时机制"><a href="# 超时机制" class="headerlink" title="超时机制"></a>超时机制 </h2><p> 为了防止某个 consumer 长时间占用 job 但无法处理完成的情况，beanstalkd 的 reserve 操作支持设置 timeout 时间 (TTR)。如果 consumer 不能在 TTR 内发送 delete、release 或 bury 命令改变 job 状态，那么 beanstalkd 会认为任务处理失败，会将 job 重新置为 READY 状态供其他 consumer 消费。<br> 如果消费者已经预知可能无法在 TTR 内完成该 job，则可以发送 touch 命令，使得 beanstalkd 重新计算 TTR。</p>
+<h2 id="任务预留"><a href="# 任务预留" class="headerlink" title="任务预留"></a>任务预留 </h2><p> 有一个 BURIED 状态可以作为缓冲，具体特点见上文生命周期中关于 BURIED 状态的介绍。</p>
+<h1 id="安装及配置"><a href="# 安装及配置" class="headerlink" title="安装及配置"></a>安装及配置 </h1><p> 以下以 ubuntu 为例，安转 beanstalkd：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install beanstalkd</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/beanstalkd</span><br><span class="line"><span class="comment"># 添加如下内容</span></span><br><span class="line">BEANSTALKD_BINLOG_DIR=/data/beanstalkd/binlog</span><br></pre></td></tr></table></figure>
+<p>可以通过 beanstalkd 命令来运行服务，并且可以添加多种参数。命令的格式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">beanstalkd [OPTIONS]</span><br><span class="line"></span><br><span class="line"> -b DIR   wal directory</span><br><span class="line"> -f MS    fsync at most once every MS milliseconds (use -f0 <span class="keyword">for</span> <span class="string">&quot;always fsync&quot;</span>)</span><br><span class="line"> -F       never fsync (default)</span><br><span class="line"> -l ADDR  listen on address (default is 0.0.0.0)</span><br><span class="line"> -p PORT  listen on port (default is 11300)</span><br><span class="line"> -u USER  become user and group</span><br><span class="line"> -z BYTES <span class="built_in">set</span> the maximum job size <span class="keyword">in</span> bytes (default is 65535)</span><br><span class="line"> -s BYTES <span class="built_in">set</span> the size of each wal file (default is 10485760)</span><br><span class="line">            (will be rounded up to a multiple of 512 bytes)</span><br><span class="line"> -c       compact the binlog (default)</span><br><span class="line"> -n       <span class="keyword">do</span> not compact the binlog</span><br><span class="line"> -v       show version information</span><br><span class="line"> -V       increase verbosity</span><br><span class="line"> -h       show this <span class="built_in">help</span></span><br></pre></td></tr></table></figure><br>如下我们启动一个 beanstalkd 服务，并开启 binlog：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> beanstalkd -l 0.0.0.0 -p 11300 -b /data/beanstalkd/binlog/ &amp;</span><br></pre></td></tr></table></figure></p>
+<h2 id="beanstalkd 管理工具"><a href="#beanstalkd 管理工具" class="headerlink" title="beanstalkd 管理工具"></a>beanstalkd 管理工具 </h2><p> 官方推荐的一些管理工具：<a target="_blank" rel="noopener" href="https://github.com/beanstalkd/beanstalkd/wiki/Tools">Tools</a><br>笔者常用的管理工具：<a target="_blank" rel="noopener" href="https://github.com/ptrofimov/beanstalk_console">https://github.com/ptrofimov/beanstalk_console</a><br>如果只是简单的操作和查看 beanstalkd，可以使用 telnet 工具，然后执行 stats，use，put，watch 等：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ telnet 127.0.0.1 11300</span><br><span class="line">stats</span><br></pre></td></tr></table></figure></p>
+<h1 id="实际应用"><a href="# 实际应用" class="headerlink" title="实际应用"></a>实际应用 </h1><p>beansralkd 有很多语言版本的客户端实现，官方提供了一些客户端列表<a target="_blank" rel="noopener" href="https://github.com/beanstalkd/beanstalkd/wiki/Client-Libraries">beanstalkd 客户端列表</a>。<br> 如果现有的这些库不满足需求，也可以自行实现，参考 <a target="_blank" rel="noopener" href="https://github.com/beanstalkd/beanstalkd/blob/master/doc/protocol.txt">beanstalkd 协议</a>。</p>
+<p>以下以 go 为例，简单演示下 beanstalkd 常用处理操作。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> get github.com/beanstalkd/<span class="keyword">go</span>-beanstalk</span><br></pre></td></tr></table></figure></p>
+<h2 id="生产者"><a href="# 生产者" class="headerlink" title="生产者"></a>生产者 </h2><p> 向默认的 tube 中投入 job：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id, err := conn.Put([]<span class="type">byte</span>(<span class="string">&quot;myjob&quot;</span>), <span class="number">1</span>, <span class="number">0</span>, time.Minute)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">	<span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(<span class="string">&quot;job&quot;</span>, id)</span><br></pre></td></tr></table></figure><br>向指定的 tube 中投入 job：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tube := &amp;beanstalk.Tube&#123;Conn: conn, Name: <span class="string">&quot;mytube&quot;</span>&#125;</span><br><span class="line">id, err := tube.Put([]<span class="type">byte</span>(<span class="string">&quot;myjob&quot;</span>), <span class="number">1</span>, <span class="number">0</span>, time.Minute)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">	<span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(<span class="string">&quot;job&quot;</span>, id)</span><br></pre></td></tr></table></figure></p>
+<h2 id="消费者"><a href="# 消费者" class="headerlink" title="消费者"></a>消费者 </h2><p> 消费默认的 tube 中的 job：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">id, body, err := conn.Reserve(<span class="number">5</span> * time.Second)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">	<span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(<span class="string">&quot;job&quot;</span>, id)</span><br><span class="line">fmt.Println(<span class="type">string</span>(body))</span><br></pre></td></tr></table></figure><br>消费指定的 tube (此处指定多个) 中的 job：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tubeSet := beanstalk.NewTubeSet(conn, <span class="string">&quot;mytube1&quot;</span>, <span class="string">&quot;mytube2&quot;</span>)</span><br><span class="line">id, body, err := tubeSet.Reserve(<span class="number">10</span> * time.Hour)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">	<span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(<span class="string">&quot;job&quot;</span>, id)</span><br><span class="line">fmt.Println(<span class="type">string</span>(body))</span><br></pre></td></tr></table></figure></p>
+<h2 id="beanstalkd- 使用小 -tips"><a href="#beanstalkd- 使用小 -tips" class="headerlink" title="beanstalkd 使用小 tips"></a>beanstalkd 使用小 tips</h2><ul>
+<li>可以通过指定 tube ，在 put 的时候将 job 放入指定的 tube 中，否则会放入 default 的 tube 中。</li>
+<li>beanstalkd 支持持久化，在启动时使用 <code>-b</code>参数来开启 <code>binlog</code>，通过<code>binog</code> 可以将 job 及其状态记录到文件里。当重新使用 <code>-b</code> 参数重启 beanstalkd，将读取 <code>binlog</code> 来恢复之前的 job 及状态。</li>
+</ul>
+<h1 id="参考资料"><a href="# 参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://beanstalkd.github.io/">Beanstalkd 官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/beanstalkd/beanstalkd/blob/master/doc/protocol.zh-CN.md">Beanstalkd 中文协议</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhangquan.me/2021/06/29/beanstalkd-xue-xi-yan-jiu/#toc-heading-19">Beanstalkd 学习研究</a></li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://www.immaxfang.com">Max Fang</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://www.immaxfang.com/beanstalkd/">http://www.immaxfang.com/beanstalkd/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/Linux/">Linux</a>
+            <a href="/tags/beanstalkd/">beanstalkd</a>
+            <a href="/tags/MQ/">MQ</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/talking-log-specification/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">日志规范实践</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/nginx-signal-manage/">
+        <span class="next-text nav-default">nginx 信号管理</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="vcomments"></div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:maxfang007@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a target="_blank" rel="noopener" href="https://github.com/FX-Max" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2020 - 2023<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Max Fang</span><span class="division">|</span>
+      <a class="theme-link" href=https://beian.miit.gov.cn/>皖ICP备2022015199号</a><span class="division">|</span>
+      <span id="busuanzi_container_site_pv">
+        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span></span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><!-- valine Comments -->
+<script src="//github.elemecdn.com/leancloud-storage@3/dist/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.5.1/dist/Valine.min.js"></script>
+<script type="text/javascript">
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: false,
+        app_id: "RoaKz6A3wbmwNFIRl6bNdOqC-gzGzoHsz",
+        app_key: "zRlIClO248YJDPefLLQe0F0B",
+        placeholder: "写下你的留言把！",
+        avatar: 'mm'
+    });
+</script>
+<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.1"></script>
+</body>
+</html>
