@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.immaxfang.com/"/>
-  <updated>2023-04-19T15:03:53.460Z</updated>
+  <updated>2023-06-13T16:54:38.436Z</updated>
   <id>http://www.immaxfang.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nexus3 重置 admin 账号密码</title>
+    <link href="http://www.immaxfang.com/reset-admin-password-in-nexus3/"/>
+    <id>http://www.immaxfang.com/reset-admin-password-in-nexus3/</id>
+    <published>2023-06-13T16:46:32.000Z</published>
+    <updated>2023-06-13T16:54:38.436Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题背景"><a href="# 问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>nexus3 的 admin 账号密码忘记了，需要重置。</p><h1 id="环境说明"><a href="# 环境说明" class="headerlink" title="环境说明"></a>环境说明</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nexus 基于 docker-compose 部署，版本 nexus3.26</span><br><span class="line">docker 镜像 sonatype/nexus3:3.26.1</span><br></pre></td></tr></table></figure><h1 id="操作步骤"><a href="# 操作步骤" class="headerlink" title="操作步骤"></a>操作步骤 </h1><p> 参考： <a href="https://support.sonatype.com/hc/en-us/articles/213467158-How-to-reset-a-forgotten-admin-password-in-Nexus-3-x">https://support.sonatype.com/hc/en-us/articles/213467158-How-to-reset-a-forgotten-admin-password-in-Nexus-3-x</a></p><span id="more"></span><h2 id="停止 -nexus- 服务"><a href="# 停止 -nexus- 服务" class="headerlink" title="停止 nexus 服务"></a>停止 nexus 服务 </h2><p> 由于 nexus 是基于 docker 部署，后面我们需要进入容器中执行相关命令，所以此处不能直接使用 <code>docker stop xxx</code> 来关闭服务。需要进入到容器内部来关闭 nexus 服务。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 进入 docker 容器内，注意，此处使用 root 用户，否则后续命令会无权限</span><br><span class="line">docker exec -u root -it nexus3 /bin/bash</span><br><span class="line"># 停止服务</span><br><span class="line">/opt/sonatype/nexus/bin/nexus stop</span><br><span class="line"># 核对服务状态</span><br><span class="line">/opt/sonatype/nexus/bin/nexus status</span><br></pre></td></tr></table></figure><p>说明：此处 docker 容器中 nexus 服务关闭的情况可能各不相同，此处找到了镜像原始 dockerfile，从中服务启动时执行的路径，推测出其关闭服务的命令。启动服务命令是  <code>CMD [&quot;/opt/sonatype/nexus/bin/nexus&quot;, &quot;run&quot;]</code>，则尝试使用 <code>/opt/sonatype/nexus/bin/nexus stop</code> 来关闭服务。<br>参考： <a href="https://github.com/sonatype/docker-nexus3/blob/main/Dockerfile">https://github.com/sonatype/docker-nexus3/blob/main/Dockerfile</a> </p><h2 id="进入 -OrientDB- 控制台"><a href="# 进入 -OrientDB- 控制台" class="headerlink" title="进入 OrientDB 控制台"></a>进入 OrientDB 控制台</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar $NEXUS_HOME/lib/support/nexus-orient-console.jar</span><br></pre></td></tr></table></figure><blockquote><p>需要根据 nexus 各自的安装情况执行上述命令。</p></blockquote><p>参考： <a href="https://support.sonatype.com/hc/en-us/articles/115002930827-Accessing-the-OrientDB-Console">https://support.sonatype.com/hc/en-us/articles/115002930827-Accessing-the-OrientDB-Console</a></p><h2 id="进入数据库"><a href="# 进入数据库" class="headerlink" title="进入数据库"></a>进入数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看 db 目录，根据实际情况查找到目录</span><br><span class="line">ls -alh nexus-data/db/security</span><br><span class="line"># 连接数据库，此处 `nexus-data/db/security` 根据实际 db 目录进行调整</span><br><span class="line">connect plocal:nexus-data/db/security admin admin</span><br></pre></td></tr></table></figure><h2 id="调整 -admin- 账号密码"><a href="# 调整 -admin- 账号密码" class="headerlink" title="调整 admin 账号密码"></a>调整 admin 账号密码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看 admin 用户信息</span><br><span class="line">select * from user where id = &quot;admin&quot;</span><br><span class="line"># 更新 admin 用户的密码为 admin123</span><br><span class="line">update user SET password=&quot;$shiro1$SHA-512$1024$NE+wqQq/TmjZMvfI7ENh/g==$V4yPw8T64UQ6GfJfxYq2hLsVrBY8D1v+bktfOxGdt4b/9BthpWPNUy/CBk6V9iA0nHpzYzJFWO8v/tZFtES8CA==&quot; UPSERT WHERE id=&quot;admin&quot;</span><br></pre></td></tr></table></figure><p>注意：为了方便，此处先临时将密码更新为 <code>admin123</code>。<br>若要退出 OrientDB 控制台，输入 <code>exit;</code> 即可退出。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orientdb &#123;db=security&#125;&gt; exit;</span><br></pre></td></tr></table></figure><h2 id="恢复 -nexus- 服务"><a href="# 恢复 -nexus- 服务" class="headerlink" title="恢复 nexus 服务"></a>恢复 nexus 服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 启动服务</span><br><span class="line">/opt/sonatype/nexus/bin/nexus start</span><br><span class="line"># 核对服务状态</span><br><span class="line">/opt/sonatype/nexus/bin/nexus status</span><br></pre></td></tr></table></figure><h2 id="验证账号"><a href="# 验证账号" class="headerlink" title="验证账号"></a>验证账号 </h2><p> 使用 <code>admin:admin123</code> 帐密来登录 nexus 服务，验证是否调整正确。若确认调整成功，建议及时使用更复杂的密码替换临时密码 <code>admin123</code> 。</p><h1 id="问题记录"><a href="# 问题记录" class="headerlink" title="问题记录"></a>问题记录</h1><ul><li>报没有权限<blockquote><p>Error creating history file java.io.IOException: Permission denied at java.io.UnixFileSystem.createFileExclusively(Native Method) at java.io.File.createNewFile(File.java:1012) at</p></blockquote></li></ul><p>一开始使用 <code>docker exec -it nexus3 /bin/bash</code> 进入容器，执行进行 OrientDB 命令时，会报无权限，且无法使用 <code>sudo su</code> 切换用户。使用 <code>docker exec -u root -it nexus3 /bin/bash</code> 即可。</p><p>参考： <a href="https://gist.github.com/marcelmaatkamp/123e8793e07a72a382d8d0e8d66bbd8f?permalink_comment_id=3276537">https://gist.github.com/marcelmaatkamp/123e8793e07a72a382d8d0e8d66bbd8f?permalink_comment_id=3276537</a></p><h1 id="文档参考"><a href="# 文档参考" class="headerlink" title="文档参考"></a>文档参考</h1><p><a href="https://support.sonatype.com/hc/en-us/articles/213467158-How-to-reset-a-forgotten-admin-password-in-Nexus-3-x">How to reset a forgotten admin password in Sonatype Nexus Repository 3</a><br><a href="https://www.cnblogs.com/forever521Lee/p/10919512.html">Nexus3.X 忘记 admin 密码找回</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;问题背景&quot;&gt;&lt;a href=&quot;#问题背景&quot; class=&quot;headerlink&quot; title=&quot;问题背景&quot;&gt;&lt;/a&gt;问题背景&lt;/h1&gt;&lt;p&gt;nexus3 的 admin 账号密码忘记了，需要重置。&lt;/p&gt;
+&lt;h1 id=&quot;环境说明&quot;&gt;&lt;a href=&quot;#环境说明&quot; class=&quot;headerlink&quot; title=&quot;环境说明&quot;&gt;&lt;/a&gt;环境说明&lt;/h1&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nexus 基于 docker-compose 部署，版本 nexus3.26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;docker 镜像 sonatype/nexus3:3.26.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;操作步骤&quot;&gt;&lt;a href=&quot;#操作步骤&quot; class=&quot;headerlink&quot; title=&quot;操作步骤&quot;&gt;&lt;/a&gt;操作步骤&lt;/h1&gt;&lt;p&gt;参考： &lt;a href=&quot;https://support.sonatype.com/hc/en-us/articles/213467158-How-to-reset-a-forgotten-admin-password-in-Nexus-3-x&quot;&gt;https://support.sonatype.com/hc/en-us/articles/213467158-How-to-reset-a-forgotten-admin-password-in-Nexus-3-x&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>【k8s 入门】Kubernetes v1.25 创建 ServiceAccount 未生成 Secret 问题</title>
@@ -530,31 +550,6 @@
       <category term="RDS" scheme="http://www.immaxfang.com/tags/RDS/"/>
     
       <category term="MySQL" scheme="http://www.immaxfang.com/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Laravel 调度任务不执行问题</title>
-    <link href="http://www.immaxfang.com/case-laravel-schedule-not-run/"/>
-    <id>http://www.immaxfang.com/case-laravel-schedule-not-run/</id>
-    <published>2021-06-20T11:59:03.000Z</published>
-    <updated>2023-04-19T15:03:53.459Z</updated>
-    
-    <content type="html"><![CDATA[<p>在使用 laravel 的调度任务时候，有时候会出现正确配置了调度任务，但是脚本却没有执行的情况，具体什么问题呢，今天我们来分析一下。</p><h2 id="1- 什么原因造成的"><a href="#1- 什么原因造成的" class="headerlink" title="1. 什么原因造成的"></a>1. 什么原因造成的 </h2><p> 在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。</p><span id="more"></span><p>有些时候，由于一些特殊原因，导致上一次任务没有正常结束，这个锁还未过期情况下，就会出现调度任务不会执行的情况。</p><h2 id="2- 如何解决"><a href="#2- 如何解决" class="headerlink" title="2. 如何解决"></a>2. 如何解决 </h2><p> 这种情况下，处理的情况也比较简单，手动清除锁即可。这个锁的生成位置由 config/cache.php 指定，默认情况下，在配置的 CACHE_DRIVER 是 file 的情况下，只需要将 storage/framework/cache 下的文件删除即可。 </p><blockquote><p>Happy coding.</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在使用 laravel 的调度任务时候，有时候会出现正确配置了调度任务，但是脚本却没有执行的情况，具体什么问题呢，今天我们来分析一下。&lt;/p&gt;
-&lt;h2 id=&quot;1-什么原因造成的&quot;&gt;&lt;a href=&quot;#1-什么原因造成的&quot; class=&quot;headerlink&quot; title=&quot;1.什么原因造成的&quot;&gt;&lt;/a&gt;1.什么原因造成的&lt;/h2&gt;&lt;p&gt;在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="php" scheme="http://www.immaxfang.com/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://www.immaxfang.com/tags/php/"/>
-    
-      <category term="laravel" scheme="http://www.immaxfang.com/tags/laravel/"/>
     
   </entry>
   

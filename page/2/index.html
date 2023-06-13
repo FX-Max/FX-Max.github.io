@@ -126,6 +126,23 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/talking-log-specification/">日志规范实践</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-07-25
+        </span></div>
+    </header>
+
+    <div class="post-content"><p>日志与我们日常的项目开发有着密切关系，日志是我们分析和排查问题的重要依据。今天就来简单总结下笔者个人对于项目中日志的一些经验。</p>
+<h1 id="1-日志文件规范"><a href="#1-日志文件规范" class="headerlink" title="1.日志文件规范"></a>1.日志文件规范</h1><h2 id="1-1日志文件命名"><a href="#1-1日志文件命名" class="headerlink" title="1.1日志文件命名"></a>1.1日志文件命名</h2><p>日志文件名格式：logname_YY-MM-dd_hh.[roll-count].log<br>例子：api_2022-06-20_12.0.log</p>
+          <div class="read-more">
+            <a href="/talking-log-specification/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/beanstalkd/">简单易用的任务队列 -beanstalkd</a>
         </h1>
 
@@ -334,26 +351,6 @@
 </blockquote>
           <div class="read-more">
             <a href="/aws-rds-change-timezone/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/case-laravel-schedule-not-run/">Laravel 调度任务不执行问题</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2021-06-20
-        </span><span class="post-category">
-            <a href="/categories/php/">php</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><p>在使用 laravel 的调度任务时候，有时候会出现正确配置了调度任务，但是脚本却没有执行的情况，具体什么问题呢，今天我们来分析一下。</p>
-<h2 id="1-什么原因造成的"><a href="#1-什么原因造成的" class="headerlink" title="1.什么原因造成的"></a>1.什么原因造成的</h2><p>在使用 laravel 中的调度任务时，有些时候脚本一次的执行时间是不确定的，我们为了避免任务重复执行，会使用 withoutOverlapping 方法。withoutOverlapping 在调度任务开始时会创建一个锁，在该锁未过期之前，下一次的调度任务不会再次执行。默认情况下，这个锁的过期时间是 24h，当然也可以指定过期时间。关于这个锁的实现，会在后续文章中分析，实际上是一个互斥锁 (mutex)。</p>
-          <div class="read-more">
-            <a href="/case-laravel-schedule-not-run/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="prev" href="/">
