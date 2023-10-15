@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.immaxfang.com/deploy-blog-to-cloudflare-pages/</loc>
+    
+    <lastmod>2023-10-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/link/index.html</loc>
     
     <lastmod>2023-07-27</lastmod>
@@ -47,6 +56,15 @@
   </url>
   
   <url>
+    <loc>http://www.immaxfang.com/about/index.html</loc>
+    
+    <lastmod>2023-04-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/baidu_verify_code-2fNI75WhB0.html</loc>
     
     <lastmod>2023-04-19</lastmod>
@@ -57,15 +75,6 @@
   
   <url>
     <loc>http://www.immaxfang.com/categories/index.html</loc>
-    
-    <lastmod>2023-04-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/about/index.html</loc>
     
     <lastmod>2023-04-19</lastmod>
     
@@ -272,6 +281,15 @@
   </url>
   
   <url>
+    <loc>http://www.immaxfang.com/keng-nginx-server-name/</loc>
+    
+    <lastmod>2023-04-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/kubernetes-v1-25-service-account-secret-not-listed/</loc>
     
     <lastmod>2023-04-19</lastmod>
@@ -281,7 +299,7 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/keng-nginx-server-name/</loc>
+    <loc>http://www.immaxfang.com/beanstalkd/</loc>
     
     <lastmod>2023-04-19</lastmod>
     
@@ -308,15 +326,6 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/beanstalkd/</loc>
-    
-    <lastmod>2023-04-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.immaxfang.com/hello-world/</loc>
     
     <lastmod>2023-04-19</lastmod>
@@ -335,7 +344,7 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/aws-rds-change-timezone/</loc>
+    <loc>http://www.immaxfang.com/authorization-header/</loc>
     
     <lastmod>2023-04-19</lastmod>
     
@@ -344,7 +353,7 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/authorization-header/</loc>
+    <loc>http://www.immaxfang.com/aws-rds-change-timezone/</loc>
     
     <lastmod>2023-04-19</lastmod>
     
@@ -392,27 +401,6 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/tags/php/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/tags/laravel/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/tags/git/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://www.immaxfang.com/tags/Linux/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -434,6 +422,27 @@
   </url>
   
   <url>
+    <loc>http://www.immaxfang.com/tags/php/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.immaxfang.com/tags/laravel/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.immaxfang.com/tags/git/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/tags/hexo/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -442,6 +451,20 @@
   
   <url>
     <loc>http://www.immaxfang.com/tags/rss/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.immaxfang.com/tags/nginx/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.immaxfang.com/tags/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -497,14 +520,14 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/tags/nginx/</loc>
+    <loc>http://www.immaxfang.com/tags/php-fpm/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/tags/php-fpm/</loc>
+    <loc>http://www.immaxfang.com/tags/ubuntu/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -526,13 +549,6 @@
   
   <url>
     <loc>http://www.immaxfang.com/tags/%E6%BA%90%E7%A0%81/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/tags/ubuntu/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -566,17 +582,17 @@
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>http://www.immaxfang.com/tags/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/</loc>
+    <loc>http://www.immaxfang.com/categories/AWS/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>http://www.immaxfang.com/categories/AWS/</loc>
+    <loc>http://www.immaxfang.com/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -597,14 +613,14 @@
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</loc>
+    <loc>http://www.immaxfang.com/categories/hexo/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://www.immaxfang.com/categories/hexo/</loc>
+    <loc>http://www.immaxfang.com/categories/nginx/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -646,6 +662,13 @@
   </url>
   
   <url>
+    <loc>http://www.immaxfang.com/categories/nginx/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://www.immaxfang.com/categories/MySQL/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -675,20 +698,6 @@
   
   <url>
     <loc>http://www.immaxfang.com/categories/Docker/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/categories/nginx/</loc>
-    <lastmod>2023-10-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.immaxfang.com/categories/nginx/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2023-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

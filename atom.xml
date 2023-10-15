@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.immaxfang.com/"/>
-  <updated>2023-06-13T16:54:38.436Z</updated>
+  <updated>2023-10-15T16:59:58.437Z</updated>
   <id>http://www.immaxfang.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将 hexo 博客部署到 Cloudflare Pages</title>
+    <link href="http://www.immaxfang.com/deploy-blog-to-cloudflare-pages/"/>
+    <id>http://www.immaxfang.com/deploy-blog-to-cloudflare-pages/</id>
+    <published>2023-10-15T14:21:12.000Z</published>
+    <updated>2023-10-15T16:59:58.437Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="# 背景" class="headerlink" title="背景"></a>背景 </h1><p> 以前做活动买了一台阿里云的轻量级服务器部署博客，近期快到了发现续费挺贵，就不打算续了，准备把博客迁移走。需求有几点，</p><ul><li>稳定且尽可能费用低，免费更好。</li><li>访问速度好，尽可能保证国内海外都有好的访问体验。</li><li>方便迁移和部署。</li></ul><p>综合考虑之后，决定迁移到 Cloudflare 上来。公司不少服务使用的都是 CF，功能强大，同时对于个人来讲，它提供的免费服务也非常适合我们部署一些个人服务。不得不说， Cloudflare 真是一家有格局的公司。</p><h1 id="Cloudflare- 部署方式"><a href="#Cloudflare- 部署方式" class="headerlink" title="Cloudflare 部署方式"></a>Cloudflare 部署方式 </h1><p> 我的博客是基于 hexo，Cloudflare 上有两种常见的部署方式。</p><ol><li><p>Cloudflare Pages 部署 <br> 类似于 GitHub Pages 的静态网站托管服务，直接可以部署在 Cloudflare 的几个百数据中心上。</p></li><li><p>Cloudflare Workers 部署<br>Cloudflare Workers Site 可以与常见的静态网站生成器（Hexo、Hugo、Jekyll、Gatsby 等）兼容。Cloudflare Workers Site 是 Cloudflare Workers 提供了 KV Storage（Workers KV）以后开发出的一个功能，将静态文件存储在 KV Storage 中，Cloudflare Workers 从 KV 存储中获取文件并以 HTTP 响应的形式返回，实现静态网站托管。</p></li></ol><p>这两种方式都尝试了下，相对而言，Cloudflare Pages 方式更简便一些，本文主要介绍此方式。</p><h1 id="前期准备"><a href="# 前期准备" class="headerlink" title="前期准备"></a>前期准备 </h1><p> 注册 Cloudflare 账号。</p><p>在 Cloudflare 中添加需要管理的域名。<br>【Website】-【Add a site】，填入你的域名，如 <code>immaxfang.com</code> ，选择免费版本即可，然后根据提示修改 DNS 。<br>由于我的博客域名在阿里云，需要先在阿里云域名管理里进行修改，将域名的 DNS 设置为 Cloudflare 的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;# 背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景 &lt;/h1&gt;&lt;p&gt; 以前做活动买了一台阿里云的轻量级服务器部署博客，近期快到了发现续费挺贵，就不打算续了，准备把博客迁移走。需求有几点，&lt;/p&gt;
+&lt;ul&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Nexus3 重置 admin 账号密码</title>
@@ -518,38 +540,6 @@
       <category term="Docker" scheme="http://www.immaxfang.com/tags/Docker/"/>
     
       <category term="YAML" scheme="http://www.immaxfang.com/tags/YAML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AWS 修改 RDS 时区</title>
-    <link href="http://www.immaxfang.com/aws-rds-change-timezone/"/>
-    <id>http://www.immaxfang.com/aws-rds-change-timezone/</id>
-    <published>2021-07-18T15:05:40.000Z</published>
-    <updated>2023-04-19T15:03:53.458Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="查看 -RDS- 当前时区"><a href="# 查看 -RDS- 当前时区" class="headerlink" title="查看 RDS 当前时区"></a>查看 RDS 当前时区 </h1><p> 默认情况下，AWS 的 RDS 采用的是 UTC 时间。而我们地区一般位于东八区，因此我们本地的时间是 UTC+8。</p><p>连接到 RDS 上，查询当前实例的时区。</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">where</span> variable_name <span class="keyword">like</span> <span class="string">&#x27;time_zone&#x27;</span>;</span><br></pre></td></tr></table></figure><p>显示的结果如下，表示当前 RDS 时区的 UTC。</p><blockquote><p>time_zone   UTC</p></blockquote><span id="more"></span><h1 id="调整 -RDS- 时区"><a href="# 调整 -RDS- 时区" class="headerlink" title="调整 RDS 时区"></a>调整 RDS 时区</h1><p>RDS 的时区调整是通过调整参数组来操作的。AWS 的 RDS 是不允许修改 default 参数组的。因此先要确认下当前 RDS 采用的参数组是不是 default 参数组。如果是 default 参数组，则需要新建一个参数组。然后在该参数组上调整 timezone 相关参数，然后变更 RDS 使用的参数组，使用新的参数组。</p><p>从左侧的参数组菜单进入，即可新建参数组。一般我们都会从把当前在使用的参数组作为模版来复制一份新的来调整。<br>选择当前在使用的参数组，Actions-&gt;Copy 即可。以笔者测试为例，当前在使用的参数组为 pg-mysql57-demo ，复制过来的新的参数组为 pg-mysql57-demo-new 。</p><p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_1.jpg" alt="1"></p><p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_2.jpg" alt="2"></p><p>接下来就可以修改新的参数组的参数了，点击改参数组进入详情页面，搜索关键词 time_zone，然后点击 Modify 即可对参数进行修改，从可选值中找到我们需要的值，此处我们选择 Asia/Shanghai，最后确认变更即可。</p><p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_3.jpg" alt="3"></p><p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_4.jpg" alt="4"></p><p>再进入参数组，搜索 time_zone ，发现值已经修改为 Asia/Shanghai，说明已经修改完毕。</p><p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_5.jpg" alt="5"></p><p>参数组调增完毕了，接下来就是给对应实例应用该参数组了。<br>进入到需要调整的 RDS ，在参数组配置中，选择新的参数组。确认修改后，系统会提示是否立即应用修改。可以根据实际情况选择立即修改或者下一次维护窗口。修改 time_zone 需要重启数据库实例，这里我们选择下一次停机窗口重启。</p><p><img src="https://cdn.immaxfang.com/images/post/2021/aws_rds_timezone_6.jpg" alt="6"></p><p>选择合适的时机，重启 RDS 即可。</p><h1 id="验证修改生效"><a href="# 验证修改生效" class="headerlink" title="验证修改生效"></a>验证修改生效 </h1><p> 在 RDS 重启完毕之后，再次执行上面的查询时区的语句，显示的结果如下(Asia/Shanghai)，表示时区已修改成功。</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">where</span> variable_name <span class="keyword">like</span> <span class="string">&#x27;time_zone&#x27;</span>;</span><br></pre></td></tr></table></figure><blockquote><p>#time_zone    Asia/Shanghai</p></blockquote><hr><p>Happy Coding.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;查看-RDS-当前时区&quot;&gt;&lt;a href=&quot;#查看-RDS-当前时区&quot; class=&quot;headerlink&quot; title=&quot;查看 RDS 当前时区&quot;&gt;&lt;/a&gt;查看 RDS 当前时区&lt;/h1&gt;&lt;p&gt;默认情况下，AWS 的 RDS 采用的是 UTC 时间。而我们地区一般位于东八区，因此我们本地的时间是 UTC+8。&lt;/p&gt;
-&lt;p&gt;连接到 RDS 上，查询当前实例的时区。&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;show&lt;/span&gt; variables &lt;span class=&quot;keyword&quot;&gt;where&lt;/span&gt; variable_name &lt;span class=&quot;keyword&quot;&gt;like&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;time_zone&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;显示的结果如下，表示当前 RDS 时区的 UTC。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;time_zone   UTC&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="AWS" scheme="http://www.immaxfang.com/categories/AWS/"/>
-    
-    
-      <category term="AWS" scheme="http://www.immaxfang.com/tags/AWS/"/>
-    
-      <category term="RDS" scheme="http://www.immaxfang.com/tags/RDS/"/>
-    
-      <category term="MySQL" scheme="http://www.immaxfang.com/tags/MySQL/"/>
     
   </entry>
   

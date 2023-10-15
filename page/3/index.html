@@ -126,6 +126,31 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/aws-rds-change-timezone/">AWS 修改 RDS 时区</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-07-18
+        </span><span class="post-category">
+            <a href="/categories/AWS/">AWS</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h1 id="查看-RDS-当前时区"><a href="#查看-RDS-当前时区" class="headerlink" title="查看 RDS 当前时区"></a>查看 RDS 当前时区</h1><p>默认情况下，AWS 的 RDS 采用的是 UTC 时间。而我们地区一般位于东八区，因此我们本地的时间是 UTC+8。</p>
+<p>连接到 RDS 上，查询当前实例的时区。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> variables <span class="keyword">where</span> variable_name <span class="keyword">like</span> <span class="string">&#x27;time_zone&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>显示的结果如下，表示当前 RDS 时区的 UTC。</p>
+<blockquote>
+<p>time_zone   UTC</p>
+</blockquote>
+          <div class="read-more">
+            <a href="/aws-rds-change-timezone/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/case-laravel-schedule-not-run/">Laravel 调度任务不执行问题</a>
         </h1>
 
@@ -319,23 +344,6 @@
     <div class="post-content"><p><img src="https://cdn.immaxfang.com/picture_2.jpg" alt="1"></p>
           <div class="read-more">
             <a href="/movie-huashuimu/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/mac-sourcetree-beyondcompre/">Mac 下 SourceTree 安装 BeyondCompare</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-03-14
-        </span></div>
-    </header>
-
-    <div class="post-content"><p>使用git的同学对SourceTree一定不陌生，可以很方便的进行git操作。但是其自带的文件对比工具却不太好用，在有大量文件冲突的情况下，有好的文件对比工具可以很大的提高效率。</p>
-<p>BeyondCompare则是一个很优雅，且功能强大的文件对比工具，可以很方便的比较两个文件的差异，而且可以很好的集成到SourceTree中，windows下的安装本文就不介绍了，本文主要讲一下osx下SourceTree集成BeyondCompare工具。</p>
-          <div class="read-more">
-            <a href="/mac-sourcetree-beyondcompre/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="prev" href="/page/2/">

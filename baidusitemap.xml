@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.immaxfang.com/deploy-blog-to-cloudflare-pages/</loc>
+    <lastmod>2023-10-15</lastmod>
+  </url>
+  <url>
     <loc>http://www.immaxfang.com/reset-admin-password-in-nexus3/</loc>
     <lastmod>2023-06-13</lastmod>
   </url>
@@ -93,11 +97,15 @@
     <lastmod>2023-04-19</lastmod>
   </url>
   <url>
+    <loc>http://www.immaxfang.com/keng-nginx-server-name/</loc>
+    <lastmod>2023-04-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.immaxfang.com/kubernetes-v1-25-service-account-secret-not-listed/</loc>
     <lastmod>2023-04-19</lastmod>
   </url>
   <url>
-    <loc>http://www.immaxfang.com/keng-nginx-server-name/</loc>
+    <loc>http://www.immaxfang.com/beanstalkd/</loc>
     <lastmod>2023-04-19</lastmod>
   </url>
   <url>
@@ -109,10 +117,6 @@
     <lastmod>2023-04-19</lastmod>
   </url>
   <url>
-    <loc>http://www.immaxfang.com/beanstalkd/</loc>
-    <lastmod>2023-04-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.immaxfang.com/hello-world/</loc>
     <lastmod>2023-04-19</lastmod>
   </url>
@@ -121,11 +125,11 @@
     <lastmod>2023-04-19</lastmod>
   </url>
   <url>
-    <loc>http://www.immaxfang.com/aws-rds-change-timezone/</loc>
+    <loc>http://www.immaxfang.com/authorization-header/</loc>
     <lastmod>2023-04-19</lastmod>
   </url>
   <url>
-    <loc>http://www.immaxfang.com/authorization-header/</loc>
+    <loc>http://www.immaxfang.com/aws-rds-change-timezone/</loc>
     <lastmod>2023-04-19</lastmod>
   </url>
 </urlset> 

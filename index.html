@@ -126,6 +126,36 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/deploy-blog-to-cloudflare-pages/">将 hexo 博客部署到 Cloudflare Pages</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2023-10-15
+        </span></div>
+    </header>
+
+    <div class="post-content"><h1 id="背景"><a href="# 背景" class="headerlink" title="背景"></a>背景 </h1><p> 以前做活动买了一台阿里云的轻量级服务器部署博客，近期快到了发现续费挺贵，就不打算续了，准备把博客迁移走。需求有几点，</p>
+<ul>
+<li>稳定且尽可能费用低，免费更好。</li>
+<li>访问速度好，尽可能保证国内海外都有好的访问体验。</li>
+<li>方便迁移和部署。</li>
+</ul>
+<p>综合考虑之后，决定迁移到 Cloudflare 上来。公司不少服务使用的都是 CF，功能强大，同时对于个人来讲，它提供的免费服务也非常适合我们部署一些个人服务。不得不说， Cloudflare 真是一家有格局的公司。</p>
+<h1 id="Cloudflare- 部署方式"><a href="#Cloudflare- 部署方式" class="headerlink" title="Cloudflare 部署方式"></a>Cloudflare 部署方式 </h1><p> 我的博客是基于 hexo，Cloudflare 上有两种常见的部署方式。</p>
+<ol>
+<li><p>Cloudflare Pages 部署 <br> 类似于 GitHub Pages 的静态网站托管服务，直接可以部署在 Cloudflare 的几个百数据中心上。</p>
+</li>
+<li><p>Cloudflare Workers 部署<br>Cloudflare Workers Site 可以与常见的静态网站生成器（Hexo、Hugo、Jekyll、Gatsby 等）兼容。Cloudflare Workers Site 是 Cloudflare Workers 提供了 KV Storage（Workers KV）以后开发出的一个功能，将静态文件存储在 KV Storage 中，Cloudflare Workers 从 KV 存储中获取文件并以 HTTP 响应的形式返回，实现静态网站托管。</p>
+</li>
+</ol>
+<p>这两种方式都尝试了下，相对而言，Cloudflare Pages 方式更简便一些，本文主要介绍此方式。</p>
+<h1 id="前期准备"><a href="# 前期准备" class="headerlink" title="前期准备"></a>前期准备 </h1><p> 注册 Cloudflare 账号。</p>
+<p>在 Cloudflare 中添加需要管理的域名。<br>【Website】-【Add a site】，填入你的域名，如 <code>immaxfang.com</code> ，选择免费版本即可，然后根据提示修改 DNS 。<br>由于我的博客域名在阿里云，需要先在阿里云域名管理里进行修改，将域名的 DNS 设置为 Cloudflare 的。</p>
+
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/reset-admin-password-in-nexus3/">Nexus3 重置 admin 账号密码</a>
         </h1>
 
@@ -319,33 +349,6 @@
 <h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">wget https:<span class="comment">//github.com/prometheus/mysqld_exporter/releases/download/v0.14.0/mysqld_exporter-0.14.0.linux-amd64.tar.gz</span></span><br><span class="line">tar xvf mysqld_exporter-<span class="number">0.14</span>.<span class="number">0</span>.linux-amd64.tar.gz</span><br><span class="line">mv mysqld_exporter-<span class="number">0.14</span>.<span class="number">0</span>.linux-amd64 mysqld_exporter</span><br><span class="line">mv /opt/mysqld_exporter /usr/local/</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/prometheus-grafana-mysql/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/prometheus-grafana-docker-compose-build/">【Prometheus+Grafana 系列】基于 docker-compose 搭建</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2022-08-23
-        </span><span class="post-category">
-            <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h2><p>Prometheus 是有 SoundCloud 开发的开源监控系统和时序数据库，基于 Go 语言开发。通过基于 HTTP 的 pull 方式采集时序数据，通过服务发现或静态配置去获取要采集的目标服务器，支持多节点工作，支持多种可视化图表及仪表盘。<br>贴一下官方提供的架构图：<br><img src="https://raw.githubusercontent.com/FX-Max/cdn/master/blog/post/2022/pgd-1.png" alt="image.png"></p>
-<p>Pormetheus 几个主要模块有，Server，Exporters，Pushgateway，PromQL，Alertmanager，WebUI等，主要逻辑如下：</p>
-<ul>
-<li>Prometheus server 定期从静态配置的 targets 或者服务发现的 targets 拉取数据。</li>
-<li>当新拉取的数据大于配置内存缓存区时，Prometheus 会将数据持久化到磁盘（如果使用 remote storage 将持久化到云端）。</li>
-<li>Prometheus 配置 rules，然后定时查询数据，当条件触发时，会将 alert 推送到配置的 Alertmanager。</li>
-<li>Alertmanager 收到警告时，会根据配置，聚合、去重、降噪等操作，最后发送警告。</li>
-<li>可以使用 API，Prometheus Console 或者 Grafana 查询和聚合数据。</li>
-</ul>
-          <div class="read-more">
-            <a href="/prometheus-grafana-docker-compose-build/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">
