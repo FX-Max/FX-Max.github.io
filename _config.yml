@@ -141,23 +141,23 @@ feed:
   autodiscovery: true
   
 #Qiniu
-qiniu:
-  offline: false
-  sync: false
-  bucket: max-fang-blog
-  access_key: vD3roq0M09ztRwurGLGPOmX6eBuxxDcwnQQsrf8k
-  secret_key: KFl4y4blnj8fgrpVPFV2UiLZqYddFPP3hM1rP83u
-  dirPrefix:
-  urlPrefix: https://cdn.immaxfang.com
-  local_dir: cdn
-  update_exist: true
-  image:
-    folder: images
-    extend:
-  js:
-    folder: js
-  css:
-    folder: css
+#qiniu:
+#  offline: false
+#  sync: false
+#  bucket: max-fang-blog
+#  access_key: vD3roq0M09ztRwurGLGPOmX6eBuxxDcwnQQsrf8k
+#  secret_key: KFl4y4blnj8fgrpVPFV2UiLZqYddFPP3hM1rP83u
+#  dirPrefix:
+#  urlPrefix: https://cdn.immaxfang.com
+#  local_dir: cdn
+#  update_exist: true
+#  image:
+#    folder: images
+#    extend:
+#  js:
+#    folder: js
+#  css:
+#    folder: css
 
 baidu_analytics: 67809b4ebdab46caa23b4831eaa0da9a
 
